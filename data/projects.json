@@ -1,0 +1,20 @@
+[
+    {
+        "id": 0,
+        "name": "The Rooftop Cat",
+        "image": "/assets/images/rtc.png",
+        "portfolio": "rtc.pdf"
+    },
+    {
+        "id": 1,
+        "name": "The Pirate's Daugther",
+        "image": "/assets/images/tpd.jpeg",
+        "portfolio": "rtc.pdf"
+    },
+    {
+        "id": 2,
+        "name": "Running Rabbit",
+        "image": "/assets/images/rr.png",
+        "portfolio": "rtc.pdf"
+    }
+]
