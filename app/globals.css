@@ -10,6 +10,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-bright-grotesk: "Bright Grotesk";
+  --font-bright-grotesk-semibold: "Bright Grotesk Semibold";
+  --font-bright-grotesk-light: "Bright Grotesk Light";
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,6 +20,30 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+@font-face {  
+  font-family: "Bright Grotesk";  
+  font-style: normal;  
+  font-weight: 200 700;  
+  font-display: swap;  
+  src: url("/assets/fonts/Bright Grotesk/Normal/Bright Grotesk.ttf") format("truetype");
+}
+
+@font-face {  
+  font-family: "Bright Grotesk Semibold";  
+  font-style: semibold;
+  font-weight: 200 700;  
+  font-display: swap;  
+  src: url("/assets/fonts/Bright Grotesk/Semibold/Bright Grotesk Semibold.ttf") format("truetype");
+}
+
+@font-face {  
+  font-family: "Bright Grotesk Light";  
+  font-style: light;
+  font-weight: 200 700;  
+  font-display: swap;  
+  src: url("/assets/fonts/Bright Grotesk/Light/Bright Grotesk Light.ttf") format("truetype");
 }
 
 body {

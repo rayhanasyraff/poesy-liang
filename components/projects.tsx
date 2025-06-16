@@ -1,70 +1,67 @@
-"use client"
-
-import Image from 'next/image'
-import { useEffect } from 'react';
+import Link from 'next/link';
+import ProjectImage from './project-image';
+import Image from 'next/image';
 
 export interface Project {
     id: number;
+    pathname: string;
+    category: string;
+    description: string;
     name: string;
     image: string;
     portfolio: string;
 }
 
-function ProjectImage({ id, name, img }: { id: number, name: string, img: string }) {
+function Project({ project }: { project:Project}) {    
+    const url = new URL("/projects/" + project.name.toLowerCase().replace(/\s/g, "-").replace(/\'/g, ""), "http://localhost:3000");
 
-  useEffect(() => {
-    
-    document.addEventListener('mousemove', function(e) {
-      const image = document.getElementById(`image-${id}`);
-      const project = document.getElementById(`${id}`);
-
-      if (project !== null && image !== null) {
-
-        if (project.matches(':hover')) {
-          image.className = "absolute";
-          image.style.left = e.pageX + 'px';
-          image.style.top = e.pageY + 40 + 'px';
-        } else {
-          image.className = "absolute invisible";
-        }
-      }
-    });
-  
-  }, [])
-  
-
-  return (
-      <Image
-      src={img}
-      width={250}
-      height={250}
-      alt={name}
-      className="absolute invisible"
-      id={`image-${id}`}
-      />
-  )
-}
-
-function Project({ project }: { project:Project}) {
     return (
-      <div id={`${project.id}`}>
-        <div 
-        className="text-3xl hover:opacity-50 cursor-pointer"
-        id="project-name"
-        >
-         <h1>{project.name}</h1>
-        </div>
+      <div 
+      id={`${project.id}`}
+      className="max-md:flex max-md:flex-col max-md:text-center max-md:items-center md:inline mr-10 "
+      >
         <ProjectImage 
         id={project.id}
         name={project.name} 
-        img={project.image} />
+        img={project.image} 
+        />
+
+        <div
+        className='md:inline'
+        id="project-name"
+        >
+         <Link 
+         className="max-md:flex max-md:flex-col max-md:items-center md:inline md:break-all max-md:text-[40px] max-md:opacity-80 md:text-[50px] md:opacity-20 md:hover:opacity-80 cursor-pointer font-bright-grotesk-light md:transition md:duration-500 md:ease-in-out"
+         href={url.toString()}
+         >
+          <div
+          className='md:hidden max-md:bg-white max-md:w-140 max-md:h-100 max-md:flex max-md:items-center max-md:justify-center max-md:hover:contrast-150 max-md:transition max-md:duration-500 max-md:ease-in-out'
+          >
+            <Image 
+            src={project.image} 
+            alt={project.name}
+            width={300}
+            height={300}
+            className=''
+            ></Image>
+          </div>
+          <div className='md:hidden max-md:my-10'>
+            <p className='md:hidden max-md:text-xl'>{project.category}</p>
+            <h1 className='md:inline'>{project.name}</h1>
+            <p className='md:hidden max-md:text-xl max-md:mt-5'>{project.description}</p>
+          </div>
+
+          <h1 className='max-md:hidden md:inline'>{project.name}</h1>
+         </Link>
+
+        </div>
       </div>
     );
 }
 
 export default function ProjectsList( { projectsList }: { projectsList: Project[] } ) {
     return (
-      <div className="flex ml-10 mt-9 justify-center gap-15 flex-wrap">
+      <div className="mt-10 mx-10">  
         {projectsList.map((project, i) => (
           <Project project={project} key={i} />
         ))}
