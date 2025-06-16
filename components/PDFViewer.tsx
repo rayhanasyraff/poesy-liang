@@ -9,9 +9,9 @@ type Props = {
   file: string;
 };
 
-const options = {
-  cMapUrl: '/cmaps/',
-};
+// const options = {
+//   cMapUrl: '/cmaps/',
+// };
 
 // The workerSrc property shall be specified.
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -20,7 +20,7 @@ const PDFViewer: React.FC<Props> = ({ file }) => {
   
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const [numPages, setNumPages] = useState<number>();
-  const [pageNumber, setPageNumber] = useState<number>(1);
+  // const [pageNumber, setPageNumber] = useState<number>(1);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);

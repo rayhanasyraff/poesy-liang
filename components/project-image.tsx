@@ -35,7 +35,7 @@ export default function ProjectImage({ id, name, img }: { id: number, name: stri
       }
     });
   
-  }, [])
+  })
   
   return (
       <Image
