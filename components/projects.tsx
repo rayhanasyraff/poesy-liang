@@ -15,7 +15,7 @@ export interface Project {
 function Project({ project }: { project:Project}) {    
     const url = new URL(
       "/projects/" + project.name.toLowerCase().replace(/\s/g, "-").replace(/\'/g, ""), 
-      process.env.URL? process.env.URL : "http://localhost:3000");
+      process.env.NODE_ENV === "production" ? process.env.URL : "http://localhost:3000");
 
     return (
       <div 
