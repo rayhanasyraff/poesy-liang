@@ -13,7 +13,9 @@ export interface Project {
 }
 
 function Project({ project }: { project:Project}) {    
-    const url = new URL("/projects/" + project.name.toLowerCase().replace(/\s/g, "-").replace(/\'/g, ""), "http://localhost:3000");
+    const url = new URL(
+      "/projects/" + project.name.toLowerCase().replace(/\s/g, "-").replace(/\'/g, ""), 
+      process.env.URL? process.env.URL : "http://localhost:3000");
 
     return (
       <div 
