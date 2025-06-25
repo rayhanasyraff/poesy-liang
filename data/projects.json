@@ -15,7 +15,7 @@
     "description": "an imaginative tale of adventure and legacy, told through powerful visual storytelling.",
     "pathname": "the-pirates-daugther",
     "image": "/assets/images/tpd-2.png",
-    "portfolio": "/assets/pdf/jose.pdf"
+    "portfolio": "/assets/pdf/rtc.pdf"
   },
   {
     "id": 2,
@@ -24,7 +24,7 @@
     "description": "a metaphorical journey of speed, escape, and freedom depicted through whimsical rabbit illustrations.",
     "pathname": "running-rabbit",
     "image": "/assets/images/rr.png",
-    "portfolio": "/assets/pdf/combinepdf.pdf"
+    "portfolio": "/assets/pdf/rtc.pdf"
   },
   {
     "id": 3,
