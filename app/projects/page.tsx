@@ -1,13 +1,15 @@
-import Header from "@/components/base/Header";
 import Footer from "@/components/base/Footer";
+import Header from "@/components/base/Header";
 import ProjectsPage from "@/components/page/ProjectsPage";
 
-export default function Home() {
-  return (
+const Projects = () => {
+    return (
     <div className="flex flex-col">
       <Header />
       <ProjectsPage />
-      {/* <Footer className="mt-10"/> */}
+      <Footer />
     </div>
-  );
+    );
 }
+
+export default Projects;

@@ -1,10 +1,12 @@
 "use client"
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from 'next/image';
 
-export default function ProjectImage({ id, name, img }: { id: number, name: string, img: string }) {
+export default function ImageHover({ id, name, img }: { id: number, name: string, img: string }) {
   
+  const [isImageLoadError, setIsImageLoadError] = useState(false);
+
   useEffect(() => {
     document.addEventListener('mousemove', function(e) {
       const image = document.getElementById(`image-${id}`);
@@ -37,6 +39,10 @@ export default function ProjectImage({ id, name, img }: { id: number, name: stri
   
   })
   
+  if (isImageLoadError) {
+    return <></>
+  }
+
   return (
       <Image
       src={img}
@@ -45,6 +51,8 @@ export default function ProjectImage({ id, name, img }: { id: number, name: stri
       alt={name}
       className="hidden"
       id={`image-${id}`}
+      placeholder="empty"
+      onError={() => setIsImageLoadError(true)}
       />
   )
 }

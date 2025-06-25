@@ -3,7 +3,9 @@
 import Home from "@/app/page";
 import { usePathname } from "next/navigation";
 import data from "@/data/projects.json";
-import ProjectModal from "@/components/project-modal";
+import dynamic from "next/dynamic";
+import ClosePageButton from "@/components/utils/ClosePageButton";
+import Spinner from "@/components/utils/Spinner";
 
 export default function Page() {
   const pathname = usePathname();
@@ -13,11 +15,19 @@ export default function Page() {
 
   const project = data.find((project) => project.pathname === result);
 
+  const PDFViewer = dynamic(() => import('@/components/utils/PDFViewer/PDFViewer'), {
+    ssr: false,
+    loading: () => <Spinner />,
+  })
+
   if (project) {
     return (
       <div className="size-full">
         <div className="absolute w-full z-100">
-          <ProjectModal project={project} />
+          <div className="flex flex-col bg-black">
+              <ClosePageButton />
+              <PDFViewer file={project.portfolio} />
+          </div>        
         </div>
       </div>
     );
