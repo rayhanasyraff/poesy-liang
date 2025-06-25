@@ -1,5 +1,4 @@
 import Header from "@/components/base/Header";
-import Footer from "@/components/base/Footer";
 import ProjectsPage from "@/components/page/ProjectsPage";
 
 export default function Home() {
@@ -7,7 +6,6 @@ export default function Home() {
     <div className="flex flex-col">
       <Header />
       <ProjectsPage />
-      {/* <Footer className="mt-10"/> */}
     </div>
   );
 }

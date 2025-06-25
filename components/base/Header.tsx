@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Navigation from './Navigation'
 
 export default function Header() {
   return (
@@ -13,7 +12,6 @@ export default function Header() {
         width={20}
         height={20} />
       </Link>
-      {/* <Navigation /> */}
     </div>
   );
 }
