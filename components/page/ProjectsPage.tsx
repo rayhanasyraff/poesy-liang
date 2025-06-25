@@ -3,7 +3,7 @@ import data from "@/data/projects.json";
 
 const ProjectsPage = ({className}: {className?: string}) => {
     return (
-        <div className="flex">
+        <div className={className}>
             <ProjectList 
             projects={data} />
         </div>

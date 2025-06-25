@@ -9,7 +9,7 @@ const PDFViewerPages = ({ numPages, onChangePageNumber }: { numPages: number | u
   
   const pages = new Array(numPages).fill(0);
 
-  const { pageNumber, numPagesRendered, setNumPagesRendered, areAllPagesRendered, setAreAllPagesRendered } = useContext(DocumentInfoContext);
+  const { pageNumber, numPagesRendered, setNumPagesRendered, setAreAllPagesRendered } = useContext(DocumentInfoContext);
   const pageSize =  usePageSize();
   
   useEffect(() => {
