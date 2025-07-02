@@ -107,8 +107,6 @@ export default function Project({ project }: { project: ProjectType }) {
     
     const baseUrl = useBaseUrl();
 
-    console.log(baseUrl)
-
     const url = new URL(
       "/projects/" + project.name.toLowerCase().replace(/\s/g, "-").replace(/\'/g, ""), 
       baseUrl);
