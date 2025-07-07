@@ -1,4 +1,5 @@
 /*! tailwindcss v4.1.10 | MIT License | https://tailwindcss.com */
+@import 'tailwindcss';
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -349,12 +350,6 @@
   .text-center {
     text-align: center;
   }
-  .font-bright-grotesk-light {
-    font-family: "Bright Grotesk Light";
-  }
-  .font-bright-grotesk-semibold {
-    font-family: "Bright Grotesk Semibold";
-  }
   .text-3xl {
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
@@ -474,27 +469,6 @@
     --foreground: #ededed;
   }
 }
-@font-face {
-  font-family: "Bright Grotesk";
-  font-style: normal;
-  font-weight: 200 700;
-  font-display: swap;
-  src: url("/assets/fonts/Bright Grotesk/Normal/Bright Grotesk.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Bright Grotesk Semibold";
-  font-style: semibold;
-  font-weight: 200 700;
-  font-display: swap;
-  src: url("/assets/fonts/Bright Grotesk/Semibold/Bright Grotesk Semibold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Bright Grotesk Light";
-  font-style: light;
-  font-weight: 200 700;
-  font-display: swap;
-  src: url("/assets/fonts/Bright Grotesk/Light/Bright Grotesk Light.ttf") format("truetype");
-}
 body {
   background: var(--background);
   color: var(--foreground);
@@ -550,4 +524,42 @@ body {
       --tw-ease: initial;
     }
   }
+}
+
+.font-bright-grotesk-light {
+  font-family: "Bright Grotesk Light";
+}
+.font-bright-grotesk-semibold {
+  font-family: "Bright Grotesk Semibold";
+}
+.font-fengguangmingrui-regular {
+  font-family: "FengGuangMingRui Regular";
+}
+@font-face {
+  font-family: "Bright Grotesk";
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("/assets/fonts/Bright Grotesk/Normal/Bright Grotesk.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Bright Grotesk Semibold";
+  font-style: semibold;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("/assets/fonts/Bright Grotesk/Semibold/Bright Grotesk Semibold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Bright Grotesk Light";
+  font-style: light;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("/assets/fonts/Bright Grotesk/Light/Bright Grotesk Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "FengGuangMingRui Regular";
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("/assets/fonts/FengGuangMingRui/Regular/FengGuangMingRui Regular.ttf") format("truetype");
 }

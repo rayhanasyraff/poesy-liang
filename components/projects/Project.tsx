@@ -1,26 +1,35 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useMediaQuery } from 'react-responsive';
 import useBaseUrl from '@/hooks/useBaseUrl';
 import ImageHover from '../utils/ImageHover';
+import { useEffect } from 'react';
+import resizeChineseText from '@/utils/resizeChineseText';
+// import hoverPopupProjectListMobile from '@/utils/animation/hoverPopupProjectListMobile';
 
 export interface ProjectType {
     id: number;
+    date: string;
     pathname: string;
     category: string;
     description: string;
     name: string;
     image: string;
     portfolio: string;
+    country: string;
 }
 
 function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
+
+  useEffect(() => {
+    resizeChineseText("text-[48px]")
+  }, [project.id]);
+
   return (
       <div 
-      id={`${project.id}`}
-      className="inline"
+      id={`project-${project.id}`}
+      className="project inline"
       >
         <ImageHover
         id={project.id}
@@ -33,70 +42,32 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
         id="project-name"
         >
         <Link 
-        className="inline opacity-20 hover:opacity-80 cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out"
+        className="inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
         href={url.toString()}
         >
-          <h1 className='text-6xl leading-18 inline break-all mr-10'>{project.name}</h1>
+          <h1 className='text-6xl opacity-[0.77] hover:opacity-100 text-white hover:text-[#f04ff0] leading-18 inline break-all mr-10'>{project.name}</h1>
         </Link>
         </div>
       </div>
   )
 }
 
-
-function ImageMobile({ project }: { project: ProjectType }) {
-
-  return (
-    <Image 
-    src={project.image}
-    width={300}
-    height={300}
-    alt={project.name}
-    />
-  )
-
-  // const isImageExist = useCheckImage(project.image);
-
-
-  // if (isImageExist) {
-  //   return (
-  //     <Image 
-  //     src={project.image}
-  //     width={300}
-  //     height={300}
-  //     alt={project.name}
-  //     />
-  //   )
-  // }
-
-  // return (
-  //   <div className='bg-gray-300 w-[500px] h-[300px]'>
-  //   </div>
-  // )
-  
-}
-
 function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
+  
+  useEffect(() => {
+
+    // hoverPopupProjectListMobile();
+    resizeChineseText("text-[10px]")
+  }, [project.id]);
+  
   return (
       <div 
-      id={`${project.id}`}
-      className="flex flex-col text-center items-center"
+      id={`project-${project.id}`}
+      className="project inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
       >
-        <div id="project-name">
-          <Link 
-          className="opacity-80 hover:opacity-100 cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out"
-          href={url.toString()}
-          >
-            <div
-            className="flex flex-col items-center"
-            >
-              <ImageMobile project={project} />
-            </div>
-            <div className='my-10'>
-              <p className='text-sm'>{project.category}</p>
-              <h1 className='text-3xl'>{project.name}</h1>
-              <p  className="mt-5 text-sm">{project.description}</p>
-            </div>
+        <div>
+          <Link href={url.toString()}>
+            <p className='text-sm opacity-[0.77] hover:opacity-100 text-white hover:text-[#f04ff0]'>{project.name}</p>
           </Link>
         </div>
       </div>
@@ -108,10 +79,11 @@ export default function Project({ project }: { project: ProjectType }) {
     const baseUrl = useBaseUrl();
 
     const url = new URL(
-      "/projects/" + project.name.toLowerCase().replace(/\s/g, "-").replace(/\'/g, ""), 
+      "/projects/" + project.pathname, 
       baseUrl);
 
     const isDesktop = useMediaQuery({ query: '(min-width: 768px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
     
     if (isDesktop) {
       return (
@@ -119,7 +91,12 @@ export default function Project({ project }: { project: ProjectType }) {
       )
     }
 
-    return (
-      <ProjectMobile url={url} project={project} />
-    );
+    if (isMobile) {
+      return (
+        <ProjectMobile url={url} project={project} />
+      );
+    }
+
+    return <></>
+
 }

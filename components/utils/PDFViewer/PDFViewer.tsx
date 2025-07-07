@@ -1,5 +1,3 @@
-"use client"
-
 import React, { createContext, useState } from 'react';
 import { pdfjs, Document } from "react-pdf";
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -59,22 +57,24 @@ export default function PDFViewer ({ file }: PDFViewerPropsType) {
 // !numPages || numRenderedPages < numPages
   return (
     <DocumentInfoContext value={{ pageNumber, numPages, numPagesRendered, areAllPagesRendered, setNumPagesRendered, setAreAllPagesRendered }}>
-      <Document 
-      file={file} 
-      onLoadSuccess={handleDocumentLoadSuccess} 
-      className="flex flex-col items-center justify-center content-center"
-      loading={""}
-      // onItemClick={({pageNumber}) => console.log('Clicked an item from page ' + pageNumber + '!')}
-      onLoadError={(error) => {
-        console.log("Error while loading document! " + error.message);
-        setIsDocumentLoadError(true);
-      }}
-      // onLoadProgress={({ loaded, total }) => console.log('Loading a document: ' + (loaded / total) * 100 + '%')}
-      // onSourceError={(error) => console.log("Source error: " + error.message)}
-      // onSourceSuccess={() => console.log("Source loaded!")}
-      >
-        <PDFViewerPages numPages={numPages} onChangePageNumber={handleChangePageNumber} />
-      </Document>
+      <div className='flex flex-1 h-screen justify-center overflow-y-scroll' id="pages">
+        <Document 
+        file={file} 
+        onLoadSuccess={handleDocumentLoadSuccess} 
+        className="flex flex-col content-center"
+        loading={""}
+        // onItemClick={({pageNumber}) => console.log('Clicked an item from page ' + pageNumber + '!')}
+        onLoadError={(error) => {
+          console.log("Error while loading document! " + error.message);
+          setIsDocumentLoadError(true);
+        }}
+        // onLoadProgress={({ loaded, total }) => console.log('Loading a document: ' + (loaded / total) * 100 + '%')}
+        // onSourceError={(error) => console.log("Source error: " + error.message)}
+        // onSourceSuccess={() => console.log("Source loaded!")}
+        >
+          <PDFViewerPages numPages={numPages} onChangePageNumber={handleChangePageNumber} />
+        </Document>
+      </div>
     </DocumentInfoContext>
   );
 };

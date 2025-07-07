@@ -1,15 +1,15 @@
 import { Page } from "react-pdf"
-import PDFViewerPagesTouchController from "./PDFViewerPagesTouchController"
-import PDFViewerPagesController from "./PDFViewerPagesController"
+// import PDFViewerPagesTouchController from "./PDFViewerPagesTouchController"
+// import PDFViewerPagesController from "./PDFViewerPagesController"
 import usePageSize from "@/hooks/usePageSize"
 import { DocumentInfoContext } from "./PDFViewer"
 import { useContext, useEffect } from "react"
 
-const PDFViewerPages = ({ numPages, onChangePageNumber }: { numPages: number | undefined, onChangePageNumber: (pageNumber: number) => void }) => {
+const PDFViewerPages = ({ numPages }: { numPages: number | undefined, onChangePageNumber: (pageNumber: number) => void }) => {
   
   const pages = new Array(numPages).fill(0);
 
-  const { pageNumber, numPagesRendered, setNumPagesRendered, setAreAllPagesRendered } = useContext(DocumentInfoContext);
+  const { numPagesRendered, setNumPagesRendered, setAreAllPagesRendered } = useContext(DocumentInfoContext);
   const pageSize =  usePageSize();
   
   useEffect(() => {
@@ -20,24 +20,28 @@ const PDFViewerPages = ({ numPages, onChangePageNumber }: { numPages: number | u
 
   return (
       <div
-        style={{
-          display: "inline-block",
-        }}
+      className=""
+        // style={{
+        //   display: "inline-block",
+        // }}
       >
         {/* <Spinner className={`
           ${areAllPagesRendered ? "hidden" : "visible"}`} /> */}
-        <div style={{
-          display: "inline-block",
-          marginTop: `${pageSize.margin}px`,
-          // visibility: areAllPagesRendered ? "visible" : "hidden",
-        }}>
+        <div 
+        className="flex flex-col items-center gap-3 h-[100px]"
+        // style={{
+        //   // display: "inline-block",
+        //   // marginTop: `${pageSize.margin}px`,
+        //   // visibility: areAllPagesRendered ? "visible" : "hidden",
+        // }}
+        >
           {pages.map((_, index) => (
             <div
               key={`page_${index + 1}`}
-              className="page hidden"
+              // className="page hidden"
             >
-              <PDFViewerPagesTouchController 
-              onChangePageNumber={onChangePageNumber}  />
+              {/* <PDFViewerPagesTouchController 
+              onChangePageNumber={onChangePageNumber}  /> */}
               <Page
               onRenderTextLayerError={(error) => console.log('Error while rendering text layer! ' + error.message) }
               renderTextLayer={false}
@@ -57,17 +61,17 @@ const PDFViewerPages = ({ numPages, onChangePageNumber }: { numPages: number | u
               onRenderError={(error) => console.log('Error while rendering page! ' + error.message)}
               onRenderSuccess={() => {
                 setNumPagesRendered(index + 1);
-                console.log(index + 1)
+                // console.log(index + 1)
               }}
               // onRenderTextLayerSuccess={() => console.log("Text layer rendered successfully")} 
               />
             </div>
           ))}
-          <PDFViewerPagesController 
+          {/* <PDFViewerPagesController 
             numPages={numPages}
             pageNumber={pageNumber}
             onChangePageNumber={onChangePageNumber}
-          />
+          /> */}
         </div>
       </div>
   )

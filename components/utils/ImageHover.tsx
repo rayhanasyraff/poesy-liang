@@ -10,7 +10,7 @@ export default function ImageHover({ id, name, img }: { id: number, name: string
   useEffect(() => {
     document.addEventListener('mousemove', function(e) {
       const image = document.getElementById(`image-${id}`);
-      const project = document.getElementById(`${id}`);
+      const project = document.getElementById(`project-${id}`);
 
       if (project !== null && image !== null) {
 

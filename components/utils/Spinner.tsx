@@ -1,3 +1,5 @@
+"use client"
+
 import { FadeLoader } from "react-spinners";
 
 export default function Spinner({ className }: { className?: string }) {

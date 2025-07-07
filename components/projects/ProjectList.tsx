@@ -8,7 +8,7 @@ import { cva } from "class-variance-authority";
 const projectListVariants = cva("mt-10 mx-10", {
   variants: {
     type: {
-      mobile: "flex flex-col gap-10",
+      mobile: "text-right",
       desktop: "",
     },
   },
