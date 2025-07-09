@@ -5,11 +5,11 @@ import Project, { ProjectType } from "./Project";
 import { cva } from "class-variance-authority";
 
 
-const projectListVariants = cva("mt-10 mx-10", {
+const projectListVariants = cva("", {
   variants: {
     type: {
-      mobile: "text-right",
-      desktop: "",
+      mobile: "text-right mr-5",
+      desktop: "mt-10 mx-10",
     },
   },
   defaultVariants: {

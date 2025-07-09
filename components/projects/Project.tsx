@@ -67,7 +67,7 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
       >
         <div>
           <Link href={url.toString()}>
-            <p className='text-sm opacity-[0.77] hover:opacity-100 text-white hover:text-[#f04ff0]'>{project.name}</p>
+            <p className='text-[10px] opacity-[0.77] hover:opacity-100 text-white hover:text-[#f04ff0]'>{project.name}</p>
           </Link>
         </div>
       </div>

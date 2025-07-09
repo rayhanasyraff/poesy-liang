@@ -9,31 +9,28 @@ export default function usePageSize() {
     
 
     const [pageSize, setPageSize] = useState({ width: 0, height: 0, margin: window.innerHeight / 2 });
-    const pagesContainer = document.getElementById('pages');
+    // const getPageByPageNumber = (pageNumber: number) => {
+    //     const pages = document.getElementsByClassName("page");
 
-    const getPageByPageNumber = (pageNumber: number) => {
-        const pages = document.getElementsByClassName("page");
+    //     if (pages.length !== 0 && pages !== undefined && pages !== null) {
+    //         for (let index = 0; index < pages.length; index++) {
+    //             // const page = pages[index];
+    //             // page.className = "page hidden";
+    //         }
 
-        if (pages.length !== 0 && pages !== undefined && pages !== null) {
-            for (let index = 0; index < pages.length; index++) {
-                // const page = pages[index];
-                // page.className = "page hidden";
-            }
+    //         const pageSelected = pages[pageNumber - 1];
 
-            const pageSelected = pages[pageNumber - 1];
+    //         // pageSelected.className = "page";
 
-            // pageSelected.className = "page";
-
-            // console.log(pageSelected.clientHeight);
-            if (pageSelected && pageSelected.clientHeight <= 100) {
-                // pageSelected.className = "page hidden";
-            }
+    //         // console.log(pageSelected.clientHeight);
+    //         if (pageSelected && pageSelected.clientHeight <= 100) {
+    //             // pageSelected.className = "page hidden";
+    //         }
             
-            return pageSelected;
-        }
+    //         return pageSelected    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
     // function getPageByPageNumber(pageNumber: number) {
     //     const pages = document.getElementsByClassName("page");
@@ -58,19 +55,35 @@ export default function usePageSize() {
 
     //     return null;
     // }
-
     useEffect(() => {
-        const maxWidth = 1325;
-        const pageSelected = pageNumber ? getPageByPageNumber(pageNumber) : null;
+        const maxWindowWidth = 1325;
+        const minWindowWidth = 767;
+        const pageHeight = document.getElementsByClassName("page")[0]?.clientHeight;
+        // const pagesContainer = document.getElementById('pages');        
 
         // pagesContainer?.clientWidth = windowSize.width;
         // if (pagesContainer && pagesContainer.style) {
         //     pagesContainer.style.width = windowSize.width + 'px';
-        // }        
+        // }
+
+        let pageWidth = 300;
+
+        if (windowSize.width > minWindowWidth && windowSize.width <= maxWindowWidth) {
+            pageWidth = windowSize.width;
+        } else if (windowSize.width > maxWindowWidth) {
+            pageWidth = maxWindowWidth;
+        } else if (windowSize.width <= minWindowWidth) {
+            
+            if (windowSize.width <= 500) {
+                pageWidth = 200;
+            }
+
+        }
+        
 
         setPageSize({
-            width: pagesContainer && pagesContainer.clientWidth <= maxWidth ? pagesContainer.clientWidth : maxWidth,
-            height: pageSelected ? pageSelected.clientHeight : 0,
+            width: pageWidth,
+            height: pageHeight ?? 0,
             margin: pageSize.height == windowSize.height ? windowSize.height / 2 : (windowSize.height - pageSize.height) / 2
         });
 
@@ -78,7 +91,7 @@ export default function usePageSize() {
 
         setNumPagesRendered(0);
         
-    }, [pageNumber, windowSize.width, windowSize.height, pageSize.height, pageSize.width, areAllPagesRendered, numPagesRendered, setNumPagesRendered, setAreAllPagesRendered, pagesContainer]);
+    }, [pageNumber, windowSize.width, windowSize.height, pageSize.height, pageSize.width, areAllPagesRendered, numPagesRendered, setNumPagesRendered, setAreAllPagesRendered, windowSize]);
 
 
     return pageSize;

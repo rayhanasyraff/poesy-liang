@@ -17,7 +17,7 @@ const ProjectsPage = ({className=""}: {className?: string}) => {
 
     if (isMobile) {
         return (
-            <div className={`flex flex-1 flex-row h-dvh ${className}`}>
+            <div className={`flex flex-1 flex-row h-dvh mt-10 ${className}`}>
                 <div className="flex flex-1 mr-10">
                     <PDFViewer file={data[0].portfolio} />
                 </div>
