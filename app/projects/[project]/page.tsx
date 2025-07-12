@@ -7,6 +7,8 @@ import dynamic from "next/dynamic";
 import ClosePageButton from "@/components/utils/ClosePageButton";
 import Spinner from "@/components/utils/Spinner";
 import { useMediaQuery } from "react-responsive";
+import ResponsiveImage from "@/components/utils/ResponsiveImage";
+import useWindowSize from "@/hooks/useWindowSize";
 
 export default function Page() {
   const pathname = usePathname();
@@ -24,6 +26,8 @@ export default function Page() {
   const isDesktop = useMediaQuery({ query: '(min-width: 768px)' });
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
+  const windowSize = useWindowSize();
+
   if (project) {
     if (isDesktop) {
       if (project.contentPortfolio) {
@@ -34,6 +38,22 @@ export default function Page() {
           </div>
         );
       }
+
+      if (project.contentImage) {
+        return (
+          <div className="flex flex-1 flex-row">
+            <div className="flex flex-1"
+            style={{
+              marginTop: `${windowSize.height / 6}px`,
+            }}
+            >
+              <ResponsiveImage image={project.contentImage[0]} name={project.name} />
+            </div>
+            <ClosePageButton />
+          </div>
+        )
+      }
+
     }
 
     if (isMobile) {

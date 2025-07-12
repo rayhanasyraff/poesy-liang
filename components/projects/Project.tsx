@@ -6,7 +6,6 @@ import useBaseUrl from '@/hooks/useBaseUrl';
 import ImageHover from '../utils/ImageHover';
 import { ReactNode, useEffect } from 'react';
 import resizeChineseText from '@/utils/resizeChineseText';
-// import hoverPopupProjectListMobile from '@/utils/animation/hoverPopupProjectListMobile';
 
 export interface ProjectType {
     id: number;
@@ -78,7 +77,7 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
           className="inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
           href={project.linkRedirect??  url.toString()}
           >
-            <h1 className='text-6xl opacity-[0.77] hover:opacity-100 text-white hover:text-[#f04ff0] leading-18 inline break-all mr-10'>{project.name}</h1>
+            <h1 className='text-6xl opacity-[0.77] hover:opacity-100 text-white hover:text-[#ff009f] leading-18 inline break-all mr-10'>{project.name}</h1>
           </ProjectLink>
         </div>
       </div>
@@ -88,8 +87,6 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
 function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
   
   useEffect(() => {
-
-    // hoverPopupProjectListMobile();
     resizeChineseText("text-[10px]")
   }, [project.id]);
   
@@ -100,7 +97,7 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
       >
         <div>
           <ProjectLink href={project.linkRedirect??  url.toString()}>
-            <p className='text-[10px] opacity-[0.77] hover:opacity-100 text-white hover:text-[#f04ff0]'>{project.name}</p>
+            <p className='text-[10px] opacity-[0.77] hover:opacity-100 text-white hover:text-[#ff009f]'>{project.name}</p>
           </ProjectLink>
         </div>
       </div>

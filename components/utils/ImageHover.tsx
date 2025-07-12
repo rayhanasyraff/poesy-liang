@@ -19,7 +19,18 @@ export default function ImageHover({ id, name, img }: { id: number, name: string
 
           const imageRect = image.getBoundingClientRect();
 
-          if ((e.pageY + imageRect.height + 40) > window.innerHeight) {
+          // console.log({
+          //   "cursor x": e.pageX, 
+          //   "cursor y": e.pageY, 
+          //   "image width": imageRect.width, 
+          //   "image height": imageRect.height, 
+          //   "window width": window.innerWidth, 
+          //   "window height": window.innerHeight,
+          //   "cursor + image y": (e.pageY + imageRect.height + 40),
+          //   "cursor + image x": (e.pageX + imageRect.width)
+          // });
+
+          if ((e.pageY + imageRect.height - 30) > window.innerHeight) {
             image.style.top = e.pageY - imageRect.height - 20 + 'px';
           } else {
             image.style.top = e.pageY + 40 + 'px';
@@ -43,11 +54,24 @@ export default function ImageHover({ id, name, img }: { id: number, name: string
     return <></>
   }
 
+  if (img == "/assets/images/poesy-logo-pink.png") {
+    return <Image
+      src={img}
+      width={200}
+      height={200}
+      alt={name}
+      className="hidden"
+      id={`image-${id}`}
+      placeholder="empty"
+      onError={() => setIsImageLoadError(true)}
+      />
+  }
+
   return (
       <Image
       src={img}
-      width={300}
-      height={300}
+      width={480}
+      height={480}
       alt={name}
       className="hidden"
       id={`image-${id}`}
