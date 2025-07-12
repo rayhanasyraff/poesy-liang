@@ -458,6 +458,18 @@
       margin-top: calc(var(--spacing) * 115);
     }
   }
+
+    /* Chrome, Safari and Opera */
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  .scrollbar-hidden {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+  }
+
 }
 :root {
   --background: #000000;

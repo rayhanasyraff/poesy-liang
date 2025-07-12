@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useMediaQuery } from 'react-responsive';
 import useBaseUrl from '@/hooks/useBaseUrl';
 import ImageHover from '../utils/ImageHover';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import resizeChineseText from '@/utils/resizeChineseText';
 // import hoverPopupProjectListMobile from '@/utils/animation/hoverPopupProjectListMobile';
 
@@ -12,12 +12,45 @@ export interface ProjectType {
     id: number;
     date: string;
     pathname: string;
-    category: string;
+    category: string[];
+    tags: string[];
     description: string;
     name: string;
-    image: string;
-    portfolio: string;
-    country: string;
+    thumbnailImage: string[];
+    contentImage: string[];
+    contentPortfolio?: string;
+    contentVideo?: string[];
+    location?: string[];
+    linkRedirect?: string;
+}
+
+function ProjectLink({href, className, children}: {href: string, className?: string, children: ReactNode}) {
+
+  if (href.startsWith("https://www.youtube.com/")) {
+    <button 
+    onClick={() => {
+      const videoUrl = href;
+      const win = window.open(videoUrl, "_blank");
+
+      if (win) {
+        win.focus();
+      } else {
+        alert("Please allow popups for this site.");
+      }
+    }}
+    className={className}>
+      {children}
+    </button>
+  }
+
+  return (
+    <Link 
+    href={href}
+    className={className}>
+      {children}
+    </Link>
+  )
+
 }
 
 function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
@@ -34,19 +67,19 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
         <ImageHover
         id={project.id}
         name={project.name} 
-        img={project.image} 
+        img={project.thumbnailImage[0]} 
         />
 
         <div
         className='inline'
         id="project-name"
         >
-        <Link 
-        className="inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
-        href={url.toString()}
-        >
-          <h1 className='text-6xl opacity-[0.77] hover:opacity-100 text-white hover:text-[#f04ff0] leading-18 inline break-all mr-10'>{project.name}</h1>
-        </Link>
+          <ProjectLink 
+          className="inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
+          href={project.linkRedirect??  url.toString()}
+          >
+            <h1 className='text-6xl opacity-[0.77] hover:opacity-100 text-white hover:text-[#f04ff0] leading-18 inline break-all mr-10'>{project.name}</h1>
+          </ProjectLink>
         </div>
       </div>
   )
@@ -66,9 +99,9 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
       className="project inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
       >
         <div>
-          <Link href={url.toString()}>
+          <ProjectLink href={project.linkRedirect??  url.toString()}>
             <p className='text-[10px] opacity-[0.77] hover:opacity-100 text-white hover:text-[#f04ff0]'>{project.name}</p>
-          </Link>
+          </ProjectLink>
         </div>
       </div>
   )

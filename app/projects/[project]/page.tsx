@@ -21,22 +21,19 @@ export default function Page() {
     loading: () => <Spinner />,
   })
 
-  
-    const isDesktop = useMediaQuery({ query: '(min-width: 768px)' });
-    const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 768px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   if (project) {
     if (isDesktop) {
-      return (
-        <div className="flex flex-1 h-screen">
-          <div className="flex flex-1">
-            <div className="flex flex-1 flex-col bg-black">
-                <ClosePageButton />
-                <PDFViewer file={project.portfolio} />
-            </div>        
+      if (project.contentPortfolio) {
+        return (
+          <div className="flex flex-1 flex-row">
+            <PDFViewer file={project.contentPortfolio} />
+            <ClosePageButton />
           </div>
-        </div>
-      );
+        );
+      }
     }
 
     if (isMobile) {
@@ -47,8 +44,6 @@ export default function Page() {
       );
     }
   }
-
-
 
   return (
     <div>

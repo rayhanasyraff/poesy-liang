@@ -61,7 +61,7 @@ export default function PDFViewer ({ file }: PDFViewerPropsType) {
         <Document 
         file={file} 
         onLoadSuccess={handleDocumentLoadSuccess} 
-        className="flex flex-col content-center"
+        className="flex flex-col content-center "
         loading={""}
         // onItemClick={({pageNumber}) => console.log('Clicked an item from page ' + pageNumber + '!')}
         onLoadError={(error) => {

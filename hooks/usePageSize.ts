@@ -66,7 +66,7 @@ export default function usePageSize() {
         //     pagesContainer.style.width = windowSize.width + 'px';
         // }
 
-        let pageWidth = 300;
+        let pageWidth = 500;
 
         if (windowSize.width > minWindowWidth && windowSize.width <= maxWindowWidth) {
             pageWidth = windowSize.width;
@@ -74,12 +74,21 @@ export default function usePageSize() {
             pageWidth = maxWindowWidth;
         } else if (windowSize.width <= minWindowWidth) {
             
+            if (windowSize.width <= 700) {
+                pageWidth = 400;
+            }
+
+            if (windowSize.width <= 600) {
+                pageWidth = 300;
+            }
+
             if (windowSize.width <= 500) {
                 pageWidth = 200;
             }
 
         }
-        
+   
+        console.log(windowSize.width, pageWidth);
 
         setPageSize({
             width: pageWidth,
