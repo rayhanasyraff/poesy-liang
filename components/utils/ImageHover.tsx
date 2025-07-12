@@ -67,6 +67,19 @@ export default function ImageHover({ id, name, img }: { id: number, name: string
       />
   }
 
+  if (name == "gratitude letters") {
+    return <Image
+      src={img}
+      width={600}
+      height={600}
+      alt={name}
+      className="hidden"
+      id={`image-${id}`}
+      placeholder="empty"
+      onError={() => setIsImageLoadError(true)}
+      /> 
+  }
+
   return (
       <Image
       src={img}

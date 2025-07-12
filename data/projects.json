@@ -390,8 +390,8 @@
     "tags": ["Helping Angels 善行天使"],
     "description": "",
     "location": ["Hong Kong"],
-    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTLCR1HRcGIH8TrAl5knu6UebPc4jRzZ7hfYdi"],
-    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTLCR1HRcGIH8TrAl5knu6UebPc4jRzZ7hfYdi"],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYIuY7gKE4p7tk2xb1wBCXuWinr6g3OH59dlN"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYIuY7gKE4p7tk2xb1wBCXuWinr6g3OH59dlN"],
     "linkRedirect": "https://www.youtube.com/watch?v=q9pGDPKea_4&t=36s"
   },
   {
@@ -464,8 +464,8 @@
     "tags": ["licensing"],
     "description": "",
     "location": ["Malaysia"],
-    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYkgIQ5KE4p7tk2xb1wBCXuWinr6g3OH59dlN"],
-    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYkgIQ5KE4p7tk2xb1wBCXuWinr6g3OH59dlN"]
+    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
+    "contentImage": ["/assets/images/poesy-logo-pink.png"]
   },
   {
     "id": 38,
@@ -476,8 +476,8 @@
     "tags": ["art"],
     "description": "",
     "location": ["New York"],
-    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYkgIQ5KE4p7tk2xb1wBCXuWinr6g3OH59dlN"],
-    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYkgIQ5KE4p7tk2xb1wBCXuWinr6g3OH59dlN"]
+    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
+    "contentImage": ["/assets/images/poesy-logo-pink.png"]
   },
   {
     "id": 39,
@@ -488,8 +488,8 @@
     "tags": ["series"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYkgIQ5KE4p7tk2xb1wBCXuWinr6g3OH59dlN"],
-    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYkgIQ5KE4p7tk2xb1wBCXuWinr6g3OH59dlN"]
+    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
+    "contentImage": ["/assets/images/poesy-logo-pink.png"]
   },
   {
     "id": 40,
