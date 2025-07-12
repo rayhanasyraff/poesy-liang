@@ -73,6 +73,11 @@ export default function ImageHover({ id, name, img }: { id: number, name: string
     imgSize.height = 500;
   }
 
+  if (name == "harry putter birthday book") {
+    imgSize.width = 800;
+    imgSize.height = 800;
+  }
+
   return (
       <Image
       src={img}

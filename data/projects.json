@@ -144,8 +144,8 @@
     "tags": ["art"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT63Q3eysg9OyPN8WTqXm0dJLknbGpajhSZu7f"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT63Q3eysg9OyPN8WTqXm0dJLknbGpajhSZu7f"]
   },
   {
     "id": 13,
@@ -281,8 +281,8 @@
     "tags": ["Helping Angels 善行天使"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTabY3nTJAqw1doXjTbSG6Wt9lFHxMCOZUncrV"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTabY3nTJAqw1doXjTbSG6Wt9lFHxMCOZUncrV"]
   },
   {
     "id": 24,
@@ -299,15 +299,15 @@
   },
   {
     "id": 25,
-    "name": "#ChubbPoesy",
-    "pathname": "chubb-poesy",
+    "name": "#chubbpoesy umbrella",
+    "pathname": "chubb-poesy-umbrella",
     "date": "2022",
     "category": ["public corporate commission"],
     "tags": ["public corporate commission"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTP00EE4gQiYNVKmFD3p2ObRaSCUZ0GTkLft61"],
-    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTP00EE4gQiYNVKmFD3p2ObRaSCUZ0GTkLft61"],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTv1XPeOFEHFBIMOkJTVGWS3qolQ4jZs0zbca5"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTv1XPeOFEHFBIMOkJTVGWS3qolQ4jZs0zbca5"],
     "linkRedirect": "https://www.instagram.com/p/Cw2S8QERpjQ/"
   },
   {
@@ -481,8 +481,9 @@
     "tags": ["art"],
     "description": "",
     "location": ["New York"],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTDmSDUr2QCcIuEGSYbgilKarOoxXPFLhM41vD"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTDmSDUr2QCcIuEGSYbgilKarOoxXPFLhM41vD"],
+    "linkRedirect": "https://youtu.be/Wa8oXni1FQs?si=4AsUqVht0HNPqxTX"
   },
   {
     "id": 39,
@@ -531,8 +532,8 @@
     "tags": ["art"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThBwsLevpBFm3VJ01fOCsehlNa5YuWQ49DX6M"],
-    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThBwsLevpBFm3VJ01fOCsehlNa5YuWQ49DX6M"],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTRNhWBkw71UfTvBJCnVD6ZdzqWYxSutas2wke"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTRNhWBkw71UfTvBJCnVD6ZdzqWYxSutas2wke"],
     "linkRedirect": "https://www.instagram.com/p/CyDzXQ1xxDg/"
   },
   {
@@ -546,5 +547,68 @@
     "location": [""],
     "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTbnEcMlOHS53IsNcYUPLMWiRBpl2yjq189kzr"],
     "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTbnEcMlOHS53IsNcYUPLMWiRBpl2yjq189kzr"]
+  },
+  {
+    "id": 44,
+    "name": "#chubbpoesy",
+    "pathname": "chubb-poesy",
+    "date": "2018",
+    "category": ["art"],
+    "tags": ["art"],
+    "description": "",
+    "location": [""],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTelYIOLa51wf2IVgyKCnqbNF6xZMLiGW34Yzu"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTelYIOLa51wf2IVgyKCnqbNF6xZMLiGW34Yzu"]
+    },
+  {
+    "id": 45,
+    "name": "kancil bumblebee",
+    "pathname": "kancil-bumblebee",
+    "date": "2018",
+    "category": ["art"],
+    "tags": ["art"],
+    "description": "",
+    "location": [""],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTTKLw9Dpjb2JDeYlPZ4TdG6mzaBFA8g7nMfQX"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTTKLw9Dpjb2JDeYlPZ4TdG6mzaBFA8g7nMfQX"]
+    },
+  {
+    "id": 46,
+    "name": "rtc superhero harry putter",
+    "pathname": "rtc-superhero-harry-putter",
+    "date": "2018",
+    "category": ["art"],
+    "tags": ["art"],
+    "description": "",
+    "location": [""],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT2eKR0whQrsaEFUetYM8omdJGPIyXh7TcgjCi"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT2eKR0whQrsaEFUetYM8omdJGPIyXh7TcgjCi"],
+    "linkRedirect": "https://www.youtube.com/watch?v=vXu_SFgzFrg"
+  },
+  {
+    "id": 47,
+    "name": "rtc nyc superhero",
+    "pathname": "rtc-nyc-superhero",
+    "date": "2018",
+    "category": ["art"],
+    "tags": ["art"],
+    "description": "",
+    "location": [""],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTPnEEu8gQiYNVKmFD3p2ObRaSCUZ0GTkLft61"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTPnEEu8gQiYNVKmFD3p2ObRaSCUZ0GTkLft61"],
+    "linkRedirect": "https://www.youtube.com/watch?v=vXu_SFgzFrg"
+  },
+  {
+    "id": 48,
+    "name": "aurora borealis rtc",
+    "pathname": "aurora-borealis-rtc",
+    "date": "2018",
+    "category": ["art"],
+    "tags": ["art"],
+    "description": "",
+    "location": [""],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTCWWfn7LS0c1gHb2tZsh8UyPBGRqTXWDpNSLM"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTCWWfn7LS0c1gHb2tZsh8UyPBGRqTXWDpNSLM"],
+    "linkRedirect": "https://youtu.be/hipbv-ytZPA?si=tm4uNFqZzJDk7azW"
   }
 ]
