@@ -228,8 +228,8 @@
     "tags": ["art"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTWTTAA72NgrQeFVTfdM0DOpWmAEL5uRCUJazh"],
-    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTWTTAA72NgrQeFVTfdM0DOpWmAEL5uRCUJazh"]
+    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
+    "contentImage": ["/assets/images/poesy-logo-pink.png"]
   },
   {
     "id": 20,
@@ -341,7 +341,8 @@
     "description": "",
     "location": [""],
     "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "contentImage": ["/assets/images/poesy-logo-pink.png"],
+    "contentPortfolio": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTNEQYNB7BdoUeZVtk4A29TYzMvCyLrai0uRpG"
   },
   {
     "id": 29,
@@ -389,8 +390,9 @@
     "tags": ["Helping Angels 善行天使"],
     "description": "",
     "location": ["Hong Kong"],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTLCR1HRcGIH8TrAl5knu6UebPc4jRzZ7hfYdi"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTLCR1HRcGIH8TrAl5knu6UebPc4jRzZ7hfYdi"],
+    "linkRedirect": "https://www.youtube.com/watch?v=q9pGDPKea_4&t=36s"
   },
   {
     "id": 32,
@@ -425,8 +427,9 @@
     "tags": ["Helping Angels 善行天使"],
     "description": "",
     "location": ["Kuala Lumpur"],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTThmLhcpjb2JDeYlPZ4TdG6mzaBFA8g7nMfQX"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTThmLhcpjb2JDeYlPZ4TdG6mzaBFA8g7nMfQX"],
+    "contentPortfolio": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThruObBdvpBFm3VJ01fOCsehlNa5YuWQ49DX6"
   },
   {
     "id": 35,
@@ -499,6 +502,19 @@
     "location": [""],
     "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThRUBsVvpBFm3VJ01fOCsehlNa5YuWQ49DX6M"],
     "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThRUBsVvpBFm3VJ01fOCsehlNa5YuWQ49DX6M"],
+    "linkRedirect": "https://www.instagram.com/reel/C4m9saexbIu/"
+  },
+  {
+    "id": 41,
+    "name": "let girl soar",
+    "pathname": "let girl soar",
+    "date": "2017",
+    "category": ["series"],
+    "tags": ["series"],
+    "description": "",
+    "location": [""],
+    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
+    "contentImage": ["/assets/images/poesy-logo-pink.png"],
     "linkRedirect": "https://www.instagram.com/reel/C4m9saexbIu/"
   }
 ]
