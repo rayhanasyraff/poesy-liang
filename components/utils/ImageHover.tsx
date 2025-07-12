@@ -6,6 +6,10 @@ import Image from 'next/image';
 export default function ImageHover({ id, name, img }: { id: number, name: string, img: string }) {
   
   const [isImageLoadError, setIsImageLoadError] = useState(false);
+  const imgSize = {
+    width: 480,
+    height: 480
+  }
 
   useEffect(() => {
     document.addEventListener('mousemove', function(e) {
@@ -55,36 +59,25 @@ export default function ImageHover({ id, name, img }: { id: number, name: string
   }
 
   if (img == "/assets/images/poesy-logo-pink.png") {
-    return <Image
-      src={img}
-      width={200}
-      height={200}
-      alt={name}
-      className="hidden"
-      id={`image-${id}`}
-      placeholder="empty"
-      onError={() => setIsImageLoadError(true)}
-      />
+    imgSize.width = 200;
+    imgSize.height = 200;
   }
 
   if (name == "gratitude letters") {
-    return <Image
-      src={img}
-      width={600}
-      height={600}
-      alt={name}
-      className="hidden"
-      id={`image-${id}`}
-      placeholder="empty"
-      onError={() => setIsImageLoadError(true)}
-      /> 
+    imgSize.width = 900;
+    imgSize.height = 900;
+  }
+
+  if (name == "harry putter shop") {
+    imgSize.width = 500;
+    imgSize.height = 500;
   }
 
   return (
       <Image
       src={img}
-      width={480}
-      height={480}
+      width={imgSize.width}
+      height={imgSize.height}
       alt={name}
       className="hidden"
       id={`image-${id}`}

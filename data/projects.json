@@ -107,8 +107,9 @@
     "tags": ["art"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTwU3QAUC64UN70fDPZXK2mqe3bus5nMTF9z6a"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTwU3QAUC64UN70fDPZXK2mqe3bus5nMTF9z6a"],
+    "contentPortfolio": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTwUC8Lwf64UN70fDPZXK2mqe3bus5nMTF9z6a"
   },
   {
     "id": 10,
@@ -253,8 +254,9 @@
     "tags": ["merch shop"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT8n4SppxR6ew7y2aPhn1pSgIYLbTcxKr4lkdo"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT8n4SppxR6ew7y2aPhn1pSgIYLbTcxKr4lkdo"],
+    "linkRedirect": "https://harryputter.shop/"
   },
   {
     "id": 22,
@@ -291,8 +293,9 @@
     "tags": ["public installation"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTshOWf6UO4L13TSQujBvXEoY7by89KdG0gqah"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTshOWf6UO4L13TSQujBvXEoY7by89KdG0gqah"],
+    "linkRedirect": "https://www.instagram.com/p/DDIvd2YyYtS/"
   },
   {
     "id": 25,
@@ -303,8 +306,9 @@
     "tags": ["public corporate commission"],
     "description": "",
     "location": [""],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTP00EE4gQiYNVKmFD3p2ObRaSCUZ0GTkLft61"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTP00EE4gQiYNVKmFD3p2ObRaSCUZ0GTkLft61"],
+    "linkRedirect": "https://www.instagram.com/p/Cw2S8QERpjQ/"
   },
   {
     "id": 26,
@@ -378,8 +382,9 @@
       "Seoul",
       "Dakar"
     ],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTSMyxDI3meldFtZWRu7z9Da4ngQB8rV5YXp2j"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTSMyxDI3meldFtZWRu7z9Da4ngQB8rV5YXp2j"],
+    "linkRedirect": "https://youtube.com/playlist?list=PLb4O4LfOvSVxrysSJQI2tw9Rb6KWsjQsD&si=v0xfnagNEsJFLlIH"
   },
   {
     "id": 31,
@@ -464,8 +469,8 @@
     "tags": ["licensing"],
     "description": "",
     "location": ["Malaysia"],
-    "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
-    "contentImage": ["/assets/images/poesy-logo-pink.png"]
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTsoSoukUO4L13TSQujBvXEoY7by89KdG0gqah"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTsoSoukUO4L13TSQujBvXEoY7by89KdG0gqah"]
   },
   {
     "id": 38,
@@ -516,5 +521,30 @@
     "thumbnailImage": ["/assets/images/poesy-logo-pink.png"],
     "contentImage": ["/assets/images/poesy-logo-pink.png"],
     "linkRedirect": "https://www.instagram.com/reel/C4m9saexbIu/"
+  },
+  {
+    "id": 42,
+    "name": "harry putter birthday book",
+    "pathname": "harry-putter-birthday-book",
+    "date": "2018",
+    "category": ["art"],
+    "tags": ["art"],
+    "description": "",
+    "location": [""],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThBwsLevpBFm3VJ01fOCsehlNa5YuWQ49DX6M"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThBwsLevpBFm3VJ01fOCsehlNa5YuWQ49DX6M"],
+    "linkRedirect": "https://www.instagram.com/p/CyDzXQ1xxDg/"
+  },
+  {
+    "id": 43,
+    "name": "kenanga cny red packet",
+    "pathname": "kenanga-cny-red-packet",
+    "date": "2018",
+    "category": ["art"],
+    "tags": ["art"],
+    "description": "",
+    "location": [""],
+    "thumbnailImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTbnEcMlOHS53IsNcYUPLMWiRBpl2yjq189kzr"],
+    "contentImage": ["https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTbnEcMlOHS53IsNcYUPLMWiRBpl2yjq189kzr"]
   }
 ]

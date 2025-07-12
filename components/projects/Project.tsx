@@ -75,7 +75,9 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
         >
           <ProjectLink 
           className="inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
-          href={project.linkRedirect??  url.toString()}
+          href={
+            project.contentImage[0] != "/assets/images/poesy-logo-pink.png" ? 
+            project.linkRedirect??  url.toString(): "/"}
           >
             <h1 className='text-6xl opacity-[0.77] hover:opacity-100 text-white hover:text-[#ff009f] leading-18 inline break-all mr-10'>{project.name}</h1>
           </ProjectLink>
@@ -96,7 +98,8 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
       className="project inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
       >
         <div>
-          <ProjectLink href={project.linkRedirect??  url.toString()}>
+          <ProjectLink href={project.contentImage[0] != "/assets/images/poesy-logo-pink.png" ? 
+            project.linkRedirect??  url.toString(): "/"}>
             <p className='text-[10px] opacity-[0.77] hover:opacity-100 text-white hover:text-[#ff009f]'>{project.name}</p>
           </ProjectLink>
         </div>
