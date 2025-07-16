@@ -91,8 +91,9 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
 
 function ProjectMobileText({children, project}: {children: ReactNode, project: ProjectType}) {
   const urlPathname = usePathname();
-  
-  const isPathnameSameAsProjectPathname = urlPathname.toString().match(project.pathname);
+  const projectPathnameFromUrl = urlPathname.toString().split("/").pop();
+
+  const isPathnameSameAsProjectPathname = projectPathnameFromUrl == project.pathname;
   const isNoProjectSelected = project.id == 1 && urlPathname.toString() == "/";
   const isProjectHighlighted = isPathnameSameAsProjectPathname || isNoProjectSelected;
 
