@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "rooftop cat 屋頂貓 aka RTC",
+    "name": "rooftop cat 屋頂貓 aka rtc",
     "pathname": "the-rooftop-cat",
     "date": "2011",
     "category": [
@@ -456,14 +456,14 @@
     ],
     "thumbnailImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTWTnQYTiNgrQeFVTfdM0DOpWmAEL5uRCUJazh",
+        "src": "/assets/images/poesy-logo-pink.png",
         "width": 480,
         "height": 480
       }
     ],
     "contentImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTWTnQYTiNgrQeFVTfdM0DOpWmAEL5uRCUJazh",
+        "src": "/assets/images/poesy-logo-pink.png",
         "width": 480,
         "height": 480
       }
@@ -1556,5 +1556,36 @@
       }
     ],
     "order": 49
+  },
+  {
+    "id": 50,
+    "name": "embroidery edition: left hand art",
+    "pathname": "embroidery-edition-left-hand-art",
+    "date": "2018",
+    "category": [
+      "art"
+    ],
+    "tags": [
+      "art"
+    ],
+    "description": "",
+    "location": [
+      ""
+    ],
+    "thumbnailImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTWTnQYTiNgrQeFVTfdM0DOpWmAEL5uRCUJazh",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "contentImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTWTnQYTiNgrQeFVTfdM0DOpWmAEL5uRCUJazh",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "order": 50
   }
 ]
