@@ -6,22 +6,9 @@ import useBaseUrl from '@/hooks/useBaseUrl';
 import ImageHover from '../utils/ImageHover';
 import { ReactNode, useEffect } from 'react';
 import resizeChineseText from '@/utils/resizeChineseText';
-
-export interface ProjectType {
-    id: number;
-    date: string;
-    pathname: string;
-    category: string[];
-    tags: string[];
-    description: string;
-    name: string;
-    thumbnailImage: string[];
-    contentImage: string[];
-    contentPortfolio?: string;
-    contentVideo?: string[];
-    location?: string[];
-    linkRedirect?: string;
-}
+import { ProjectType } from '@/types/ProjectType';
+import { desktopSize, mobileSize } from '@/constants/screenSize';
+import { usePathname } from 'next/navigation';
 
 function ProjectLink({href, className, children}: {href: string, className?: string, children: ReactNode}) {
 
@@ -58,6 +45,22 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
     resizeChineseText("text-[48px]")
   }, [project.id]);
 
+  if (project.contentImage[0].src == "/assets/images/poesy-logo-pink.png") {
+    return (
+      <div 
+      id={`project-${project.id}`}
+      className="project inline"
+      >
+        <div
+        className='inline'
+        id="project-name"
+        >
+          <h1 className='text-6xl opacity-[0.3] font-bright-grotesk-light text-white leading-18 inline break-all mr-10'>{project.name}</h1>
+        </div>
+      </div>
+    )
+  }
+
   return (
       <div 
       id={`project-${project.id}`}
@@ -66,7 +69,9 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
         <ImageHover
         id={project.id}
         name={project.name} 
-        img={project.thumbnailImage[0]} 
+        img={project.thumbnailImage[0].src}
+        width={project.thumbnailImage[0].width}
+        height={project.thumbnailImage[0].height} 
         />
 
         <div
@@ -74,15 +79,35 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
         id="project-name"
         >
           <ProjectLink 
-          className="inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
-          href={
-            project.contentImage[0] != "/assets/images/poesy-logo-pink.png" ? 
-            project.linkRedirect??  url.toString(): "/"}
+          className="inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
+          href={url.toString()}
           >
-            <h1 className='text-6xl opacity-[0.77] hover:opacity-100 text-white hover:text-[#ff009f] leading-18 inline break-all mr-10'>{project.name}</h1>
+            <h1 className='text-6xl opacity-[0.77] font-bright-grotesk-light hover:opacity-100 text-white hover:text-[#ff009f] leading-18 inline break-all mr-10'>{project.name}</h1>
           </ProjectLink>
         </div>
       </div>
+  )
+}
+
+function ProjectMobileText({children, project}: {children: ReactNode, project: ProjectType}) {
+  const urlPathname = usePathname();
+  
+  const isPathnameSameAsProjectPathname = urlPathname.toString().match(project.pathname);
+  const isNoProjectSelected = project.id == 1 && urlPathname.toString() == "/";
+  const isProjectHighlighted = isPathnameSameAsProjectPathname || isNoProjectSelected;
+
+  if (isProjectHighlighted) {
+    return (
+      <p className="text-[10px] font-bright-grotesk-light text-[#ff009f] opacity-100">
+        {children}
+      </p>
+    )
+  }
+
+  return (
+    <p className="text-[10px] font-bright-grotesk-light opacity-[0.77] text-white">
+      {children}
+    </p>
   )
 }
 
@@ -92,15 +117,27 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
     resizeChineseText("text-[10px]")
   }, [project.id]);
   
+  if (project.contentImage[0].src == "/assets/images/poesy-logo-pink.png") {
+    return (
+      <div 
+      id={`project-${project.id}`}
+      className="project inline transition duration-500 ease-in-out opacity-80 hover:opacity-100"
+      >
+        <div>
+            <p className='text-[10px] font-bright-grotesk-light opacity-[0.5] text-white'>{project.name}</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
       <div 
       id={`project-${project.id}`}
-      className="project inline cursor-pointer font-bright-grotesk-light transition duration-500 ease-in-out opacity-80 hover:opacity-100"
+      className="project inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
       >
         <div>
-          <ProjectLink href={project.contentImage[0] != "/assets/images/poesy-logo-pink.png" ? 
-            project.linkRedirect??  url.toString(): "/"}>
-            <p className='text-[10px] opacity-[0.77] hover:opacity-100 text-white hover:text-[#ff009f]'>{project.name}</p>
+          <ProjectLink href={url.toString()}>
+            <ProjectMobileText project={project}>{project.name}</ProjectMobileText>
           </ProjectLink>
         </div>
       </div>
@@ -110,13 +147,10 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
 export default function Project({ project }: { project: ProjectType }) {    
     
     const baseUrl = useBaseUrl();
+    const url = new URL("/projects/" + project.pathname, baseUrl);
 
-    const url = new URL(
-      "/projects/" + project.pathname, 
-      baseUrl);
-
-    const isDesktop = useMediaQuery({ query: '(min-width: 768px)' });
-    const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+    const isDesktop = useMediaQuery({ query: desktopSize });
+    const isMobile = useMediaQuery({ query: mobileSize });
     
     if (isDesktop) {
       return (

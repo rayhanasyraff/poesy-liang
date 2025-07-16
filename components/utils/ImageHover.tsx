@@ -3,91 +3,78 @@
 import { useEffect, useState } from "react";
 import Image from 'next/image';
 
-export default function ImageHover({ id, name, img }: { id: number, name: string, img: string }) {
-  
+// use imgSize if want to follow image source
+
+export default function ImageHover({ id, name, img, width, height }: { id: number, name: string, img: string, width: number, height: number }) {
   const [isImageLoadError, setIsImageLoadError] = useState(false);
-  const imgSize = {
-    width: 480,
-    height: 480
-  }
+  const [imgSize, setImgSize] = useState<{ width: number; height: number } | null>(null);
 
   useEffect(() => {
-    document.addEventListener('mousemove', function(e) {
+    const preloadImg = new window.Image();
+    preloadImg.src = img;
+    preloadImg.onload = () => {
+      setImgSize({
+        width: preloadImg.naturalWidth,
+        height: preloadImg.naturalHeight,
+      });
+    };
+    preloadImg.onerror = () => {
+      setIsImageLoadError(true);
+    };
+  }, [img]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
       const image = document.getElementById(`image-${id}`);
       const project = document.getElementById(`project-${id}`);
 
-      if (project !== null && image !== null) {
-
+      if (project && image) {
         if (project.matches(':hover')) {
           image.className = "max-md:hidden md:absolute md:z-10";
 
-          const imageRect = image.getBoundingClientRect();
+          const pageY = e.pageY;
+          const pageX = e.pageX;
 
-          // console.log({
-          //   "cursor x": e.pageX, 
-          //   "cursor y": e.pageY, 
-          //   "image width": imageRect.width, 
-          //   "image height": imageRect.height, 
-          //   "window width": window.innerWidth, 
-          //   "window height": window.innerHeight,
-          //   "cursor + image y": (e.pageY + imageRect.height + 40),
-          //   "cursor + image x": (e.pageX + imageRect.width)
-          // });
+          const imgHeight = image.offsetHeight;
+          const imgWidth = image.offsetWidth;
 
-          if ((e.pageY + imageRect.height - 30) > window.innerHeight) {
-            image.style.top = e.pageY - imageRect.height - 20 + 'px';
+          const spaceBelow = window.scrollY + window.innerHeight - pageY;
+          const spaceRight = window.innerWidth + window.scrollX - pageX;
+
+          // Vertical positioning
+          if (spaceBelow > imgHeight + 30) {
+            image.style.top = (pageY + 30) + 'px';
           } else {
-            image.style.top = e.pageY + 40 + 'px';
+            image.style.top = (pageY - imgHeight - 20) + 'px';
           }
 
-          if ((e.pageX + imageRect.width) > window.innerWidth) {
-            image.style.left = e.pageX - imageRect.width + 10 + 'px';
+          // Horizontal positioning
+          if (spaceRight < imgWidth) {
+            image.style.left = (pageX - imgWidth + 10) + 'px';
           } else {
-            image.style.left = e.pageX + 'px';
+            image.style.left = pageX + 'px';
           }
-
         } else {
           image.className = "hidden";
         }
       }
-    });
-  
-  })
-  
-  if (isImageLoadError) {
-    return <></>
-  }
+    };
 
-  if (img == "/assets/images/poesy-logo-pink.png") {
-    imgSize.width = 200;
-    imgSize.height = 200;
-  }
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, [id]);
 
-  if (name == "gratitude letters") {
-    imgSize.width = 900;
-    imgSize.height = 900;
-  }
-
-  if (name == "harry putter shop") {
-    imgSize.width = 500;
-    imgSize.height = 500;
-  }
-
-  if (name == "harry putter birthday book") {
-    imgSize.width = 800;
-    imgSize.height = 800;
-  }
+  if (isImageLoadError || !imgSize) return null;
 
   return (
-      <Image
+    <Image
       src={img}
-      width={imgSize.width}
-      height={imgSize.height}
+      width={width}
+      height={height}
       alt={name}
-      className="hidden"
       id={`image-${id}`}
+      className="hidden"
       placeholder="empty"
-      onError={() => setIsImageLoadError(true)}
-      />
-  )
+    />
+  );
 }

@@ -3,6 +3,7 @@ import { pdfjs, Document } from "react-pdf";
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import PDFViewerPages from './PDFViewerPages';
+import DocumentInfoContextType from '@/types/DocumentInfoContextType';
 
 // The workerSrc property shall be specified.
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -10,15 +11,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 type PDFViewerPropsType = {
   file: string;
 };
-
-interface DocumentInfoContextType {
-  pageNumber: number | undefined,
-  numPages: number | undefined,
-  numPagesRendered: number,
-  areAllPagesRendered: boolean | undefined,
-  setNumPagesRendered: (numPagesRendered: number) => void,
-  setAreAllPagesRendered: (areAllPagesRendered: boolean) => void
-}
 
 export const DocumentInfoContext =  createContext<DocumentInfoContextType>({
   pageNumber: 1,
@@ -57,7 +49,7 @@ export default function PDFViewer ({ file }: PDFViewerPropsType) {
 // !numPages || numRenderedPages < numPages
   return (
     <DocumentInfoContext value={{ pageNumber, numPages, numPagesRendered, areAllPagesRendered, setNumPagesRendered, setAreAllPagesRendered }}>
-      <div className='flex flex-1 h-screen justify-center overflow-y-scroll' id="pages">
+      <div className='flex flex-1 h-screen justify-center scrollbar-hidden scrollbar-hidden-wrapper' id="pages">
         <Document 
         file={file} 
         onLoadSuccess={handleDocumentLoadSuccess} 

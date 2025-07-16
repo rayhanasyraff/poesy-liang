@@ -59,39 +59,24 @@ export default function usePageSize() {
         const maxWindowWidth = 1325;
         const minWindowWidth = 767;
         const pageHeight = document.getElementsByClassName("page")[0]?.clientHeight;
-        // const pagesContainer = document.getElementById('pages');        
+        const pagesContainer = document.getElementById('pages');        
 
         // pagesContainer?.clientWidth = windowSize.width;
         // if (pagesContainer && pagesContainer.style) {
         //     pagesContainer.style.width = windowSize.width + 'px';
         // }
 
-        let pageWidth = 500;
+        let pageWidth = pagesContainer?.clientWidth ?? 0;
 
         if (windowSize.width > minWindowWidth && windowSize.width <= maxWindowWidth) {
             pageWidth = windowSize.width;
         } else if (windowSize.width > maxWindowWidth) {
             pageWidth = maxWindowWidth;
-        } else if (windowSize.width <= minWindowWidth) {
-            
-            if (windowSize.width <= 700) {
-                pageWidth = 400;
-            }
-
-            if (windowSize.width <= 600) {
-                pageWidth = 300;
-            }
-
-            if (windowSize.width <= 500) {
-                pageWidth = 200;
-            }
-
         }
-   
-        console.log(windowSize.width, pageWidth);
 
         setPageSize({
-            width: pageWidth,
+            width: 
+            pageWidth,
             height: pageHeight ?? 0,
             margin: pageSize.height == windowSize.height ? windowSize.height / 2 : (windowSize.height - pageSize.height) / 2
         });

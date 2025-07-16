@@ -1,18 +1,24 @@
-"use client"
+"use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CrossIcon } from "../icons/CrossIcon";
 
 const ClosePageButton = () => {
-    return (
-        <Link href="/">
-            <div className="fixed top-5 left-5" style={{
-                zIndex: "300"
-            }}>
-                <CrossIcon />
-            </div>
-        </Link>
-    )
-}
+  const router = useRouter();
+
+  const handleClose = () => {
+    router.push("/"); // ✅ just navigate
+  };
+
+  return (
+    <button
+      onClick={handleClose}
+      className="fixed top-5 left-5 hover:cursor-pointer"
+      style={{ zIndex: 300 }}
+    >
+      <CrossIcon />
+    </button>
+  );
+};
 
 export default ClosePageButton;

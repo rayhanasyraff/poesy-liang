@@ -1,8 +1,9 @@
 'use client';
 
 import { useMediaQuery } from "react-responsive";
-import Project, { ProjectType } from "./Project";
+import Project from "./Project";
 import { cva } from "class-variance-authority";
+import { ProjectType } from "@/types/ProjectType";
 
 
 const projectListVariants = cva("", {

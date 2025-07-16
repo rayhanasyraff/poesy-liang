@@ -22,7 +22,6 @@ const PDFViewerPages = ({ numPages }: { numPages: number | undefined, onChangePa
 
   return (
       <div
-      className=""
         // style={{
         //   display: "inline-block",
         // }}
@@ -30,9 +29,9 @@ const PDFViewerPages = ({ numPages }: { numPages: number | undefined, onChangePa
         {/* <Spinner className={`
           ${areAllPagesRendered ? "hidden" : "visible"}`} /> */}
         <div 
-        className={`flex flex-col items-center gap-3 scrollbar-hidden`}
+        className={`flex flex-col items-center gap-3 scrollbar-hidden scrollbar-hidden-wrapper`}
         style={{
-          height: `${windowSize.height}px`
+          height: `${windowSize.height}px`,
         }}
         // style={{
         //   // display: "inline-block",
