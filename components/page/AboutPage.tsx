@@ -4,6 +4,7 @@ import Home from "@/app/page";
 import { ResponsiveImage } from "../utils/ResponsiveImage";
 
 function AboutPageMobile() {
+
     return (
         <div className="flex flex-3 mr-10 flex-col">
             <ResponsiveImage 
@@ -12,10 +13,11 @@ function AboutPageMobile() {
             />
             <div className="mx-10 mt-10 font-bright-grotesk-light opacity-77 text-white">
                 <div>
-                    <h1 className="text-[22px]">Poesy Liang (1975)</h1>
-                    <p className="text-[16px]">Malaysia - Taiwan</p>
+                    <h1 className="text-[16px]">POESY LIANG</h1>
+                    <p>梁小詩</p>
+                    <p className="text-[10px]">MALAYSIA - TAIWAN (1975)</p>
                 </div>
-                <div className="mt-10 text-[15px] leading-relaxed space-y-4">
+                <div className="mt-10 text-[10px] leading-relaxed space-y-4">
                     <p>Poesy is a contemporary artist and award winning social innovator who embeds technology into her creative endeavours.</p>
 
                     <p>In her multidisciplinary practise; Poesy is a painter, designer, filmmaker, composer, poet, sculptor, street artist, and movement maker; who spun out capsule brands of art merchandise, streetwear, fashion accessories, luxury homes and fine jewellery.</p>
