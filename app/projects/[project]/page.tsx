@@ -1,19 +1,25 @@
 "use client"
 
 import Home from "@/app/page";
-import { usePathname } from "next/navigation";
-import data from "@/data/projects.json";
 import ProjectPage from "@/components/page/ProjectPage";
+import { useProjectFromPathname } from "@/hooks/useProjectFromPathname";
+import { useMediaQuery } from "react-responsive";
+import { desktopSize } from "@/constants/screenSize";
+import useGetProjects from "@/hooks/useGetProjects";
 
 export default function Page() {
   
-  const pathname = usePathname();
-  const segments = pathname.split("/");
-  const result = segments.pop() || segments.pop();
-  const project = data.find((project) => project.pathname === result);
+  const isDesktop = useMediaQuery({ query: desktopSize });
 
+  const projects = useGetProjects();
+  const project = useProjectFromPathname(projects);
+  
   if (project) {
-    return <ProjectPage project={project} />
+
+    if (isDesktop) {
+      return <ProjectPage project={project} />;
+    }
+
   }
 
   return (

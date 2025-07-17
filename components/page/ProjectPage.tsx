@@ -2,23 +2,20 @@ import Home from "@/app/page";
 import { desktopSize, mobileSize } from "@/constants/screenSize";
 import { ProjectType } from "@/types/ProjectType";
 import { useMediaQuery } from "react-responsive";
-import ResponsiveImage from "../utils/ResponsiveImage";
 import ClosePageButton from "../utils/ClosePageButton";
-import useWindowSize from "@/hooks/useWindowSize";
 import dynamic from "next/dynamic";
-import ProjectList from "../projects/ProjectList";
-import data from "@/data/projects.json";
 import Header from "../base/Header";
 import useProjectNavigationStore from "@/hooks/useProjectNavigationStore";
 import { useEffect } from "react";
 import useResetOnPathChange from "@/hooks/useResetOnPathChange";
+import { ResponsiveImage, ResponsiveButtonedImage } from '../utils/ResponsiveImage';
 
 
 const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
 });
 
-const ProjectPageMobileNavigator = ({project}: {project: ProjectType, className?: string}) => {
+const ProjectPageWithAttachedContentMobile = ({project}: {project: ProjectType, className?: string}) => {
 
     const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
 
@@ -35,64 +32,42 @@ const ProjectPageMobileNavigator = ({project}: {project: ProjectType, className?
 
     if (isNavigated) {
         return (
-            <div className={`flex flex-1 flex-row h-dvh mt-10 ml-10`}>
-                <div className="flex flex-1 mr-10 scrollbar-hidden scrollbar-hidden-wrapper">
-                    <PDFViewer file={project.contentPortfolio?? ""} />
-                </div>
-                <ProjectList projects={data} />
+            <div className="flex flex-1 mr-10 scrollbar-hidden scrollbar-hidden-wrapper">
+                <PDFViewer file={project.contentPortfolio?? ""} />
             </div>
         );
     }
 
     return (
-        <div className={`flex flex-1 flex-row h-dvh mt-10 ml-10`}>
-                <div className="flex mr-10 flex-col">
-                    <div className="flex justify-center items-center mt-20">
-                        <p className="text-white font-bright-grotesk-light text-xl text-center">Press on the picture to know more about this project</p>
-                    </div>
-                    <button
-                    title="Image Button"
-                    className="hover:cursor-pointer flex flex-1"
-                    onClick={handleClick}
-                    >
-                        <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
-                    </button>
-                </div>
-            <ProjectList projects={data} />
+        <div className="flex flex-3 mr-10 flex-col gap-3">
+            <ResponsiveButtonedImage image={project.contentImage[0].src} name={project.name} onClick={handleClick} />
+            <div className="flex justify-center items-center">
+                <p className="text-white font-bright-grotesk text-[13px] text-center">tap for more</p>
+            </div>
         </div>
     )
 }
 
 export function ProjectPageMobile({project}: {project: ProjectType}) {
+    
     if (project.contentImage) {
 
         if (project.contentPortfolio || project.linkRedirect) {
-            return <ProjectPageMobileNavigator project={project} />
+            return <ProjectPageWithAttachedContentMobile project={project} />
         }
 
         return (
-            <div className={`flex flex-1 flex-row h-dvh mt-10 ml-10`}>
-                <div className="flex flex-1 mr-10 flex-col">
-                    <div className="flex flex-1">
-                        <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
-                    </div>
-                </div>
-                <ProjectList projects={data} />
+            <div className="flex flex-3 mr-10 flex-col">
+                <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
             </div>
         )
     }
 
-    return (
-        <div className={``}>
-            <ProjectList projects={data} />
-        </div>
-    );
+    return (<></>);
 }
 
-function ProjectPageDesktopNavigator({project}: {project: ProjectType}) {
-    
-    const windowSize = useWindowSize();
-    
+function ProjectPageWithAttachedContentDesktop({project}: {project: ProjectType}) {
+        
     const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
 
     const isNavigated = currentNavigatedId === project.id;
@@ -110,61 +85,40 @@ function ProjectPageDesktopNavigator({project}: {project: ProjectType}) {
         return (
             <div className="flex flex-1 flex-row">
                 <PDFViewer file={project.contentPortfolio?? ""} />
-                <ClosePageButton 
-                // onClick={() => reset()} 
-                />
+                <ClosePageButton />
             </div>
         );
     }
 
     return (
-        <div className="flex flex-1 flex-col">
-            <div className="flex flex-1 flex-col">
-                <div className="flex justify-center items-center mt-20">
-                    <p className="text-white font-bright-grotesk-light text-2xl">Press on the picture to know more about this project</p>
-                </div>
-                <button
-                title="Image Button"
-                className="hover:cursor-pointer"
-                onClick={handleClick}
-                >
-                    <div 
-                    className="flex flex-1"
-                    style={{
-                        marginTop: `${windowSize.height / 10}px`,
-                    }}
-                    >
-                        <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
+        <div className="flex flex-1 flex-col justify-center">
+            <div className="flex flex-1 flex-col justify-center min-h-screen">
+                <div className="flex flex-col gap-10 items-center">
+                    <ResponsiveButtonedImage image={project.contentImage[0].src} name={project.name} onClick={handleClick} />
+                    <div className="flex justify-center items-center">
+                        <p className="text-white font-bright-grotesk-light text-2xl">tap for more</p>
                     </div>
-                </button>
+                </div>
+                <ClosePageButton />
             </div>
-            <ClosePageButton 
-            // onClick={() => reset()}
-            />
         </div>
     )
 }
 
 function ProjectPageDesktop({project}: {project: ProjectType}) {
 
-    const windowSize = useWindowSize();
-
     if (project.contentPortfolio || project.linkRedirect) {
-        return <ProjectPageDesktopNavigator project={project} />
+        return <ProjectPageWithAttachedContentDesktop project={project} />
     }
 
     return (
         <div className="flex flex-1 flex-row">
-            <div className="flex flex-1"
-            style={{
-                marginTop: `${windowSize.height / 6}px`,
-            }}
-            >
-                <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
+            <div className="flex flex-1 flex-col justify-center min-h-screen">
+                <div className="flex flex-col gap-10 items-center">
+                    <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
+                </div>
             </div>
-            <ClosePageButton 
-            // onClick={() => reset()}
-            />
+            <ClosePageButton />
         </div>
     )
 }

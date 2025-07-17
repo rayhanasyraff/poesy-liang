@@ -184,6 +184,7 @@
         "height": 480
       }
     ],
+    "linkRedirect": "https://youtu.be/a5FhSlf4w2s",
     "order": 6
   },
   {
@@ -238,24 +239,25 @@
     ],
     "thumbnailImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTUVSJXo90cUGl2b9X674LYHKQgt8VfshdyDkA",
         "width": 480,
         "height": 480
       }
     ],
     "contentImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTUVSJXo90cUGl2b9X674LYHKQgt8VfshdyDkA",
         "width": 480,
         "height": 480
       }
     ],
+    "linkRedirect": "https://youtu.be/a5FhSlf4w2s",
     "order": 8
   },
   {
     "id": 9,
-    "name": "poesy un",
-    "pathname": "poesy-un",
+    "name": "poesy united nations",
+    "pathname": "poesy-united-nations",
     "date": "2017",
     "category": [
       "art"
@@ -301,14 +303,14 @@
     ],
     "thumbnailImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTqA6IdT8X7DNTPQYEhuxbfJza1KWSHRi2OALw",
+        "src": "/assets/images/poesy-logo-pink.png",
         "width": 480,
         "height": 480
       }
     ],
     "contentImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTqA6IdT8X7DNTPQYEhuxbfJza1KWSHRi2OALw",
+        "src": "/assets/images/poesy-logo-pink.png",
         "width": 480,
         "height": 480
       }
@@ -1587,5 +1589,36 @@
       }
     ],
     "order": 50
+  },
+  {
+    "id": 51,
+    "name": "sidewalk series",
+    "pathname": "sidewalk-series",
+    "date": "2018",
+    "category": [
+      "art"
+    ],
+    "tags": [
+      "art"
+    ],
+    "description": "",
+    "location": [
+      ""
+    ],
+    "thumbnailImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTqA6IdT8X7DNTPQYEhuxbfJza1KWSHRi2OALw",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "contentImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTqA6IdT8X7DNTPQYEhuxbfJza1KWSHRi2OALw",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "order": 51
   }
 ]

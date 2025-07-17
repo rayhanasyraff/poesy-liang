@@ -1,48 +1,57 @@
 "use client";
 
 import ProjectList from "../projects/ProjectList"
-import data from "@/data/projects.json";
-import { usePathname } from "next/navigation";
 import { useMediaQuery } from 'react-responsive';
-import { ProjectType } from "@/types/ProjectType";
 import { desktopSize, mobileSize } from "@/constants/screenSize";
 import { ProjectPageMobile } from "./ProjectPage";
+import { useProjectFromPathname } from "@/hooks/useProjectFromPathname";
+import useGetProjects from "@/hooks/useGetProjects";
 
-const ProjectsPageMobile = ({data}: {data: ProjectType[], className?: string}) => {
+const ProjectsPageMobile = ({className=""}: {className?: string}) => {
 
-    const pathname = usePathname();
-    const segments = pathname.split("/");
-    const result = segments.pop() || segments.pop();
-    const project = data.find((project) => project.pathname === result) ?? data[0];
+    const projects = useGetProjects();
+    const project = useProjectFromPathname(projects);
+
+    if (project.contentImage) {
+
+        return (
+            <div className={`flex flex-1 flex-row h-dvh mt-10 ml-1 ${className}`}>
+                <ProjectPageMobile project={project} />
+                <ProjectList />
+            </div>
+        )
+    }
 
     return (
-        <ProjectPageMobile project={project} />
+        <div className={`${className}`}>
+            <ProjectList />
+        </div>
     )
 }
 
-const ProjectsPageDesktop = ({data, className=""}: {data: ProjectType[], className?: string}) => {
+const ProjectsPageDesktop = ({className=""}: {className?: string}) => {
   return (
     <div className={`${className}`}>
-        <ProjectList projects={data} />
+        <ProjectList />
     </div>
   );
 }
 
 const ProjectsPage = ({className=""}: {className?: string}) => {
 
-    const sortedData = data.sort((a, b) => a.order - b.order);
-
     const isDesktop = useMediaQuery({ query: desktopSize });
     const isMobile = useMediaQuery({ query: mobileSize });
 
-    if (data) {
+    const projects = useGetProjects();
+
+    if (projects) {
         
         if (isMobile) {
-            return (<ProjectsPageMobile data={sortedData} className={className} />)
+            return (<ProjectsPageMobile />)
         }
 
         if (isDesktop) {
-            return (<ProjectsPageDesktop data={sortedData} className={className} />)
+            return (<ProjectsPageDesktop className={className} />)
         }
     }
 
