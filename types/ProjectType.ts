@@ -1,4 +1,5 @@
 import ImageType from "./ImageType";
+import VideoType from "./VideoType";
 
 export interface ProjectType {
     id: number;
@@ -11,7 +12,7 @@ export interface ProjectType {
     thumbnailImage: ImageType[];
     contentImage: ImageType[];
     contentPortfolio?: string;
-    contentVideo?: string[];
+    contentVideo?: VideoType[];
     location?: string[];
     linkRedirect?: string;
 }

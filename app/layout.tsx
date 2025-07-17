@@ -4,9 +4,9 @@ import "./globals.css";
 // export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "POESY 小詩 ",
+  title: "POESY 小詩",
   icons: {
-    icon: "/assets/icons/poesy-logo-pink.svg",
+    icon: "/assets/images/poesy-logo-pink.png",
   }
 };
 

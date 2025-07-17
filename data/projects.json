@@ -303,18 +303,19 @@
     ],
     "thumbnailImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "/https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT8XNZnGxR6ew7y2aPhn1pSgIYLbTcxKr4lkdo",
         "width": 480,
         "height": 480
       }
     ],
     "contentImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT8XNZnGxR6ew7y2aPhn1pSgIYLbTcxKr4lkdo",
         "width": 480,
         "height": 480
       }
     ],
+    "linkRedirect": "https://www.youtube.com/watch?v=fSGELOeiq0U",
     "order": 10
   },
   {
@@ -365,18 +366,19 @@
     ],
     "thumbnailImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT9qWbO7eYeLco8wWHb3J1M70v45DPzRiKrIYg",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTVCsSFYzmxNvAQW9104pUls7kjS2chD5wIfX3",
         "width": 480,
         "height": 480
       }
     ],
     "contentImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT9qWbO7eYeLco8wWHb3J1M70v45DPzRiKrIYg",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTVCsSFYzmxNvAQW9104pUls7kjS2chD5wIfX3",
         "width": 480,
         "height": 480
       }
     ],
+    "contentPortfolio": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTjTu0iXAoC25N6Hr3YDwyX9PukbhSsQGzWTa1",
     "order": 12
   },
   {
@@ -552,18 +554,19 @@
     ],
     "thumbnailImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTODDTKawZ7UGgV4aiqPY2EytNWwxJuSQ0kRsn",
         "width": 480,
         "height": 480
       }
     ],
     "contentImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTODDTKawZ7UGgV4aiqPY2EytNWwxJuSQ0kRsn",
         "width": 480,
         "height": 480
       }
     ],
+    "linkRedirect": "https://www.youtube.com/watch?v=ZXyQXvrOZ-Q",
     "order": 18
   },
   {
@@ -614,14 +617,14 @@
     ],
     "thumbnailImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTOl4OHdZ7UGgV4aiqPY2EytNWwxJuSQ0kRsnl",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT50QBA2oQ0cfTldYaiDJ6s2KyZwNqA8eouhUO",
         "width": 480,
         "height": 480
       }
     ],
     "contentImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTOl4OHdZ7UGgV4aiqPY2EytNWwxJuSQ0kRsnl",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT50QBA2oQ0cfTldYaiDJ6s2KyZwNqA8eouhUO",
         "width": 480,
         "height": 480
       }
@@ -1277,8 +1280,8 @@
   },
   {
     "id": 41,
-    "name": "let girl soar",
-    "pathname": "let girl soar",
+    "name": "let girls soar",
+    "pathname": "let-girls-soar",
     "date": "2017",
     "category": [
       "series"
@@ -1292,19 +1295,19 @@
     ],
     "thumbnailImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT3006vdWhMgLDZKlzx5naQmSXuqcO2sBU6RTW",
         "width": 480,
         "height": 480
       }
     ],
     "contentImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT3006vdWhMgLDZKlzx5naQmSXuqcO2sBU6RTW",
         "width": 480,
         "height": 480
       }
     ],
-    "linkRedirect": "https://www.instagram.com/reel/C4m9saexbIu/",
+    "contentPortfolio": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTRsxLsmdw71UfTvBJCnVD6ZdzqWYxSutas2wk",
     "order": 41
   },
   {
@@ -1652,5 +1655,36 @@
       }
     ],
     "order": 52
+  },
+  {
+    "id": 53,
+    "name": "fisher miao mobile game",
+    "pathname": "fisher-miao-mobile-game",
+    "date": "2018",
+    "category": [
+      "art"
+    ],
+    "tags": [
+      "art"
+    ],
+    "description": "",
+    "location": [
+      ""
+    ],
+    "thumbnailImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT6GqyVmsg9OyPN8WTqXm0dJLknbGpajhSZu7f",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "contentImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT6GqyVmsg9OyPN8WTqXm0dJLknbGpajhSZu7f",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "order": 53
   }
 ]

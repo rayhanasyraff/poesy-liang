@@ -12,6 +12,8 @@ const ClosePageButton = () => {
 
   return (
     <button
+      title="Close"
+      type="button"
       onClick={handleClose}
       className="fixed top-5 left-5 hover:cursor-pointer"
       style={{ zIndex: 300 }}

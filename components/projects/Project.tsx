@@ -45,7 +45,36 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
     resizeChineseText("text-[48px]")
   }, [project.id]);
 
-  if (project.contentImage[0].src == "/assets/images/poesy-logo-pink.png") {
+  if (project.contentVideo && project.contentVideo[0].src) {
+    return (
+      <div 
+      id={`project-${project.id}`}
+      className="project inline"
+      >
+        <ImageHover
+        id={project.id}
+        name={project.name} 
+        img={project.thumbnailImage[0].src}
+        width={project.thumbnailImage[0].width}
+        height={project.thumbnailImage[0].height} 
+        />
+
+        <div
+        className='inline'
+        id="project-name"
+        >
+          <ProjectLink 
+          className="inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
+          href={url.toString()}
+          >
+            <h1 className='text-6xl opacity-[0.77] font-bright-grotesk-light hover:opacity-100 text-white hover:text-[#f04ff0] leading-18 inline break-all mr-10'>{project.name}</h1>
+          </ProjectLink>
+        </div>
+      </div>
+    )
+  }
+
+  if (project.contentImage && project.contentImage[0].src == "/assets/images/poesy-logo-pink.png") {
     return (
       <div 
       id={`project-${project.id}`}
@@ -94,8 +123,8 @@ function ProjectMobileText({children, project}: {children: ReactNode, project: P
   const projectPathnameFromUrl = urlPathname.toString().split("/").pop();
 
   const isPathnameSameAsProjectPathname = projectPathnameFromUrl == project.pathname;
-  const isNoProjectSelected = project.id == 1 && urlPathname.toString() == "/";
-  const isProjectHighlighted = isPathnameSameAsProjectPathname || isNoProjectSelected;
+  // const isNoProjectSelected = project.id == 1 && urlPathname.toString() == "/";
+  const isProjectHighlighted = isPathnameSameAsProjectPathname;
 
   if (isProjectHighlighted) {
     return (
@@ -118,6 +147,21 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
     resizeChineseText("text-[10px]")
   }, [project.id]);
   
+  if (project.contentVideo && project.contentVideo[0].src) {
+    return (
+      <div 
+      id={`project-${project.id}`}
+      className="project inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
+      >
+        <div>
+          <ProjectLink href={url.toString()}>
+            <ProjectMobileText project={project}>{project.name}</ProjectMobileText>
+          </ProjectLink>
+        </div>
+      </div>
+    )
+  }
+
   if (project.contentImage[0].src == "/assets/images/poesy-logo-pink.png") {
     return (
       <div 

@@ -4,10 +4,10 @@ import { ProjectType } from "@/types/ProjectType";
 import { useMediaQuery } from "react-responsive";
 import ClosePageButton from "../utils/ClosePageButton";
 import dynamic from "next/dynamic";
-import Header from "../base/Header";
 import useProjectNavigationStore from "@/hooks/useProjectNavigationStore";
 import useResetOnPathChange from "@/hooks/useResetOnPathChange";
 import { ResponsiveImage, ResponsiveButtonedImage } from '../utils/ResponsiveImage';
+import { ResponsiveVideo } from '../utils/ResponsiveVideo';
 
 const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
@@ -52,17 +52,27 @@ export function ProjectPageMobile({project}: {project: ProjectType}) {
     
     if (!isReady) return null;
 
-    if (project.contentImage) {
+    if (project.contentImage || project.contentVideo) {
+
+        if (project.contentVideo) {
+            return (
+                <div className="flex flex-3 mr-10 flex-col">
+                    <ResponsiveVideo video={project.contentVideo[0].src} name={project.name} />
+                </div>
+            )
+        }
 
         if (project.contentPortfolio || project.linkRedirect) {
             return <ProjectPageWithAttachedContentMobile project={project} />
         }
 
-        return (
-            <div className="flex flex-3 mr-10 flex-col">
-                <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
-            </div>
-        )
+        if (project.contentImage) {
+            return (
+                <div className="flex flex-3 mr-10 flex-col">
+                    <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
+                </div>
+            )
+        }
     }
 
     return (<></>);
@@ -117,6 +127,19 @@ function ProjectPageDesktop({project}: {project: ProjectType}) {
         return <ProjectPageWithAttachedContentDesktop project={project} />
     }
 
+    if (project.contentVideo) {        
+        return (
+            <div className="flex flex-1 flex-row">
+                <div className="flex flex-1 flex-col justify-center min-h-screen">
+                    <div className="flex flex-col gap-10 items-center">
+                        <ResponsiveVideo video={project.contentVideo[0].src} name={project.name} />
+                    </div>
+                </div>
+                <ClosePageButton />
+            </div>
+        )
+    }
+
     return (
         <div className="flex flex-1 flex-row">
             <div className="flex flex-1 flex-col justify-center min-h-screen">
@@ -134,17 +157,17 @@ export default function ProjectPage({ project }: { project: ProjectType }) {
   const isDesktop = useMediaQuery({ query: desktopSize });
   const isMobile = useMediaQuery({ query: mobileSize });
 
-  if (isDesktop) {
-    return <ProjectPageDesktop project={project} />;
-  }
-
   if (isMobile) {
     return (
       <>
-        <Header />
+        {/* <Header /> */}
         <ProjectPageMobile project={project} />
       </>
     );
+  }
+
+  if (isDesktop) {
+    return <ProjectPageDesktop project={project} />;
   }
 
   return <Home />;

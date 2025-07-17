@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-export function ResponsiveButtonedImage({image, name, onClick}: {image: string, name: string, onClick: () => void}) {
+export function ResponsiveButtonedImage({image, name, onClick, scale=96}: {image: string, name: string, onClick: () => void, scale?: number}) {
   const [aspectRatio, setAspectRatio] = useState<number | null>(null);
   const [maxWidth, setMaxWidth] = useState<number>(700); // default max width
 
@@ -20,7 +20,7 @@ export function ResponsiveButtonedImage({image, name, onClick}: {image: string, 
     <div
       className="relative mx-auto"
       style={{
-        width: '96%',
+        width: `${scale}%`,
         maxWidth: `${maxWidth}px`,
         aspectRatio: aspectRatio ? `${aspectRatio}` : '4 / 3',
       }}
@@ -46,7 +46,7 @@ export function ResponsiveButtonedImage({image, name, onClick}: {image: string, 
   );
 }
 
-export function ResponsiveImage({image, name}: {image: string, name: string}) {
+export function ResponsiveImage({image, name, scale=96}: {image: string, name: string, scale?: number}) {
 
   const [aspectRatio, setAspectRatio] = useState<number | null>(null);
   const [maxWidth, setMaxWidth] = useState<number>(700); // default max width
@@ -66,7 +66,7 @@ export function ResponsiveImage({image, name}: {image: string, name: string}) {
     <div
       className="relative mx-auto"
       style={{
-        width: '96%',
+        width: `${scale}%`,
         maxWidth: `${maxWidth}px`,
         aspectRatio: aspectRatio ? `${aspectRatio}` : '4 / 3',
       }}
