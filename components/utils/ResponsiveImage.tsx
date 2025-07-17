@@ -20,7 +20,7 @@ export function ResponsiveButtonedImage({image, name, onClick}: {image: string, 
     <div
       className="relative mx-auto"
       style={{
-        width: '70%',
+        width: '96%',
         maxWidth: `${maxWidth}px`,
         aspectRatio: aspectRatio ? `${aspectRatio}` : '4 / 3',
       }}
@@ -66,7 +66,7 @@ export function ResponsiveImage({image, name}: {image: string, name: string}) {
     <div
       className="relative mx-auto"
       style={{
-        width: '70%',
+        width: '96%',
         maxWidth: `${maxWidth}px`,
         aspectRatio: aspectRatio ? `${aspectRatio}` : '4 / 3',
       }}

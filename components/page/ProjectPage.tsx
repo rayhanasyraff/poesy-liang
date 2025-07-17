@@ -30,14 +30,14 @@ const ProjectPageWithAttachedContentMobile = ({project}: {project: ProjectType, 
 
     if (isNavigated) {
         return (
-            <div className="flex flex-3 mr-10 scrollbar-hidden scrollbar-hidden-wrapper">
+            <div className="flex flex-4 mr-10 scrollbar-hidden scrollbar-hidden-wrapper">
                 <PDFViewer file={project.contentPortfolio?? ""} />
             </div>
         );
     }
 
     return (
-        <div className="flex flex-3 mr-10 flex-col gap-3">
+        <div className="flex flex-4 mr-10 flex-col gap-3">
             <ResponsiveButtonedImage image={project.contentImage[0].src} name={project.name} onClick={handleClick} />
             <div className="flex justify-center items-center">
                 <p className="text-white font-bright-grotesk text-[13px] opacity-[0.77] text-center">tap for more</p>
