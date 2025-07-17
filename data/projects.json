@@ -1232,18 +1232,19 @@
     ],
     "thumbnailImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT6vVq4Msg9OyPN8WTqXm0dJLknbGpajhSZu7f",
         "width": 480,
         "height": 480
       }
     ],
     "contentImage": [
       {
-        "src": "/assets/images/poesy-logo-pink.png",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT6vVq4Msg9OyPN8WTqXm0dJLknbGpajhSZu7f",
         "width": 480,
         "height": 480
       }
     ],
+    "contentPortfolio": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTe1wjtJ51wf2IVgyKCnqbNF6xZMLiGW34Yzut",
     "order": 39
   },
   {
@@ -1596,8 +1597,8 @@
   },
   {
     "id": 51,
-    "name": "sidewalk series",
-    "pathname": "sidewalk-series",
+    "name": "sidewalk cartoon",
+    "pathname": "sidewalk-cartoon",
     "date": "2018",
     "category": [
       "art"
@@ -1627,7 +1628,7 @@
   },
   {
     "id": 52,
-    "name": "jalur gemilang",
+    "name": "jalur gemilang 井底蛙",
     "pathname": "jalur-gemilang",
     "date": "2018",
     "category": [
@@ -1643,8 +1644,8 @@
     "thumbnailImage": [
       {
         "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT4R9YgLdR8HchvSlUYmANEKXqTf7Zz2okwLrW",
-        "width": 480,
-        "height": 480
+        "width": 240,
+        "height": 240
       }
     ],
     "contentImage": [
@@ -1658,8 +1659,8 @@
   },
   {
     "id": 53,
-    "name": "fisher miao mobile game",
-    "pathname": "fisher-miao-mobile-game",
+    "name": "fishermiao mobile game",
+    "pathname": "fishermiao-mobile-game",
     "date": "2018",
     "category": [
       "art"
@@ -1674,8 +1675,8 @@
     "thumbnailImage": [
       {
         "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT6GqyVmsg9OyPN8WTqXm0dJLknbGpajhSZu7f",
-        "width": 480,
-        "height": 480
+        "width": 240,
+        "height": 240
       }
     ],
     "contentImage": [

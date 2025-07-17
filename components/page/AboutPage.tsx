@@ -15,7 +15,7 @@ function AboutPageMobile() {
                     <h1 className="text-[22px]">Poesy Liang (1975)</h1>
                     <p className="text-[16px]">Malaysia - Taiwan</p>
                 </div>
-                <div className="mt-10 text-[15px] leading-relaxed text-justify space-y-4">
+                <div className="mt-10 text-[15px] leading-relaxed space-y-4">
                     <p>Poesy is a contemporary artist and award winning social innovator who embeds technology into her creative endeavours.</p>
 
                     <p>In her multidisciplinary practise; Poesy is a painter, designer, filmmaker, composer, poet, sculptor, street artist, and movement maker; who spun out capsule brands of art merchandise, streetwear, fashion accessories, luxury homes and fine jewellery.</p>
