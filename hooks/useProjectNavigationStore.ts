@@ -1,5 +1,5 @@
-// stores/useProjectNavigationStore.ts
-import { create } from "zustand";
+// hooks/useProjectNavigationStore.ts
+import { create } from 'zustand';
 
 interface ProjectNavigationState {
   currentNavigatedId: number | null;
@@ -9,7 +9,7 @@ interface ProjectNavigationState {
 
 const useProjectNavigationStore = create<ProjectNavigationState>((set) => ({
   currentNavigatedId: null,
-  navigateTo: (id) => set({ currentNavigatedId: id }),
+  navigateTo: (id: number) => set({ currentNavigatedId: id }),
   reset: () => set({ currentNavigatedId: null }),
 }));
 

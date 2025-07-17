@@ -82,7 +82,7 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
           className="inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
           href={url.toString()}
           >
-            <h1 className='text-6xl opacity-[0.77] font-bright-grotesk-light hover:opacity-100 text-white hover:text-[#ff009f] leading-18 inline break-all mr-10'>{project.name}</h1>
+            <h1 className='text-6xl opacity-[0.77] font-bright-grotesk-light hover:opacity-100 text-white hover:text-[#f04ff0] leading-18 inline break-all mr-10'>{project.name}</h1>
           </ProjectLink>
         </div>
       </div>
@@ -99,7 +99,7 @@ function ProjectMobileText({children, project}: {children: ReactNode, project: P
 
   if (isProjectHighlighted) {
     return (
-      <p className="text-[10px] font-bright-grotesk-light text-[#ff009f] opacity-100">
+      <p className="text-[10px] font-bright-grotesk-light text-[#f04ff0] opacity-100">
         {children}
       </p>
     )
@@ -122,7 +122,7 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
     return (
       <div 
       id={`project-${project.id}`}
-      className="project inline transition duration-500 ease-in-out opacity-80 hover:opacity-100"
+      className="project inline transition duration-500 ease-in-out opacity-80"
       >
         <div>
             <p className='text-[10px] font-bright-grotesk-light opacity-[0.5] text-white'>{project.name}</p>

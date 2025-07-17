@@ -1135,14 +1135,14 @@
     ],
     "thumbnailImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTrzdWRSEzrycYhmCwVdn4PGHk89OMJsFEDTWa",
-        "width": 480,
-        "height": 480
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYLcto0KE4p7tk2xb1wBCXuWinr6g3OH59dlN",
+        "width": 200,
+        "height": 200
       }
     ],
     "contentImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTrzdWRSEzrycYhmCwVdn4PGHk89OMJsFEDTWa",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTYLcto0KE4p7tk2xb1wBCXuWinr6g3OH59dlN",
         "width": 480,
         "height": 480
       }
@@ -1356,7 +1356,7 @@
     ],
     "thumbnailImage": [
       {
-        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTyITJQBDvMgiHnF5oQjI3EV1pBdhGAYmqkuX0",
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTqpafGE8X7DNTPQYEhuxbfJza1KWSHRi2OALw",
         "width": 480,
         "height": 480
       }
@@ -1368,6 +1368,7 @@
         "height": 480
       }
     ],
+    "linkRedirect": "https://www.instagram.com/reel/BfOP9kUg8Jh/",
     "order": 43
   },
   {
@@ -1620,5 +1621,36 @@
       }
     ],
     "order": 51
+  },
+  {
+    "id": 52,
+    "name": "jalur gemilang",
+    "pathname": "jalur-gemilang",
+    "date": "2018",
+    "category": [
+      "art"
+    ],
+    "tags": [
+      "art"
+    ],
+    "description": "",
+    "location": [
+      ""
+    ],
+    "thumbnailImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT4R9YgLdR8HchvSlUYmANEKXqTf7Zz2okwLrW",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "contentImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT4R9YgLdR8HchvSlUYmANEKXqTf7Zz2okwLrW",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "order": 52
   }
 ]

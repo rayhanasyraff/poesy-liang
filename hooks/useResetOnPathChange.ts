@@ -1,17 +1,18 @@
-// hooks/useResetOnPathChange.ts
-import { useEffect, useRef } from "react";
+"use client";
+
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import useProjectNavigationStore from "./useProjectNavigationStore";
 
-export default function useResetOnPathChange() {
+export default function useResetOnPathChange(): boolean {
   const pathname = usePathname();
-  const prevPath = useRef(pathname);
-  const reset = useProjectNavigationStore((s) => s.reset);
+  const reset = useProjectNavigationStore((state) => state.reset);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    if (prevPath.current !== pathname) {
-      reset(); // ✅ Reset only after route has changed
-      prevPath.current = pathname;
-    }
+    reset(); // reset on route change
+    setIsReady(true); // trigger render after reset
   }, [pathname, reset]);
+
+  return isReady;
 }

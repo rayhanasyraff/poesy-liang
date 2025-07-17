@@ -15,7 +15,7 @@ const ProjectsPageMobile = ({className=""}: {className?: string}) => {
     if (project.contentImage) {
 
         return (
-            <div className={`flex flex-1 flex-row h-dvh mt-10 ml-1 ${className}`}>
+            <div className={`flex flex-1 flex-row h-dvh mt-10 ${className}`}>
                 <ProjectPageMobile project={project} />
                 <ProjectList />
             </div>

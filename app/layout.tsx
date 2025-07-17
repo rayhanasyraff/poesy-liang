@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "POESY 小詩 ",
   icons: {
-    icon: "/assets/images/poesy-logo-black.png",
+    icon: "/assets/icons/poesy-logo-pink.svg",
   }
 };
 

@@ -6,10 +6,8 @@ import ClosePageButton from "../utils/ClosePageButton";
 import dynamic from "next/dynamic";
 import Header from "../base/Header";
 import useProjectNavigationStore from "@/hooks/useProjectNavigationStore";
-import { useEffect } from "react";
 import useResetOnPathChange from "@/hooks/useResetOnPathChange";
 import { ResponsiveImage, ResponsiveButtonedImage } from '../utils/ResponsiveImage';
-
 
 const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
@@ -32,7 +30,7 @@ const ProjectPageWithAttachedContentMobile = ({project}: {project: ProjectType, 
 
     if (isNavigated) {
         return (
-            <div className="flex flex-1 mr-10 scrollbar-hidden scrollbar-hidden-wrapper">
+            <div className="flex flex-3 mr-10 scrollbar-hidden scrollbar-hidden-wrapper">
                 <PDFViewer file={project.contentPortfolio?? ""} />
             </div>
         );
@@ -42,7 +40,7 @@ const ProjectPageWithAttachedContentMobile = ({project}: {project: ProjectType, 
         <div className="flex flex-3 mr-10 flex-col gap-3">
             <ResponsiveButtonedImage image={project.contentImage[0].src} name={project.name} onClick={handleClick} />
             <div className="flex justify-center items-center">
-                <p className="text-white font-bright-grotesk text-[13px] text-center">tap for more</p>
+                <p className="text-white font-bright-grotesk text-[13px] opacity-[0.77] text-center">tap for more</p>
             </div>
         </div>
     )
@@ -50,6 +48,10 @@ const ProjectPageWithAttachedContentMobile = ({project}: {project: ProjectType, 
 
 export function ProjectPageMobile({project}: {project: ProjectType}) {
     
+    const isReady = useResetOnPathChange(); // ← move it here
+    
+    if (!isReady) return null;
+
     if (project.contentImage) {
 
         if (project.contentPortfolio || project.linkRedirect) {
@@ -96,7 +98,7 @@ function ProjectPageWithAttachedContentDesktop({project}: {project: ProjectType}
                 <div className="flex flex-col gap-10 items-center">
                     <ResponsiveButtonedImage image={project.contentImage[0].src} name={project.name} onClick={handleClick} />
                     <div className="flex justify-center items-center">
-                        <p className="text-white font-bright-grotesk-light text-2xl">tap for more</p>
+                        <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more</p>
                     </div>
                 </div>
                 <ClosePageButton />
@@ -106,6 +108,10 @@ function ProjectPageWithAttachedContentDesktop({project}: {project: ProjectType}
 }
 
 function ProjectPageDesktop({project}: {project: ProjectType}) {
+
+    const isReady = useResetOnPathChange(); // ← move it here
+    
+    if (!isReady) return null;
 
     if (project.contentPortfolio || project.linkRedirect) {
         return <ProjectPageWithAttachedContentDesktop project={project} />
@@ -127,17 +133,6 @@ export default function ProjectPage({ project }: { project: ProjectType }) {
 
   const isDesktop = useMediaQuery({ query: desktopSize });
   const isMobile = useMediaQuery({ query: mobileSize });
-  
-  const { currentNavigatedId, reset } = useProjectNavigationStore();
-
-  // ✅ Reset if switching to a new project
-  useEffect(() => {
-    if (currentNavigatedId !== null && currentNavigatedId !== project.id) {
-      reset();
-    }
-  }, [currentNavigatedId, project.id, reset]);
-
-  useResetOnPathChange(); // 👈 add this here instead
 
   if (isDesktop) {
     return <ProjectPageDesktop project={project} />;
