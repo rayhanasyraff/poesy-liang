@@ -18,30 +18,39 @@ function AboutPageMobile() {
                     <p className="text-[10px]">MALAYSIA - TAIWAN (1975)</p>
                 </div>
                 <div className="mt-10 text-[10px] leading-relaxed space-y-4">
-                    <p>Poesy is a contemporary artist and award winning social innovator who embeds technology into her creative endeavours.</p>
+                <p>Poesy Liang 梁小詩 (1975) is a contemporary artist and award-winning social innovator from Malaysia and Taiwan who embeds technology into her creative endeavours.</p>
 
-                    <p>In her multidisciplinary practise; Poesy is a painter, designer, filmmaker, composer, poet, sculptor, street artist, and movement maker; who spun out capsule brands of art merchandise, streetwear, fashion accessories, luxury homes and fine jewellery.</p>
+                <p>In her multidisciplinary practise, Poesy is a painter, designer, filmmaker, composer, poet, sculptor, and movement maker; she has spun out capsule brands of art merchandise, streetwear, fashion accessories, and even created a painfully cute mobile game.</p>
 
-                    <p>As her unique art form, she masterminds social movements that runs for a lifetime, while her interdisciplinary practise also covers large scale installations, piecing together paintings, objects, music &amp; poetry – evident in her large scale work, the Pirate&rsquo;s Daughter.</p>
+                <p>As her unique art form, she masterminds social movements that run for a lifetime, while her interdisciplinary practise also covers large-scale installations—piecing together paintings, objects, music & poetry—evident in her pavilion-sized work, the Pirate’s Daughter.</p>
 
-                    <p>In a nutshell, Poesy is an illustrious storyteller with colourful backstories behind her humanitarian messaging that she continues to deliver to the world in unprecedented ways. Often through the whimsical premise of her Rooftop Cats, she brings her audience to reach out to their highest ideals.</p>
+                <p>Poesy is an illustrious storyteller with colourful backstories behind her humanitarian messages. Through the whimsical world of her Rooftop Cats, she encourages audiences to reach for their highest soul potential.</p>
 
-                    <p>Poesy is a frequent flyer, who appears on global stages, and routinely clock her calendar in 3 continents each year.</p>
+                <p>A frequent flyer, Poesy appears on global stages and routinely clocks her calendar across three continents every year. She is a prolific writer and the author of an extensive website since 1999—with enough material to publish six books, two movies, and a mountain of poetic zines.</p>
 
-                    <p>She is familiar in the social impact space and an active participant of the art world. In between her travels, Poesy hosts an international database of art practitioners with her artist residency programs in downtown Kuala Lumpur. Her underlying goal is to make the art world a kinder place for all artists.</p>
+                <p>As a filmmaker, her heart is set on creating immersive experiences for her blind audience, often achieving with sound what visuals cannot.</p>
 
-                    <p>Poesy was a teenager with a career in television. She was schooled in architecture and business, and is the principal of a boutique jewellery house; and designs luxury hotels &amp; residences since 2000. She is also an advocate and accessibility consultant for the building industry, as well as a keen designer for the Tiny House Movement.</p>
+                <p>Poesy is well-versed in the social impact space and actively contributes to the art world. Between travels, she runs artist residency programs in downtown Kuala Lumpur and hosts an international database of art practitioners. Her mission is to make the art world a kinder place and to break barriers for Malaysian artists globally.</p>
 
-                    <p>Her personal battles with spinal tumours has paralysed her twice since she was the age of 17 and she has defied the odds by learning to walk again each time. She is often spotted in her travels using a mobility scooter and this informs her as the lifestyle designer with a detailed insight to accessibility design for her building projects.</p>
+                <p>For comedy, she’s building a cat movement that mirrors a world domination plan—an homage to internet culture.</p>
 
-                    <p>Poesy started her crypto journey in 2015 which led her to adopt blockchain solutions to track the provenance of her art stock. More recently, Poesy&rsquo;s Running Rabbit, her signature since 2000, continues the story in the form of NFTs.</p>
+                <p>Poesy began her public life as a teenager in television. She studied architecture and business, and eventually became the principal of a boutique jewellery house, designing luxury homes and hotels since 2000.</p>
 
-                    <p>She reinvents with technology to raise compassion, kindness and empathy by media reform, to serve humanity.</p>
+                <p>She is also an accessibility consultant for the building industry, a keen designer for the Tiny House Movement, and runs groups like Tiny House Asia and Malaysian Backyard Chickens. Her recent work includes top-tier catio spaces for wealthy cats.</p>
 
-                    <p>As the street artist, Poesy&rsquo;s Harry Putter RTC was first spotted in Melaka, and continued to sprout in Johor, Kuala Lumpur, Singapore, Manila and New York. While the #ChubbPoesy public mural is the largest commission to date, the longest wall she has ever drawn on is to be found at the headquarters of Yayasan Chow Kit, a leading children&rsquo;s foundation in Malaysia - where she ran an art program for the marginalised children for 12 years.</p>
+                <p>Her personal battles with spinal tumours have paralysed her twice since the age of 17. Defying the odds, she learned to walk again each time. She now uses a mobility scooter to travel the globe, which informs her expertise in universal design accessibility.</p>
 
-                    <p>Harry Putter was recently spotted mingling with marine life in a mobile game where he catches fish and collects glass &amp; plastic waste. Her art inevitably awakens our modern lifestyle to civic standards of the old world, an unrelentless extension of Helping Angels 善⾏天使 &ndash; her social movement since 2007.</p>
+                <p>Poesy started her bitcoin journey in 2015 and began experimenting with blockchain solutions for art provenance. Her Running Rabbit signature, active since 2000, now lives on as an NFT that made it to the moon.</p>
+
+                <p>During a brief stint as a street artist, her character Harry Putter RTC debuted in Melaka and rapidly spread to Johor, Kuala Lumpur, Singapore, Manila, and New York. Her largest mural to date is #ChubbPoesy, while her longest wall can be found at Yayasan Chow Kit, where she led a 12-year art program for marginalised children.</p>
+
+                <p>Harry Putter was recently spotted in a mobile game catching fish to feed his fat wife and collecting plastic waste. Poesy’s projects consistently remind modern society of its original civic standards, continuing her 2007 movement, Helping Angels 善⾏天使.</p>
+
+                <p>Despite being all over the place, Poesy hopes to read the Bible aloud from cover to cover and fiercely guards her sleep. Nothing comes between her and God—or her nap time.</p>
+
+                <p>If you see her, a simple “miao” will do. Strictly no small talk.</p>
                 </div>
+
             </div>
         </div>
     );
