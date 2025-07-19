@@ -1,10 +1,33 @@
 import data from "@/data/projects.json";
+import { ProjectType } from "@/types/ProjectType";
 
-export default function useGetProjects() {
+const DEFAULT_IMAGE = "/assets/images/poesy-logo-pink.png";
 
-    const projects = data;
-    const sortedProjectsByDescendingOrder = projects.slice().sort((a, b) => b.order - a.order);
-    // const randomOrderedProjects = sortedProjectsByDescendingOrder.slice().sort(() => Math.random() - 0.5);
+// This will persist across the entire app lifecycle (during runtime)
+let cachedSortedProjects: ProjectType[] | null = null;
 
-    return sortedProjectsByDescendingOrder;
+function sortProjectsRandomlyWithDefaultImageLast(projects: ProjectType[]): ProjectType[] {
+  const withCustomImage = projects.filter(
+    (p) => p.contentImage[0]?.src !== DEFAULT_IMAGE
+  );
+
+  const withDefaultImage = projects.filter(
+    (p) => p.contentImage[0]?.src === DEFAULT_IMAGE
+  );
+
+  // Shuffle only the custom image projects
+  for (let i = withCustomImage.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [withCustomImage[i], withCustomImage[j]] = [withCustomImage[j], withCustomImage[i]];
+  }
+
+  return [...withCustomImage, ...withDefaultImage];
+}
+
+export default function useGetProjects(): ProjectType[] {
+  if (!cachedSortedProjects) {
+    cachedSortedProjects = sortProjectsRandomlyWithDefaultImageLast(data);
+  }
+
+  return cachedSortedProjects;
 }

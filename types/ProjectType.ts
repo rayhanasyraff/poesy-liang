@@ -3,6 +3,7 @@ import VideoType from "./VideoType";
 
 export interface ProjectType {
     id: number;
+    order: number;
     date: string;
     pathname: string;
     category: string[];
