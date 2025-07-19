@@ -1,15 +1,8 @@
 "use client"
 
-import Header from "@/components/base/Header";
-import ProjectsPage from "@/components/page/ProjectsPage";
+import HomePage from "@/components/page/HomePage";
 
 export default function Home() {
-
-    return (
-      <div className="flex flex-col">
-        <Header />
-        <ProjectsPage />
-      </div>
-    );
+    return <HomePage />
 }
         

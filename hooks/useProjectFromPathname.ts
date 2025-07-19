@@ -1,11 +1,14 @@
-import { ProjectType } from '@/types/ProjectType';
 import { usePathname } from 'next/navigation';
+import useGetProjects from './useGetProjects';
 
-export function useProjectFromPathname(data: ProjectType[]) {
+export function useProjectFromPathname() {
+
     const pathname = usePathname();
     const segments = pathname.split("/");
     const result = segments.pop() || segments.pop();
-    const project = data.find((project) => project.pathname === result) ?? data[0];
 
-  return project;
+    const projects = useGetProjects();
+    const project = projects.find((project) => project.pathname === result) ?? projects[0];
+
+    return project;
 }

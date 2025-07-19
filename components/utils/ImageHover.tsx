@@ -60,7 +60,7 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
       }
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('mousemove', handleMouseMove);
     return () => document.removeEventListener('mousemove', handleMouseMove);
   }, [id]);
 

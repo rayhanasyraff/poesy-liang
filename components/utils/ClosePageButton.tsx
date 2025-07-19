@@ -3,18 +3,18 @@
 import { useRouter } from "next/navigation";
 import { CrossIcon } from "../icons/CrossIcon";
 
-const ClosePageButton = () => {
+const ClosePageButton = ({ onClick }: { onClick?: () => void }) => {
   const router = useRouter();
 
-  const handleClose = () => {
+  const defaultHandler = () => {
     router.push("/"); // ✅ just navigate
   };
 
   return (
     <button
-      title="Close"
+      title="Close Button"
       type="button"
-      onClick={handleClose}
+      onClick={onClick?? defaultHandler}
       className="fixed top-5 left-5 hover:cursor-pointer"
       style={{ zIndex: 300 }}
     >

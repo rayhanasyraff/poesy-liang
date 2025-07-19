@@ -1,14 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { useMediaQuery } from 'react-responsive';
 import useBaseUrl from '@/hooks/useBaseUrl';
 import ImageHover from '../utils/ImageHover';
 import { ReactNode, useEffect } from 'react';
 import resizeChineseText from '@/utils/resizeChineseText';
 import { ProjectType } from '@/types/ProjectType';
-import { desktopSize, mobileSize } from '@/constants/screenSize';
 import { usePathname } from 'next/navigation';
+import useDeviceContext from "@/hooks/useDeviceContext";
+
 
 function ProjectLink({href, className, children}: {href: string, className?: string, children: ReactNode}) {
 
@@ -39,7 +39,7 @@ function ProjectLink({href, className, children}: {href: string, className?: str
 
 }
 
-function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
+function ProjectWideScreen({ url, project }: { url: URL, project: ProjectType }) {
 
   useEffect(() => {
     resizeChineseText("text-[48px]")
@@ -118,7 +118,7 @@ function ProjectDesktop({ url, project }: { url: URL, project: ProjectType }) {
   )
 }
 
-function ProjectMobileText({children, project}: {children: ReactNode, project: ProjectType}) {
+function ProjectNarrowScreenText({children, project}: {children: ReactNode, project: ProjectType}) {
   const urlPathname = usePathname();
   const projectPathnameFromUrl = urlPathname.toString().split("/").pop();
 
@@ -135,13 +135,13 @@ function ProjectMobileText({children, project}: {children: ReactNode, project: P
   }
 
   return (
-    <p className="text-[10px] font-bright-grotesk-light opacity-[0.77] text-white">
+    <p className="text-[10px] font-bright-grotesk-light hover:text-[#f04ff0] opacity-[0.77] text-white">
       {children}
     </p>
   )
 }
 
-function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
+function ProjectNarrowScreen({ url, project }: { url: URL, project: ProjectType }) {
   
   useEffect(() => {
     resizeChineseText("text-[10px]")
@@ -151,11 +151,11 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
     return (
       <div 
       id={`project-${project.id}`}
-      className="project inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
+      className="project cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
       >
         <div>
           <ProjectLink href={url.toString()}>
-            <ProjectMobileText project={project}>{project.name}</ProjectMobileText>
+            <ProjectNarrowScreenText project={project}>{project.name}</ProjectNarrowScreenText>
           </ProjectLink>
         </div>
       </div>
@@ -166,7 +166,7 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
     return (
       <div 
       id={`project-${project.id}`}
-      className="project inline transition duration-500 ease-in-out opacity-80"
+      className="project transition duration-500 ease-in-out opacity-80"
       >
         <div>
             <p className='text-[10px] font-bright-grotesk-light opacity-[0.5] text-white'>{project.name}</p>
@@ -178,11 +178,11 @@ function ProjectMobile({ url, project }: { url: URL, project: ProjectType }) {
   return (
       <div 
       id={`project-${project.id}`}
-      className="project inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
+      className="project cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
       >
         <div>
           <ProjectLink href={url.toString()}>
-            <ProjectMobileText project={project}>{project.name}</ProjectMobileText>
+            <ProjectNarrowScreenText project={project}>{project.name}</ProjectNarrowScreenText>
           </ProjectLink>
         </div>
       </div>
@@ -194,18 +194,17 @@ export default function Project({ project }: { project: ProjectType }) {
     const baseUrl = useBaseUrl();
     const url = new URL("/projects/" + project.pathname, baseUrl);
 
-    const isDesktop = useMediaQuery({ query: desktopSize });
-    const isMobile = useMediaQuery({ query: mobileSize });
+    const { isWideScreen, isNarrowScreen } = useDeviceContext();
     
-    if (isDesktop) {
+    if (isWideScreen) {
       return (
-        <ProjectDesktop url={url} project={project} />
+        <ProjectWideScreen url={url} project={project} />
       )
     }
 
-    if (isMobile) {
+    if (isNarrowScreen) {
       return (
-        <ProjectMobile url={url} project={project} />
+        <ProjectNarrowScreen url={url} project={project} />
       );
     }
 

@@ -1,46 +1,37 @@
 "use client"
 
-import { mobileSize } from '@/constants/screenSize';
 import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import { useRouter } from 'next/navigation'; // ✅ Correct for App Router
+import useShowComponent from '@/hooks/useShowComponent';
 
-export default function Header() {
+export default function Header({ onClick }: { onClick?: () => void }) {
+  const router = useRouter(); // ✅ use the hook
+  const showHeader = useShowComponent();
 
-  const pathname = usePathname();
-  const isMobile = useMediaQuery({ query: mobileSize });
-  const [isClient, setIsClient] = useState(false);
+  const defaultHandler = () => {
+    router.push("/"); // ✅ will now work
+  };
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const handleClick = onClick ?? defaultHandler;
 
-  // ✅ Show header if:
-  // - you're on "/" (home), or
-  // - you're on "/projects/[project]" AND on mobile
-  const showHeader = isClient && (
-    (pathname === "/") ||
-    (pathname.startsWith("/projects/") && isMobile)
-  );
+  if (!showHeader) return null;
 
-  if (showHeader) {
-    return (
-      <div className="flex flex-col ml-10 mt-7 font-bright-grotesk-semibold text-xl tracking-[0.20em] opacity-[0.77] items-start">
-        <Link href="/" className='flex flex-row items-start'>
-          <h1 className="mr-2">POESY LIANG</h1>
-          <Image 
+  return (
+    <div className="flex flex-col ml-10 mt-7 font-bright-grotesk-semibold text-xl tracking-[0.20em] opacity-[0.77] items-start">
+      <button 
+        title="Header Logo"
+        type="button"
+        onClick={handleClick}
+        className="flex flex-row items-start hover:cursor-pointer"
+      >
+        <h1 className="mr-2">POESY LIANG</h1>
+        <Image 
           src="/assets/images/poesy-logo-white.png"
           alt="Poesy Logo"
           width={20}
-          height={20} />
-        </Link>
-      </div>
-    );
-  }
-
-  return <></>
-
+          height={20} 
+        />
+      </button>
+    </div>
+  );
 }
-  

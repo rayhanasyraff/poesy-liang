@@ -63,5 +63,7 @@ export default function resizeChineseText(className: string): void {
     }
   }
 
-  traverse(document.body);
+  // Only target elements with the "project" class
+  const projectElements = document.querySelectorAll<HTMLElement>('.project');
+  projectElements.forEach(el => traverse(el));
 }

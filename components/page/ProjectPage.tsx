@@ -1,19 +1,20 @@
-import Home from "@/app/page";
-import { desktopSize, mobileSize } from "@/constants/screenSize";
 import { ProjectType } from "@/types/ProjectType";
-import { useMediaQuery } from "react-responsive";
 import ClosePageButton from "../utils/ClosePageButton";
 import dynamic from "next/dynamic";
 import useProjectNavigationStore from "@/hooks/useProjectNavigationStore";
 import useResetOnPathChange from "@/hooks/useResetOnPathChange";
 import { ResponsiveImage, ResponsiveButtonedImage } from '../utils/ResponsiveImage';
 import { ResponsiveVideo } from '../utils/ResponsiveVideo';
+import useDeviceContext from "@/hooks/useDeviceContext";
+import { useProjectFromPathname } from "@/hooks/useProjectFromPathname";
+import PageBaseLayout from "../layout/PageBaseLayout";
+import PageBaseBodyLayout from "../layout/PageBaseBodyLayout";
 
 const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
 });
 
-const ProjectPageWithAttachedContentMobile = ({project}: {project: ProjectType, className?: string}) => {
+const ProjectPageContentWithAttachmentsNarrowScreen = ({project}: {project: ProjectType, className?: string}) => {
 
     const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
 
@@ -46,7 +47,7 @@ const ProjectPageWithAttachedContentMobile = ({project}: {project: ProjectType, 
     )
 }
 
-export function ProjectPageMobile({project}: {project: ProjectType}) {
+function ProjectPageContentNarrowScreen({project}: {project: ProjectType}) {
     
     const isReady = useResetOnPathChange(); // ← move it here
     
@@ -63,7 +64,7 @@ export function ProjectPageMobile({project}: {project: ProjectType}) {
         }
 
         if (project.contentPortfolio || project.linkRedirect) {
-            return <ProjectPageWithAttachedContentMobile project={project} />
+            return <ProjectPageContentWithAttachmentsNarrowScreen project={project} />
         }
 
         if (project.contentImage) {
@@ -78,7 +79,17 @@ export function ProjectPageMobile({project}: {project: ProjectType}) {
     return (<></>);
 }
 
-function ProjectPageWithAttachedContentDesktop({project}: {project: ProjectType}) {
+function ProjectPageNarrowScreen({project}: {project: ProjectType}) {
+    return (
+        <PageBaseLayout>
+            <PageBaseBodyLayout>
+                <ProjectPageContentNarrowScreen project={project} />
+            </PageBaseBodyLayout>
+        </PageBaseLayout>
+    )
+}
+
+function ProjectPageContentWithAttachmentsWideScreen({project}: {project: ProjectType}) {
         
     const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
 
@@ -117,14 +128,14 @@ function ProjectPageWithAttachedContentDesktop({project}: {project: ProjectType}
     )
 }
 
-function ProjectPageDesktop({project}: {project: ProjectType}) {
-
+function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
+    
     const isReady = useResetOnPathChange(); // ← move it here
     
     if (!isReady) return null;
 
     if (project.contentPortfolio || project.linkRedirect) {
-        return <ProjectPageWithAttachedContentDesktop project={project} />
+        return <ProjectPageContentWithAttachmentsWideScreen project={project} />
     }
 
     if (project.contentVideo) {        
@@ -152,23 +163,22 @@ function ProjectPageDesktop({project}: {project: ProjectType}) {
     )
 }
 
-export default function ProjectPage({ project }: { project: ProjectType }) {
+function ProjectPageWideScreen({project}: {project: ProjectType}) {
+    return <ProjectPageContentWideScreen project={project} />
+}
 
-  const isDesktop = useMediaQuery({ query: desktopSize });
-  const isMobile = useMediaQuery({ query: mobileSize });
+export default function ProjectPage() {
 
-  if (isMobile) {
-    return (
-      <>
-        {/* <Header /> */}
-        <ProjectPageMobile project={project} />
-      </>
-    );
+  const { isNarrowScreen, isWideScreen } = useDeviceContext();
+  const project = useProjectFromPathname();
+  
+  if (isNarrowScreen) {
+    return <ProjectPageNarrowScreen project={project} />;
   }
 
-  if (isDesktop) {
-    return <ProjectPageDesktop project={project} />;
+  if (isWideScreen) {
+    return <ProjectPageWideScreen project={project} />;
   }
 
-  return <Home />;
+  return <></>;
 }

@@ -1,10 +1,9 @@
 'use client';
 
-import { useMediaQuery } from "react-responsive";
 import Project from "./Project";
 import { cva } from "class-variance-authority";
 import useGetProjects from "@/hooks/useGetProjects";
-import { desktopSize, mobileSize } from "@/constants/screenSize";
+import useDeviceContext from '@/hooks/useDeviceContext';
 
 
 const projectListVariants = cva("", {
@@ -21,13 +20,12 @@ const projectListVariants = cva("", {
 
 export default function ProjectList () {
 
-    const isDesktop = useMediaQuery({ query: desktopSize });
-    const isMobile = useMediaQuery({ query:  mobileSize });
+    const { isWideScreen, isNarrowScreen } = useDeviceContext();
     
     const projects = useGetProjects();
 
     if (projects) {
-      if (isDesktop) {
+      if (isWideScreen) {
         return (
           <div className={projectListVariants({ type: "desktop" })}>  
             {projects.map((project, i) => (
@@ -37,7 +35,7 @@ export default function ProjectList () {
         );
       }
 
-      if (isMobile) {
+      if (isNarrowScreen) {
         return (
           <div className={projectListVariants({ type: "mobile" })}>  
             {projects.map((project, i) => (
