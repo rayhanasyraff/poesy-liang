@@ -15,7 +15,7 @@ function AboutPageContentNarrowScreen() {
             <div className="mx-10 mt-10 font-bright-grotesk-light opacity-77 text-white">
                 <div>
                     <h1 className="text-[15px]">POESY LIANG</h1>
-                    <p className="text-[10px]">梁小詩</p>
+                    <p className="text-[13px]">梁小詩</p>
                     <p className="text-[10px]">1975</p>
                     <p className="text-[10px]">MALAYSIA - TAIWAN</p>
                 </div>
@@ -126,7 +126,7 @@ function AboutPageContentWideScreen() {
             <div className="m-15 font-bright-grotesk-light opacity-77 text-white">
                 <div>
                     <h1 className="text-[30px]">POESY LIANG</h1>
-                    <p className="text-[20px]">梁小詩</p>
+                    <p className="text-[25px]">梁小詩</p>
                     <p className="text-[20px]">1975</p>
                     <p className="text-[20px]">MALAYSIA - TAIWAN</p>
                 </div>
