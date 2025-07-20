@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation'; // ✅ Correct for App Router
 import useShowComponent from '@/hooks/useShowComponent';
 
-export default function Header({ onClick }: { onClick?: () => void }) {
+export default function Header({ onClick, className="" }: { onClick?: () => void, className?: string }) {
   const router = useRouter(); // ✅ use the hook
   const showHeader = useShowComponent();
 
@@ -17,7 +17,7 @@ export default function Header({ onClick }: { onClick?: () => void }) {
   if (!showHeader) return null;
 
   return (
-    <div className="flex flex-col ml-10 mt-7 font-bright-grotesk-semibold text-xl tracking-[0.20em] opacity-[0.77] items-start">
+    <div className={`flex flex-col ml-10 mt-7 font-bright-grotesk-semibold text-xl tracking-[0.20em] opacity-[0.77] items-start ${className}`}>
       <button 
         title="Header Logo"
         type="button"
