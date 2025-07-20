@@ -123,7 +123,7 @@ function AboutPageNarrowScreen() {
 function AboutPageContentWideScreen() {
     return (
         <div className="flex flex-1 flex-row">
-            <div className="m-15 font-bright-grotesk-light opacity-77 text-white">
+            <div className="m-15 font-bright-grotesk-light opacity-77 text-white text-right">
                 <div>
                     <h1 className="text-[30px]">POESY LIANG</h1>
                     <p className="text-[25px]">梁小詩</p>
