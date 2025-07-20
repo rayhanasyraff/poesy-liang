@@ -50,7 +50,7 @@ function ProjectWideScreen({ url, project }: { url: URL, project: ProjectType })
       <div 
       id={`project-${project.id}`}
       className="project inline"
-      >b
+      >
         <ImageHover
         id={project.id}
         name={project.name} 

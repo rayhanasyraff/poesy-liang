@@ -58,7 +58,12 @@ function ProjectPageContentNarrowScreen({project}: {project: ProjectType}) {
         if (project.contentVideo) {
             return (
                 <div className="flex flex-3 mr-10 flex-col">
-                    <ResponsiveVideo video={project.contentVideo[0].src} name={project.name} />
+                    <ResponsiveVideo 
+                    video={project.contentVideo[0].src} 
+                    name={project.name}
+                    autoplay={true}
+                    loop={true}
+                    />
                 </div>
             )
         }
@@ -79,7 +84,35 @@ function ProjectPageContentNarrowScreen({project}: {project: ProjectType}) {
     return (<></>);
 }
 
+
+function ProjectPageContentNarrowScreenWithVideoOnInitialFullscreen({project}: {project: ProjectType}) {
+    return (
+        <div className="flex flex-1 flex-row">
+            <div className="flex flex-1 flex-col justify-center min-h-screen">
+                <div className="flex flex-col gap-10 items-center">
+                    <ResponsiveVideo 
+                    video={project.contentVideo ? project.contentVideo[0].src : ""} 
+                    name={project.name}
+                    width={project.contentVideo ? project.contentVideo[0].width : 0}
+                    isFullscreen={true}
+                    autoplay={true}
+                    loop={true}
+                    />
+                </div>
+            </div>
+            <ClosePageButton />
+        </div>
+    )
+}
+
 function ProjectPageNarrowScreen({project}: {project: ProjectType}) {
+
+    if (project.contentVideo && project.contentVideo[0].isFullscreenOnInitial) {
+        return (
+            <ProjectPageContentNarrowScreenWithVideoOnInitialFullscreen project={project} />
+        )
+    }
+    
     return (
         <PageBaseLayout>
             <PageBaseBodyLayout>

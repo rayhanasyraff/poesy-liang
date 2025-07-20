@@ -1686,6 +1686,14 @@
         "height": 480
       }
     ],
+    "contentVideo": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTgBzozsV8lYo7dMGWma4fUw9n0VcEujFHB6iT",
+        "width": 400,
+        "height": 480,
+        "isFullscreenOnInitial": true
+      }
+    ],
     "order": 53
   }
 ]

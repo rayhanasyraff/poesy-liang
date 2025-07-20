@@ -1,53 +1,79 @@
-import { useState, useRef, useEffect, Suspense } from 'react';
+import { useRef, useEffect, useState, Suspense } from 'react';
 
 export function ResponsiveVideo({
   video,
-  scale = 96,
+  name,
+  width,
+  height,
+  isFullscreen = false,
+  autoplay = false,
+  loop = false,
 }: {
   video: string;
   name: string;
-  scale?: number;
+  width?: number;
+  height?: number;
+  isFullscreen?: boolean;
+  autoplay?: boolean;
+  loop?: boolean;
 }) {
-  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
-  const [maxWidth, setMaxWidth] = useState<number>(700);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoDimensions, setVideoDimensions] = useState({ width: 640, height: 360 });
 
   useEffect(() => {
     const vid = videoRef.current;
     if (vid) {
       vid.onloadedmetadata = () => {
-        const width = vid.videoWidth;
-        const height = vid.videoHeight;
-        const windowHeight = window.innerHeight;
-        const padding = 100;
-
-        const availableHeight = windowHeight - padding;
-        const calculatedWidth = Math.min(700, availableHeight * (width / height));
-
-        setAspectRatio(width / height);
-        setMaxWidth(calculatedWidth);
+        setVideoDimensions({
+          width: vid.videoWidth,
+          height: vid.videoHeight,
+        });
+        if (autoplay) {
+          vid.play().catch(() => {
+            console.warn('Autoplay failed: user interaction may be required.');
+          });
+        }
       };
     }
-  }, []);
+  }, [autoplay]);
+
+  const finalWidth = width ?? videoDimensions.width;
+  const finalHeight = height ?? videoDimensions.height;
+  const aspectRatio = finalWidth / finalHeight;
+
+  const videoElement = (
+    <video
+      ref={videoRef}
+      src={video}
+      className="w-full h-full object-cover"
+      controls
+      preload="metadata"
+      autoPlay={autoplay}
+      muted={autoplay} // Required for autoplay on most browsers
+      playsInline
+      loop={loop}
+    />
+  );
+
+  const fullscreenStyle = {
+    height: '100vh',
+    maxHeight: '100vh',
+    aspectRatio: `${aspectRatio}`,
+    maxWidth: '100%',
+  };
+
+  const normalStyle = {
+    width: '100%',
+    maxWidth: `${finalWidth}px`,
+    aspectRatio: `${aspectRatio}`,
+    maxHeight: '100vh',
+  };
 
   return (
-      <Suspense fallback={<p className='text-[10px] text-white font-bright-grotesk-light'>Loading video...</p>}>
-        <div
-        className="relative mx-auto"
-        style={{
-            width: `${scale}%`,
-            maxWidth: `${maxWidth}px`,
-            aspectRatio: aspectRatio ? `${aspectRatio}` : '4 / 3',
-        }}
-        >
-            <video
-                ref={videoRef}
-                src={video}
-                className="w-full h-full object-contain"
-                controls
-                preload="metadata"
-            />
-        </div>
-      </Suspense>
+    <Suspense fallback={<p className="text-[10px] text-white font-bright-grotesk-light">Loading video...</p>}>
+      <div className="relative mx-auto" style={isFullscreen ? fullscreenStyle : normalStyle}>
+        {videoElement}
+      </div>
+    </Suspense>
   );
 }

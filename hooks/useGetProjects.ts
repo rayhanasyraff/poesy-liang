@@ -8,11 +8,11 @@ let cachedSortedProjects: ProjectType[] | null = null;
 
 function sortProjectsRandomlyWithDefaultImageLast(projects: ProjectType[]): ProjectType[] {
   const withCustomImage = projects.filter(
-    (p) => p.contentImage[0]?.src !== DEFAULT_IMAGE
+    (p) => p.thumbnailImage[0]?.src !== DEFAULT_IMAGE
   );
 
   const withDefaultImage = projects.filter(
-    (p) => p.contentImage[0]?.src === DEFAULT_IMAGE
+    (p) => p.thumbnailImage[0]?.src === DEFAULT_IMAGE
   );
 
   // Shuffle only the custom image projects
