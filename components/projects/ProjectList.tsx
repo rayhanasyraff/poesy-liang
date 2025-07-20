@@ -9,7 +9,7 @@ import useDeviceContext from '@/hooks/useDeviceContext';
 const projectListVariants = cva("", {
   variants: {
     type: {
-      mobile: "text-right mr-5 flex flex-1 flex-col",
+      mobile: "text-right mr-5 flex flex-col",
       desktop: "mt-10 mx-10",
     },
   },
