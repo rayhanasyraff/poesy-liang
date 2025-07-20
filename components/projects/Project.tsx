@@ -50,7 +50,7 @@ function ProjectWideScreen({ url, project }: { url: URL, project: ProjectType })
       <div 
       id={`project-${project.id}`}
       className="project inline"
-      >
+      >b
         <ImageHover
         id={project.id}
         name={project.name} 
@@ -128,14 +128,14 @@ function ProjectNarrowScreenText({children, project}: {children: ReactNode, proj
 
   if (isProjectHighlighted) {
     return (
-      <p className="text-[10px] font-bright-grotesk-light text-[#f04ff0] opacity-100">
+      <p className="text-[6px] font-bright-grotesk-light text-[#f04ff0] opacity-100">
         {children}
       </p>
     )
   }
 
   return (
-    <p className="text-[10px] font-bright-grotesk-light hover:text-[#f04ff0] opacity-[0.77] text-white">
+    <p className="text-[6px] font-bright-grotesk-light hover:text-[#f04ff0] opacity-[0.77] text-white">
       {children}
     </p>
   )
@@ -144,7 +144,7 @@ function ProjectNarrowScreenText({children, project}: {children: ReactNode, proj
 function ProjectNarrowScreen({ url, project }: { url: URL, project: ProjectType }) {
   
   useEffect(() => {
-    resizeChineseText("text-[10px]")
+    resizeChineseText("text-[6px]")
   }, [project.id]);
   
   if (project.contentVideo && project.contentVideo[0].src) {
@@ -169,7 +169,7 @@ function ProjectNarrowScreen({ url, project }: { url: URL, project: ProjectType 
       className="project transition duration-500 ease-in-out opacity-80"
       >
         <div>
-            <p className='text-[10px] font-bright-grotesk-light opacity-[0.5] text-white'>{project.name}</p>
+            <p className='text-[6px] font-bright-grotesk-light opacity-[0.5] text-white'>{project.name}</p>
         </div>
       </div>
     )
