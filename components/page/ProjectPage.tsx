@@ -60,7 +60,6 @@ function ProjectPageContentNarrowScreen({project}: {project: ProjectType}) {
                 <div className="flex flex-3 mr-10 flex-col">
                     <ResponsiveVideo 
                     video={project.contentVideo[0].src} 
-                    name={project.name}
                     autoplay={true}
                     loop={true}
                     />
@@ -92,7 +91,6 @@ function ProjectPageContentNarrowScreenWithVideoOnInitialFullscreen({project}: {
                 <div className="flex flex-col gap-10 items-center">
                     <ResponsiveVideo 
                     video={project.contentVideo ? project.contentVideo[0].src : ""} 
-                    name={project.name}
                     width={project.contentVideo ? project.contentVideo[0].width : 0}
                     isFullscreen={true}
                     autoplay={true}
@@ -176,7 +174,7 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
             <div className="flex flex-1 flex-row">
                 <div className="flex flex-1 flex-col justify-center min-h-screen">
                     <div className="flex flex-col gap-10 items-center">
-                        <ResponsiveVideo video={project.contentVideo[0].src} name={project.name} />
+                        <ResponsiveVideo video={project.contentVideo[0].src} />
                     </div>
                 </div>
                 <ClosePageButton />

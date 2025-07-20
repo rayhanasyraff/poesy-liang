@@ -2,7 +2,6 @@ import { useRef, useEffect, useState, Suspense } from 'react';
 
 export function ResponsiveVideo({
   video,
-  name,
   width,
   height,
   isFullscreen = false,
@@ -10,7 +9,6 @@ export function ResponsiveVideo({
   loop = false,
 }: {
   video: string;
-  name: string;
   width?: number;
   height?: number;
   isFullscreen?: boolean;
