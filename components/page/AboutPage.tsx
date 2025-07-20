@@ -208,7 +208,7 @@ function AboutPageContentWideScreen() {
                     </p>
                 </div>
             </div>
-            <div className={`flex  w-full`}>
+            <div className={`flex  w-full mt-35`}>
                 <ResponsiveImage
                 className="mt-10"
                 justify="center"
