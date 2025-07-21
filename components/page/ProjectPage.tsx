@@ -53,19 +53,7 @@ function ProjectPageContentNarrowScreen({project}: {project: ProjectType}) {
     
     if (!isReady) return null;
 
-    if (project.contentImage || project.contentVideo) {
-
-        if (project.contentVideo) {
-            return (
-                <div className="flex flex-3 mr-10 flex-col">
-                    <ResponsiveVideo 
-                    video={project.contentVideo[0].src} 
-                    autoplay={true}
-                    loop={true}
-                    />
-                </div>
-            )
-        }
+    if (project.contentImage) {
 
         if (project.contentPortfolio || project.linkRedirect) {
             return <ProjectPageContentWithAttachmentsNarrowScreen project={project} />
