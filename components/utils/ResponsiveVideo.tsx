@@ -2,7 +2,6 @@ import { useRef, useEffect, useState, Suspense } from 'react';
 
 export function ResponsiveVideo({
   video,
-  name,
   width,
   height,
   isFullscreen = false,
@@ -10,7 +9,6 @@ export function ResponsiveVideo({
   loop = false,
 }: {
   video: string;
-  name: string;
   width?: number;
   height?: number;
   isFullscreen?: boolean;
@@ -19,6 +17,27 @@ export function ResponsiveVideo({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoDimensions, setVideoDimensions] = useState({ width: 640, height: 360 });
+
+  // 🌐 Handle viewport meta change based on isFullscreen
+  useEffect(() => {
+    const viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (!viewportMeta) return;
+
+    const originalContent = viewportMeta.getAttribute('content');
+
+    if (isFullscreen) {
+      viewportMeta.setAttribute(
+        'content',
+        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
+      );
+    }
+
+    return () => {
+      if (originalContent) {
+        viewportMeta.setAttribute('content', originalContent);
+      }
+    };
+  }, [isFullscreen]);
 
   useEffect(() => {
     const vid = videoRef.current;
@@ -49,7 +68,7 @@ export function ResponsiveVideo({
       controls
       preload="metadata"
       autoPlay={autoplay}
-      muted={autoplay} // Required for autoplay on most browsers
+      muted={autoplay}
       playsInline
       loop={loop}
     />
