@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState, Suspense } from 'react';
+"use client";
+import { useRef, useEffect, useState, Suspense } from "react";
 
 export function ResponsiveVideo({
   video,
@@ -18,11 +19,12 @@ export function ResponsiveVideo({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoDimensions, setVideoDimensions] = useState({ width: 640, height: 360 });
 
+  // Adjust viewport on fullscreen
   useEffect(() => {
     const viewportMeta = document.querySelector('meta[name="viewport"]');
     if (!viewportMeta) return;
-
     const originalContent = viewportMeta.getAttribute('content');
+
     if (isFullscreen) {
       viewportMeta.setAttribute(
         'content',
@@ -37,6 +39,7 @@ export function ResponsiveVideo({
     };
   }, [isFullscreen]);
 
+  // Set video dimensions and autoplay
   useEffect(() => {
     const vid = videoRef.current;
     if (vid) {
@@ -54,23 +57,21 @@ export function ResponsiveVideo({
     }
   }, [autoplay]);
 
+  // Lock scroll on fullscreen
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isFullscreen]);
+
   const finalWidth = width ?? videoDimensions.width;
   const finalHeight = height ?? videoDimensions.height;
   const aspectRatio = finalWidth / finalHeight;
-
-  const videoElement = (
-    <video
-      ref={videoRef}
-      src={video}
-      className="w-full h-full object-cover"
-      controls
-      preload="metadata"
-      autoPlay={autoplay}
-      muted={autoplay}
-      playsInline
-      loop={loop}
-    />
-  );
 
   const fullscreenStyle = {
     position: 'fixed' as const,
@@ -92,7 +93,17 @@ export function ResponsiveVideo({
   return (
     <Suspense fallback={<p className="text-[10px] text-white font-bright-grotesk-light">Loading video...</p>}>
       <div className="relative mx-auto" style={isFullscreen ? fullscreenStyle : normalStyle}>
-        {videoElement}
+        <video
+          ref={videoRef}
+          src={video}
+          className="w-full h-full object-cover"
+          controls
+          preload="metadata"
+          autoPlay={autoplay}
+          muted={autoplay}
+          playsInline
+          loop={loop}
+        />
       </div>
     </Suspense>
   );

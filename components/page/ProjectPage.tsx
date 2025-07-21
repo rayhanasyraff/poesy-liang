@@ -159,13 +159,17 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
 
     if (project.contentVideo) {        
         return (
+            <div className="relative">
+            {/* ✅ Always on top of everything */}
+            <ClosePageButton />
+
             <div className="flex flex-1 flex-row">
                 <div className="flex flex-1 flex-col justify-center min-h-screen">
-                    <div className="flex flex-col gap-10 items-center">
-                        <ResponsiveVideo video={project.contentVideo[0].src} />
-                    </div>
+                <div className="flex flex-col gap-10 items-center">
+                    <ResponsiveVideo video={project.contentVideo[0].src} isFullscreen />
                 </div>
-                <ClosePageButton />
+                </div>
+            </div>
             </div>
         )
     }
