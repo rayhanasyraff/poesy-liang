@@ -18,13 +18,11 @@ export function ResponsiveVideo({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoDimensions, setVideoDimensions] = useState({ width: 640, height: 360 });
 
-  // 🌐 Handle viewport meta change based on isFullscreen
   useEffect(() => {
     const viewportMeta = document.querySelector('meta[name="viewport"]');
     if (!viewportMeta) return;
 
     const originalContent = viewportMeta.getAttribute('content');
-
     if (isFullscreen) {
       viewportMeta.setAttribute(
         'content',
@@ -75,10 +73,13 @@ export function ResponsiveVideo({
   );
 
   const fullscreenStyle = {
+    position: 'fixed' as const,
+    top: 0,
+    left: 0,
+    width: '100vw',
     height: '100vh',
-    maxHeight: '100vh',
-    aspectRatio: `${aspectRatio}`,
-    maxWidth: '100%',
+    zIndex: 9999,
+    backgroundColor: 'black',
   };
 
   const normalStyle = {
