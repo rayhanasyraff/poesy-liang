@@ -1,5 +1,5 @@
 import data from "@/data/projects.json";
-import { ProjectType } from "@/types/ProjectType";
+import ProjectType from "@/types/ProjectType";
 
 const DEFAULT_IMAGE = "/assets/images/poesy-logo-pink.png";
 

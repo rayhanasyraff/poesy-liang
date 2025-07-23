@@ -5,7 +5,7 @@ import useBaseUrl from '@/hooks/useBaseUrl';
 import ImageHover from '../utils/ImageHover';
 import { ReactNode, useEffect } from 'react';
 import resizeChineseText from '@/utils/resizeChineseText';
-import { ProjectType } from '@/types/ProjectType';
+import ProjectType from '@/types/ProjectType';
 import { usePathname } from 'next/navigation';
 import useDeviceContext from "@/hooks/useDeviceContext";
 
@@ -45,36 +45,7 @@ function ProjectWideScreen({ url, project }: { url: URL, project: ProjectType })
     resizeChineseText("text-[48px]")
   }, [project.id]);
 
-  if (project.contentVideo && project.contentVideo[0].src) {
-    return (
-      <div 
-      id={`project-${project.id}`}
-      className="project inline"
-      >
-        <ImageHover
-        id={project.id}
-        name={project.name} 
-        img={project.thumbnailImage[0].src}
-        width={project.thumbnailImage[0].width}
-        height={project.thumbnailImage[0].height} 
-        />
-
-        <div
-        className='inline'
-        id="project-name"
-        >
-          <ProjectLink 
-          className="inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
-          href={url.toString()}
-          >
-            <h1 className='text-6xl opacity-[0.77] font-bright-grotesk-light hover:opacity-100 text-white hover:text-[#f04ff0] leading-18 inline break-all mr-10'>{project.name}</h1>
-          </ProjectLink>
-        </div>
-      </div>
-    )
-  }
-
-  if (project.contentImage && project.contentImage[0].src == "/assets/images/poesy-logo-pink.png") {
+  if (project.visibility == "private") {
     return (
       <div 
       id={`project-${project.id}`}
@@ -146,23 +117,8 @@ function ProjectNarrowScreen({ url, project }: { url: URL, project: ProjectType 
   useEffect(() => {
     resizeChineseText("text-[6px]")
   }, [project.id]);
-  
-  if (project.contentVideo && project.contentVideo[0].src) {
-    return (
-      <div 
-      id={`project-${project.id}`}
-      className="project cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
-      >
-        <div>
-          <ProjectLink href={url.toString()}>
-            <ProjectNarrowScreenText project={project}>{project.name}</ProjectNarrowScreenText>
-          </ProjectLink>
-        </div>
-      </div>
-    )
-  }
 
-  if (project.contentImage[0].src == "/assets/images/poesy-logo-pink.png") {
+  if (project.visibility == "private") {
     return (
       <div 
       id={`project-${project.id}`}

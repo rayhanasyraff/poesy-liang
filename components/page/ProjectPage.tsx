@@ -1,7 +1,6 @@
-import { ProjectType } from "@/types/ProjectType";
+import ProjectType from "@/types/ProjectType";
 import ClosePageButton from "../utils/ClosePageButton";
 import dynamic from "next/dynamic";
-import useProjectNavigationStore from "@/hooks/useProjectNavigationStore";
 import useResetOnPathChange from "@/hooks/useResetOnPathChange";
 import { ResponsiveImage, ResponsiveButtonedImage } from '../utils/ResponsiveImage';
 import { ResponsiveVideo } from '../utils/ResponsiveVideo';
@@ -9,37 +8,50 @@ import useDeviceContext from "@/hooks/useDeviceContext";
 import { useProjectFromPathname } from "@/hooks/useProjectFromPathname";
 import PageBaseLayout from "../layout/PageBaseLayout";
 import PageBaseBodyLayout from "../layout/PageBaseBodyLayout";
+import ImageType from "@/types/ImageType";
+import usePageNavigator from "@/hooks/usePageNavigator";
+import VideoType from "@/types/VideoType";
+import { useEffect } from "react";
 
 const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
 });
 
-const ProjectPageContentWithAttachmentsNarrowScreen = ({project}: {project: ProjectType, className?: string}) => {
+function ProjectPageContentWithDocumentNarrowScreen({portfolio}: {portfolio: string}) {
+    return (
+        <div className="flex flex-1 flex-row">
+            <PDFViewer file={portfolio} />
+            <ClosePageButton />
+        </div>
+    );
+}
 
-    const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
+const ProjectPageContentWithClickableImageNarrowScreen = ({name, image}: {name: string, image: ImageType}) => {
 
-    const isNavigated = currentNavigatedId === project.id;
+    // const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
+
+    // const isNavigated = currentNavigatedId === project.id;
+
+    const { setPageNumber } = usePageNavigator();    
+    const pageTarget = image.action?.behavior.target;
 
     function handleClick() {
-        if (project.linkRedirect) {
-            window.open(project.linkRedirect, "_blank");
-        }
-        if (project.contentPortfolio) {
-            navigateTo(project.id); // 👈 This replaces any previously navigated project
-        }
-    }
+        
+        const navigateToAnotherPage = pageTarget?.type == "page";
+        const navigateToLink = pageTarget?.type == "url";
 
-    if (isNavigated) {
-        return (
-            <div className="flex flex-4 mr-10 scrollbar-hidden scrollbar-hidden-wrapper">
-                <PDFViewer file={project.contentPortfolio?? ""} />
-            </div>
-        );
+        if (navigateToAnotherPage) {
+            setPageNumber(pageTarget?.pageId);
+        }
+
+        if (navigateToLink) {
+            window.open(pageTarget?.targetUrl, "_blank");
+        }
     }
 
     return (
         <div className="flex flex-4 mr-10 flex-col gap-3">
-            <ResponsiveButtonedImage image={project.contentImage[0].src} name={project.name} onClick={handleClick} />
+            <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
             <div className="flex justify-center items-center">
                 <p className="text-white font-bright-grotesk text-[13px] opacity-[0.77] text-center">tap for more</p>
             </div>
@@ -47,39 +59,50 @@ const ProjectPageContentWithAttachmentsNarrowScreen = ({project}: {project: Proj
     )
 }
 
+function ProjectPageContentWithImageNarrowScreen({image, name}: {image: ImageType, name: string}) {
+
+    const isImageClickable = image.action?.name == "click";
+
+    if (isImageClickable) {
+        return (
+            <ProjectPageContentWithClickableImageNarrowScreen name={name} image={image} />
+        )
+    }
+
+    return (
+        <div className="flex flex-3 mr-10 flex-col">
+            <ResponsiveImage image={image.src} name={name} />
+        </div>
+    );
+}
+
 function ProjectPageContentNarrowScreen({project}: {project: ProjectType}) {
     
     const isReady = useResetOnPathChange(); // ← move it here
     
+    const { pageNumber } = usePageNavigator();
+    const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
+
     if (!isReady) return null;
 
-    if (project.contentImage) {
+    if (page.portfolio) {
+        return <ProjectPageContentWithDocumentNarrowScreen portfolio={page.portfolio} />
+    }
 
-        if (project.contentPortfolio || project.linkRedirect) {
-            return <ProjectPageContentWithAttachmentsNarrowScreen project={project} />
-        }
-
-        if (project.contentImage) {
-            return (
-                <div className="flex flex-3 mr-10 flex-col">
-                    <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
-                </div>
-            )
-        }
+    if (page.images) {
+        return <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} />
     }
 
     return (<></>);
 }
 
-
-function ProjectPageContentNarrowScreenWithVideoOnInitialFullscreen({project}: {project: ProjectType}) {
+function ProjectPageContentNarrowScreenWithVideoOnInitialFullscreen({video}: {video: VideoType}) {
     return (
         <div className="flex flex-1 flex-row">
             <div className="flex flex-1 flex-col justify-center min-h-screen">
                 <div className="flex flex-col gap-10 items-center">
                     <ResponsiveVideo 
-                    video={project.contentVideo ? project.contentVideo[0].src : ""} 
-                    width={project.contentVideo ? project.contentVideo[0].width : 0}
+                    video={video.src}
                     isFullscreen={true}
                     autoplay={true}
                     loop={true}
@@ -93,9 +116,12 @@ function ProjectPageContentNarrowScreenWithVideoOnInitialFullscreen({project}: {
 
 function ProjectPageNarrowScreen({project}: {project: ProjectType}) {
 
-    if (project.contentVideo && project.contentVideo[0].isFullscreenOnInitial) {
+    const { pageNumber } = usePageNavigator();
+    const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
+
+    if (page.videos) {
         return (
-            <ProjectPageContentNarrowScreenWithVideoOnInitialFullscreen project={project} />
+            <ProjectPageContentNarrowScreenWithVideoOnInitialFullscreen video={page.videos[0]} />
         )
     }
     
@@ -108,35 +134,30 @@ function ProjectPageNarrowScreen({project}: {project: ProjectType}) {
     )
 }
 
-function ProjectPageContentWithAttachmentsWideScreen({project}: {project: ProjectType}) {
-        
-    const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
-
-    const isNavigated = currentNavigatedId === project.id;
+function ProjectPageContentWithClickableImageWideScreen({name, image}: {name: string, image: ImageType}) {
+       
+    const { setPageNumber } = usePageNavigator();    
+    const pageTarget = image.action?.behavior.target;
 
     function handleClick() {
-        if (project.linkRedirect) {
-            window.open(project.linkRedirect, "_blank");
-        }
-        if (project.contentPortfolio) {
-            navigateTo(project.id); // 👈 This replaces any previously navigated project
-        }
-    }
+        
+        const navigateToAnotherPage = pageTarget?.type == "page";
+        const navigateToLink = pageTarget?.type == "url";
 
-    if (isNavigated) {
-        return (
-            <div className="flex flex-1 flex-row">
-                <PDFViewer file={project.contentPortfolio?? ""} />
-                <ClosePageButton />
-            </div>
-        );
+        if (navigateToAnotherPage) {
+            setPageNumber(pageTarget?.pageId);
+        }
+
+        if (navigateToLink) {
+            window.open(pageTarget?.targetUrl, "_blank");
+        }
     }
 
     return (
         <div className="flex flex-1 flex-col justify-center">
             <div className="flex flex-1 flex-col justify-center min-h-screen">
                 <div className="flex flex-col gap-10 items-center">
-                    <ResponsiveButtonedImage image={project.contentImage[0].src} name={project.name} onClick={handleClick} />
+                    <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
                     <div className="flex justify-center items-center">
                         <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more</p>
                     </div>
@@ -147,30 +168,37 @@ function ProjectPageContentWithAttachmentsWideScreen({project}: {project: Projec
     )
 }
 
-function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
-    
-    const isReady = useResetOnPathChange(); // ← move it here
-    
-    if (!isReady) return null;
-
-    if (project.contentPortfolio || project.linkRedirect) {
-        return <ProjectPageContentWithAttachmentsWideScreen project={project} />
-    }
-
-    if (project.contentVideo) {        
-        return (
-            <div className="relative">
-            {/* ✅ Always on top of everything */}
+function ProjectPageContentWithDocumentWideScreen({portfolio}: {portfolio: string}) {
+    return (
+        <div className="flex flex-1 flex-row">
+            <PDFViewer file={portfolio} />
             <ClosePageButton />
+        </div>
+    );
+}
 
+function ProjectPageContentWithVideoWideScreen({video}: {video: VideoType}) {
+    return (
+        <div className="relative">
+            <ClosePageButton />
             <div className="flex flex-1 flex-row">
                 <div className="flex flex-1 flex-col justify-center min-h-screen">
                 <div className="flex flex-col gap-10 items-center">
-                    <ResponsiveVideo video={project.contentVideo[0].src} isFullscreen />
+                    <ResponsiveVideo video={video.src} isFullscreen />
                 </div>
                 </div>
             </div>
-            </div>
+        </div>
+    )
+}
+
+function ProjectPageContentWithImageWideScreen({name, image}: {name: string, image: ImageType}) {
+
+    const isImageClickable = image.action?.name == "click";
+
+    if (isImageClickable) {
+        return (
+            <ProjectPageContentWithClickableImageWideScreen name={name} image={image} />
         )
     }
 
@@ -178,12 +206,42 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
         <div className="flex flex-1 flex-row">
             <div className="flex flex-1 flex-col justify-center min-h-screen">
                 <div className="flex flex-col gap-10 items-center">
-                    <ResponsiveImage image={project.contentImage[0].src} name={project.name} />
+                    <ResponsiveImage image={image.src} name={name} />
                 </div>
             </div>
             <ClosePageButton />
         </div>
-    )
+    )     
+}
+
+function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
+    
+    const isReady = useResetOnPathChange();
+    
+    const { pageNumber } = usePageNavigator();
+    const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
+
+    if (!isReady) return null;
+
+    if (page.portfolio) {
+        return (
+            <ProjectPageContentWithDocumentWideScreen portfolio={page.portfolio} />
+        )
+    }
+
+    if (page.images) {    
+        return (
+            <ProjectPageContentWithImageWideScreen name={project.name} image={page.images[0]} />
+        )     
+    }
+
+    if (page.videos) {     
+        return (
+            <ProjectPageContentWithVideoWideScreen video={page.videos[0]} />
+        )
+    }
+
+    return (<></>)
 }
 
 function ProjectPageWideScreen({project}: {project: ProjectType}) {
@@ -195,6 +253,14 @@ export default function ProjectPage() {
   const { isNarrowScreen, isWideScreen } = useDeviceContext();
   const project = useProjectFromPathname();
   
+  const { setPageNumber } = usePageNavigator();
+
+    useEffect(() => {
+    if (project?.contentPages?.length > 0) {
+        setPageNumber(1); // Only reset if valid
+    }
+    }, [project?.contentPages?.length, project.id, setPageNumber]);
+
   if (isNarrowScreen) {
     return <ProjectPageNarrowScreen project={project} />;
   }

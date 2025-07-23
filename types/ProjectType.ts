@@ -1,7 +1,7 @@
+import ContentPageType from "./ContentPageType";
 import ImageType from "./ImageType";
-import VideoType from "./VideoType";
 
-export interface ProjectType {
+export default interface ProjectType {
     id: number;
     order: number;
     date: string;
@@ -10,10 +10,8 @@ export interface ProjectType {
     tags: string[];
     description: string;
     name: string;
-    thumbnailImage: ImageType[];
-    contentImage: ImageType[];
-    contentPortfolio?: string;
-    contentVideo?: VideoType[];
     location?: string[];
-    linkRedirect?: string;
+    thumbnailImage: ImageType[];
+    contentPages: ContentPageType[];
+    visibility: string;
 }
