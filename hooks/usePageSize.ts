@@ -66,7 +66,13 @@ export default function usePageSize() {
         //     pagesContainer.style.width = windowSize.width + 'px';
         // }
 
+        if (windowSize.width <= minWindowWidth) {
+          pagesContainer?.style.setProperty('width', `${100}px`);  
+        }
+
         let pageWidth = pagesContainer?.clientWidth ?? 0;
+
+        // console.log(pagesContainer?.clientWidth);
 
         if (windowSize.width > minWindowWidth && windowSize.width <= maxWindowWidth) {
             pageWidth = windowSize.width;
@@ -74,9 +80,10 @@ export default function usePageSize() {
             pageWidth = maxWindowWidth;
         }
 
+        // console.log(pageWidth, windowSize.width > minWindowWidth && windowSize.width <= maxWindowWidth, windowSize.width > minWindowWidth && windowSize.width <= maxWindowWidth)
+
         setPageSize({
-            width: 
-            pageWidth,
+            width: pageWidth,
             height: pageHeight ?? 0,
             margin: pageSize.height == windowSize.height ? windowSize.height / 2 : (windowSize.height - pageSize.height) / 2
         });

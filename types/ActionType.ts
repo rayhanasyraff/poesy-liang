@@ -1,19 +1,25 @@
-type NavigateBehavior = {
-  type: "navigate";
-  target: PageTarget | UrlTarget;
+type Behavior = {
+  name: string;
+  target: Target;
 };
 
-type PageTarget = {
-  type: "page";
-  pageId: number;
-};
+// type PageTarget = {
+//   type: "page";
+//   pageId: number;
+// };
 
-type UrlTarget = {
-  type: "url";
-  targetUrl: string;
-};
+// type UrlTarget = {
+//   type: "url";
+//   targetUrl: string;
+// };
+
+type Target = {
+  type: string;
+  pageId?: number;
+  targetUrl?: string;
+}
 
 export default interface ActionType {
-  name: "click"; // or "hover", etc.
-  behavior: NavigateBehavior;
+  name: string;
+  behavior: Behavior;
 };

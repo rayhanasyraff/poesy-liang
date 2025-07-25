@@ -49,7 +49,10 @@ export default function PDFViewer ({ file }: PDFViewerPropsType) {
 // !numPages || numRenderedPages < numPages
   return (
     <DocumentInfoContext value={{ pageNumber, numPages, numPagesRendered, areAllPagesRendered, setNumPagesRendered, setAreAllPagesRendered }}>
-      <div className='flex flex-1 h-screen justify-center scrollbar-hidden scrollbar-hidden-wrapper' id="pages">
+      <div 
+      className='flex flex-1 h-screen justify-center scrollbar-hidden scrollbar-hidden-wrapper' 
+      id="pages"
+      >
         <Document 
         file={file} 
         onLoadSuccess={handleDocumentLoadSuccess} 

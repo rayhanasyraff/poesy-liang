@@ -17,16 +17,15 @@ const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
 });
 
-function ProjectPageContentWithDocumentNarrowScreen({portfolio}: {portfolio: string}) {
+function ProjectPageContentWithDocumentNarrowScreen({portfolio, className}: {portfolio: string, className?: string}) {
     return (
-        <div className="flex flex-1 flex-row">
+        <div className={`flex flex-2 flex-row ${className}`}>
             <PDFViewer file={portfolio} />
-            <ClosePageButton />
         </div>
     );
 }
 
-const ProjectPageContentWithClickableImageNarrowScreen = ({name, image}: {name: string, image: ImageType}) => {
+const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, className}: {name: string, image: ImageType, className?: string}) => {
 
     // const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
 
@@ -40,7 +39,7 @@ const ProjectPageContentWithClickableImageNarrowScreen = ({name, image}: {name: 
         const navigateToAnotherPage = pageTarget?.type == "page";
         const navigateToLink = pageTarget?.type == "url";
 
-        if (navigateToAnotherPage) {
+        if (pageTarget?.pageId && navigateToAnotherPage) {
             setPageNumber(pageTarget?.pageId);
         }
 
@@ -50,7 +49,7 @@ const ProjectPageContentWithClickableImageNarrowScreen = ({name, image}: {name: 
     }
 
     return (
-        <div className="flex flex-4 mr-10 flex-col gap-3">
+        <div className={`flex flex-4 mr-10 flex-col gap-3 ${className}`}>
             <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
             <div className="flex justify-center items-center">
                 <p className="text-white font-bright-grotesk text-[13px] opacity-[0.77] text-center">tap for more</p>
@@ -59,24 +58,24 @@ const ProjectPageContentWithClickableImageNarrowScreen = ({name, image}: {name: 
     )
 }
 
-function ProjectPageContentWithImageNarrowScreen({image, name}: {image: ImageType, name: string}) {
+function ProjectPageContentWithImageNarrowScreen({image, name, className}: {image: ImageType, name: string, className?: string}) {
 
     const isImageClickable = image.action?.name == "click";
 
     if (isImageClickable) {
         return (
-            <ProjectPageContentWithClickableImageNarrowScreen name={name} image={image} />
+            <ProjectPageContentWithClickableImageNarrowScreen name={name} image={image} className={className} />
         )
     }
 
     return (
         <div className="flex flex-3 mr-10 flex-col">
-            <ResponsiveImage image={image.src} name={name} />
+            <ResponsiveImage image={image.src} name={name} className={className} />
         </div>
     );
 }
 
-function ProjectPageContentNarrowScreen({project}: {project: ProjectType}) {
+function ProjectPageContentNarrowScreen({project, className}: {project: ProjectType, className?: string}) {
     
     const isReady = useResetOnPathChange(); // ← move it here
     
@@ -86,11 +85,11 @@ function ProjectPageContentNarrowScreen({project}: {project: ProjectType}) {
     if (!isReady) return null;
 
     if (page.portfolio) {
-        return <ProjectPageContentWithDocumentNarrowScreen portfolio={page.portfolio} />
+        return <ProjectPageContentWithDocumentNarrowScreen portfolio={page.portfolio} className={className} />
     }
 
     if (page.images) {
-        return <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} />
+        return <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} className={className} />
     }
 
     return (<></>);
@@ -128,7 +127,7 @@ function ProjectPageNarrowScreen({project}: {project: ProjectType}) {
     return (
         <PageBaseLayout>
             <PageBaseBodyLayout>
-                <ProjectPageContentNarrowScreen project={project} />
+                <ProjectPageContentNarrowScreen project={project} className="mr-10" />
             </PageBaseBodyLayout>
         </PageBaseLayout>
     )
@@ -144,7 +143,7 @@ function ProjectPageContentWithClickableImageWideScreen({name, image}: {name: st
         const navigateToAnotherPage = pageTarget?.type == "page";
         const navigateToLink = pageTarget?.type == "url";
 
-        if (navigateToAnotherPage) {
+        if (pageTarget?.pageId && navigateToAnotherPage) {
             setPageNumber(pageTarget?.pageId);
         }
 
