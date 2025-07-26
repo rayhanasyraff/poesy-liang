@@ -12,7 +12,7 @@ function AboutPageContentNarrowScreen() {
             image="/assets/images/poesy-harry-anime.png" 
             name="Poesy Liang 梁小詩" 
             />
-            <div className="mx-10 mt-10 font-bright-grotesk-light opacity-77 text-white">
+            <div className="flex flex-1 flex-col mx-10 mt-10 font-bright-grotesk-light opacity-77 text-white">
                 <div>
                     <h1 className="text-[15px]">POESY LIANG</h1>
                     <p className="text-[13px]">梁小詩</p>
