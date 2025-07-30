@@ -1,7 +1,9 @@
 export default function useBaseUrl() {
 
+    const isEnvironmentProductionOrPreview = process.env.NEXT_PUBLIC_NODE_ENV === "production" || process.env.NEXT_PUBLIC_NODE_ENV === "preview";
+
     return (
-        process.env.NEXT_PUBLIC_NODE_ENV === "production" ? process.env.NEXT_PUBLIC_URL : "http://localhost:3000"
+        isEnvironmentProductionOrPreview ? process.env.NEXT_PUBLIC_URL : "http://localhost:3000"
     );
     
     // return (
