@@ -3,6 +3,11 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'; // ✅ Correct for App Router
 import useShowComponent from '@/hooks/useShowComponent';
+import cn from '@/utils/cn';
+import { textStyle } from '@/constants/text';
+
+const headerTextStyle = cn(textStyle({ size: "md", weight: "semibold" }), "tracking-[0.20em]")
+const headerStyle = cn("flex flex-col items-start", headerTextStyle)
 
 export default function Header({ onClick, className="" }: { onClick?: () => void, className?: string }) {
   const router = useRouter(); // ✅ use the hook
@@ -17,7 +22,7 @@ export default function Header({ onClick, className="" }: { onClick?: () => void
   if (!showHeader) return null;
 
   return (
-    <div className={`flex flex-col ml-10 mt-7 font-bright-grotesk-semibold text-xl tracking-[0.20em] opacity-[0.77] items-start ${className}`}>
+    <div className={cn(headerStyle, className)}>
       <button 
         title="Header Logo"
         type="button"

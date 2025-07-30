@@ -1,4 +1,6 @@
+import { textStyle } from "@/constants/text";
 import useShowComponent from "@/hooks/useShowComponent";
+import cn from "@/utils/cn";
 
 export default function Footer({ className="" }: { className?: string }) {
 
@@ -6,7 +8,7 @@ export default function Footer({ className="" }: { className?: string }) {
 
   if (showFooter) {
     return (
-      <footer className={`w-full flex mt-15 justify-end pb-3 pr-5 font-bright-grotesk-semibold opacity-70 ${className}`}>
+      <footer className={cn(textStyle({ weight: "semibold" }), `w-full flex mt-15 justify-end pb-3 pr-5`, className)}>
         <p>© 2025 PINK YAKUZA</p>
       </footer>
     );

@@ -1,5 +1,8 @@
 /*! tailwindcss v4.1.10 | MIT License | https://tailwindcss.com */
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "../styles/colors.css";
+@import "../styles/hide-scrollbar.css";
+
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -23,7 +26,7 @@
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-geist-sans);
-    --default-mono-font-family: var(--font-geist-mono);
+    --default-mono-font-family: var(--font-geist-mono);    
   }
 }
 @layer base {
@@ -546,42 +549,4 @@ body {
       --tw-ease: initial;
     }
   }
-}
-
-.font-bright-grotesk-light {
-  font-family: "Bright Grotesk Light";
-}
-.font-bright-grotesk-semibold {
-  font-family: "Bright Grotesk Semibold";
-}
-.font-fengguangmingrui-regular {
-  font-family: "FengGuangMingRui Regular";
-}
-@font-face {
-  font-family: "Bright Grotesk";
-  font-style: normal;
-  font-weight: 200 700;
-  font-display: swap;
-  src: url("/assets/fonts/Bright Grotesk/Normal/Bright Grotesk.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Bright Grotesk Semibold";
-  font-style: semibold;
-  font-weight: 200 700;
-  font-display: swap;
-  src: url("/assets/fonts/Bright Grotesk/Semibold/Bright Grotesk Semibold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Bright Grotesk Light";
-  font-style: light;
-  font-weight: 200 700;
-  font-display: swap;
-  src: url("/assets/fonts/Bright Grotesk/Light/Bright Grotesk Light.ttf") format("truetype");
-}
-@font-face {
-  font-family: "FengGuangMingRui Regular";
-  font-style: normal;
-  font-weight: 200 700;
-  font-display: swap;
-  src: url("/assets/fonts/FengGuangMingRui/Regular/FengGuangMingRui Regular.ttf") format("truetype");
 }

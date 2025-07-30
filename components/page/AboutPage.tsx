@@ -4,6 +4,7 @@ import ClosePageButton from "../utils/ClosePageButton";
 import PageBaseBodyLayout from "../layout/PageBaseBodyLayout";
 import PageBaseLayout from "../layout/PageBaseLayout";
 import useNavigateToAnotherPage from "@/hooks/useNavigateToAnotherPage";
+import { usePathname, useRouter } from "next/navigation";
 
 function AboutPageContentNarrowScreen() {
     return (
@@ -225,13 +226,23 @@ function AboutPageContentWideScreen() {
 function AboutPageBodyWideScreen() {
 
     const setNavigateToAnotherPage = useNavigateToAnotherPage((state) => state.setNavigateToAnotherPage);
+    const isAboutRoute = usePathname() === "/about";
+    const router = useRouter();
+
+    const handleClick = () => {
+        if (!isAboutRoute) {
+            setNavigateToAnotherPage(false);
+        } else {
+            router.push("/");
+        }
+    }
 
     return (
         <div className="flex flex-1 flex-row">
             <div className="flex flex-1 flex-col justify-center min-h-screen">
                 <AboutPageContentWideScreen />
             </div>
-            <ClosePageButton onClick={() => setNavigateToAnotherPage(false) } />
+            <ClosePageButton onClick={ handleClick } />
         </div>
     )
 

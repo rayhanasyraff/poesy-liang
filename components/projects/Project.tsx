@@ -8,7 +8,66 @@ import resizeChineseText from '@/utils/resizeChineseText';
 import ProjectType from '@/types/ProjectType';
 import { usePathname } from 'next/navigation';
 import useDeviceContext from "@/hooks/useDeviceContext";
+import { textStyle } from '@/constants/text';
+import { cva } from 'class-variance-authority';
 
+const projectTextStyle = cva(
+  "", {
+  variants: {
+    screen: {
+      wide: "inline mr-10 leading-18 break-all text-opacity",
+      narrow: "",
+    },
+    hoverable: {
+      true: "hover:text-opacity-100 hover:text-pink-yakuza",
+      false: ""
+    },
+    isDisable: {
+      true: "",
+      false: ""
+    },
+    isSelected: {
+      true: "",
+      false: ""
+    }
+  },
+  compoundVariants : [
+    {
+      screen: "wide",
+      isDisable: false,
+      className: textStyle({ size: "xxxl", weight: "light" })
+    },
+    {
+      screen: "wide",
+      isDisable: true,
+      className: textStyle({ size: "xxxl", weight: "light", opacity: "disabled", color: "base" })
+    },
+    {
+      screen: "narrow",
+      isDisable: false,
+      isSelected: false,
+      className: textStyle({ size: "micro", weight: "light" })
+    },
+    {
+      screen: "narrow",
+      isDisable: true,
+      isSelected: false,
+      className: textStyle({ size: "micro", weight: "light", opacity: "disabled" })
+    },
+    {
+      screen: "narrow",
+      isDisable: false,
+      isSelected: true,
+      className: textStyle({ size: "micro", weight: "light", color: "selected", opacity: "selected" })
+    }
+  ],
+  defaultVariants: {
+    screen: "narrow",
+    hoverable: false,
+    isDisable: false,
+    isSelected: false,
+  }
+});
 
 function ProjectLink({href, className, children}: {href: string, className?: string, children: ReactNode}) {
 
@@ -30,7 +89,7 @@ function ProjectLink({href, className, children}: {href: string, className?: str
   }
 
   return (
-    <Link 
+    <Link
     href={href}
     className={className}>
       {children}
@@ -51,12 +110,7 @@ function ProjectWideScreen({ url, project }: { url: URL, project: ProjectType })
       id={`project-${project.id}`}
       className="project inline"
       >
-        <div
-        className='inline'
-        id="project-name"
-        >
-          <h1 className='text-6xl opacity-[0.3] font-bright-grotesk-light text-white leading-18 inline break-all mr-10'>{project.name}</h1>
-        </div>
+        <h1 className={projectTextStyle({ screen: "wide", isDisable: true })}>{project.name}</h1>
       </div>
     )
   }
@@ -73,23 +127,15 @@ function ProjectWideScreen({ url, project }: { url: URL, project: ProjectType })
         width={project.thumbnailImage[0].width}
         height={project.thumbnailImage[0].height} 
         />
-
-        <div
-        className='inline'
-        id="project-name"
-        >
-          <ProjectLink 
-          className="inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
-          href={url.toString()}
-          >
-            <h1 className='text-6xl opacity-[0.77] font-bright-grotesk-light hover:opacity-100 text-white hover:text-[#f04ff0] leading-18 inline break-all mr-10'>{project.name}</h1>
-          </ProjectLink>
-        </div>
+        <ProjectLink href={url.toString()}>
+          <h1 className={projectTextStyle({ screen: "wide", hoverable: true })}>{project.name}</h1>
+        </ProjectLink>
       </div>
   )
 }
 
-function ProjectNarrowScreenText({children, project}: {children: ReactNode, project: ProjectType}) {
+function ProjectNarrowScreen({ url, project }: { url: URL, project: ProjectType }) {
+
   const urlPathname = usePathname();
   const projectPathnameFromUrl = urlPathname.toString().split("/").pop();
 
@@ -97,22 +143,6 @@ function ProjectNarrowScreenText({children, project}: {children: ReactNode, proj
   // const isNoProjectSelected = project.id == 1 && urlPathname.toString() == "/";
   const isProjectHighlighted = isPathnameSameAsProjectPathname;
 
-  if (isProjectHighlighted) {
-    return (
-      <p className="text-[6px] font-bright-grotesk-light text-[#f04ff0] opacity-100">
-        {children}
-      </p>
-    )
-  }
-
-  return (
-    <p className="text-[6px] font-bright-grotesk-light hover:text-[#f04ff0] opacity-[0.77] text-white">
-      {children}
-    </p>
-  )
-}
-
-function ProjectNarrowScreen({ url, project }: { url: URL, project: ProjectType }) {
   
   useEffect(() => {
     resizeChineseText("text-[6px]")
@@ -120,28 +150,26 @@ function ProjectNarrowScreen({ url, project }: { url: URL, project: ProjectType 
 
   if (project.visibility == "private") {
     return (
-      <div 
-      id={`project-${project.id}`}
-      className="project transition duration-500 ease-in-out opacity-80"
-      >
-        <div>
-            <p className='text-[6px] font-bright-grotesk-light opacity-[0.5] text-white'>{project.name}</p>
-        </div>
-      </div>
+      <p id={`project-${project.id}`} className={projectTextStyle({ screen: "narrow", isDisable: true })}>{project.name}</p>
+    )
+  }
+
+  if (isProjectHighlighted) {
+    return (
+      <ProjectLink href={url.toString()}>
+        <p className={projectTextStyle({ screen: "narrow", hoverable: true, isSelected: true })}>
+          {project.name}
+        </p>
+      </ProjectLink>
     )
   }
 
   return (
-      <div 
-      id={`project-${project.id}`}
-      className="project cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
-      >
-        <div>
-          <ProjectLink href={url.toString()}>
-            <ProjectNarrowScreenText project={project}>{project.name}</ProjectNarrowScreenText>
-          </ProjectLink>
-        </div>
-      </div>
+    <ProjectLink href={url.toString()}>
+      <p className={projectTextStyle({ screen: "narrow", hoverable: true })}>
+        {project.name}
+      </p>
+    </ProjectLink>
   )
 }
 
@@ -165,5 +193,4 @@ export default function Project({ project }: { project: ProjectType }) {
     }
 
     return <></>
-
 }

@@ -18,6 +18,7 @@ export default function useShowComponent() {
     // - you're on "/projects/[project]" AND on mobile
     const showComponent = isClient && (
         (pathname === "/") ||
+        (pathname === "/about") ||
         (pathname.startsWith("/projects/") && isNarrowScreen)
     );
 

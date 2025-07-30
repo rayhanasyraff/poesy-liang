@@ -255,18 +255,20 @@ export default function ProjectPage() {
   const { setPageNumber } = usePageNavigator();
 
     useEffect(() => {
-    if (project?.contentPages?.length > 0) {
-        setPageNumber(1); // Only reset if valid
-    }
+
+        if (project?.contentPages?.length > 0) {
+            setPageNumber(1); // Only reset if valid
+        }
+
     }, [project?.contentPages?.length, project.id, setPageNumber]);
 
-  if (isNarrowScreen) {
-    return <ProjectPageNarrowScreen project={project} />;
-  }
+    if (isNarrowScreen) {
+        return <ProjectPageNarrowScreen project={project} />;
+    }
 
-  if (isWideScreen) {
-    return <ProjectPageWideScreen project={project} />;
-  }
+    if (isWideScreen) {
+        return <ProjectPageWideScreen project={project} />;
+    }
 
-  return <></>;
+    return <></>;
 }

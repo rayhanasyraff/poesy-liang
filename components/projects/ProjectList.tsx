@@ -4,30 +4,31 @@ import Project from "./Project";
 import { cva } from "class-variance-authority";
 import useGetProjects from "@/hooks/useGetProjects";
 import useDeviceContext from '@/hooks/useDeviceContext';
+import cn from "@/utils/cn";
 
 
-const projectListVariants = cva("", {
+const projectListStyle = cva("", {
   variants: {
-    type: {
-      mobile: "text-right mr-5 flex flex-col",
-      desktop: "mt-10 mx-10",
+    screen: {
+      narrow: "text-right mr-5 flex flex-col",
+      wide: "",
     },
   },
   defaultVariants: {
-    type: "mobile",
+    screen: "wide",
   }
 })
 
-export default function ProjectList () {
+export default function ProjectList ({ className, searchQuery }: { className?: string, searchQuery?: string }) {
 
     const { isWideScreen, isNarrowScreen } = useDeviceContext();
     
-    const projects = useGetProjects();
+    const projects = useGetProjects(searchQuery);
 
     if (projects) {
       if (isWideScreen) {
         return (
-          <div className={projectListVariants({ type: "desktop" })}>  
+          <div className={cn(projectListStyle({ screen: "wide" }), className)}>  
             {projects.map((project, i) => (
               <Project project={project} key={i} />
             ))}
@@ -37,7 +38,7 @@ export default function ProjectList () {
 
       if (isNarrowScreen) {
         return (
-          <div className={projectListVariants({ type: "mobile" })}>  
+          <div className={cn(projectListStyle({ screen: "narrow" }), className)}>  
             {projects.map((project, i) => (
               <Project project={project} key={i} />
             ))}

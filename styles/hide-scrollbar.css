@@ -1,0 +1,19 @@
+.scrollbar-hidden-wrapper {
+  overflow: hidden;
+}
+
+.scrollbar-hidden {
+  overflow-y: scroll;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* Edge (legacy) */
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Edge, Safari */
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
