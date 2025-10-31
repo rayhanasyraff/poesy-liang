@@ -78,7 +78,7 @@ function ProjectWideScreen({ url, project }: { url: URL, project: ProjectType })
         className='inline'
         id="project-name"
         >
-          <ProjectLink 
+          <ProjectLink
           className="inline cursor-pointer transition duration-500 ease-in-out opacity-80 hover:opacity-100"
           href={url.toString()}
           >

@@ -13,12 +13,15 @@ export default function useShowComponent() {
         setIsClient(true);
     }, []);
 
-    // ✅ Show header if:
-    // - you're on "/" (home), or
-    // - you're on "/projects/[project]" AND on mobile
+    // ✅ Show header immediately on home page
+    // Wait for client on project pages (to check device context)
+    if (pathname === "/") {
+        return true;
+    }
+
+    // For project pages, wait for client to check screen size
     const showComponent = isClient && (
-        (pathname === "/") ||
-        (pathname.startsWith("/projects/") && isNarrowScreen)
+        pathname.startsWith("/projects/") && isNarrowScreen
     );
 
     return showComponent;

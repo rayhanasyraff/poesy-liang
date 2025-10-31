@@ -27,7 +27,7 @@ export default function ProjectList () {
     if (projects) {
       if (isWideScreen) {
         return (
-          <div className={projectListVariants({ type: "desktop" })}>  
+          <div className={projectListVariants({ type: "desktop" })}>
             {projects.map((project, i) => (
               <Project project={project} key={i} />
             ))}
@@ -37,7 +37,7 @@ export default function ProjectList () {
 
       if (isNarrowScreen) {
         return (
-          <div className={projectListVariants({ type: "mobile" })}>  
+          <div className={projectListVariants({ type: "mobile" })}>
             {projects.map((project, i) => (
               <Project project={project} key={i} />
             ))}

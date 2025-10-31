@@ -91,7 +91,7 @@ export default function usePageSize() {
         // console.log(areAllPagesRendered);
 
         setNumPagesRendered(0);
-        
+
     }, [pageNumber, windowSize.width, windowSize.height, pageSize.height, pageSize.width, areAllPagesRendered, numPagesRendered, setNumPagesRendered, setAreAllPagesRendered, windowSize]);
 
 

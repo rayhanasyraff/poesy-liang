@@ -25,11 +25,11 @@ export default function Header({ onClick, className="" }: { onClick?: () => void
         className="flex flex-row items-start hover:cursor-pointer"
       >
         <h1 className="mr-2">POESY LIANG</h1>
-        <Image 
+        <Image
           src="/assets/images/poesy-logo-white.png"
           alt="Poesy Logo"
           width={20}
-          height={20} 
+          height={20}
         />
       </button>
     </div>
