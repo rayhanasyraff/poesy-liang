@@ -2288,5 +2288,52 @@
         ]
       }
     ]
+  },
+  {
+    "id": 54,
+    "name": "the queen for khoon hooi",
+    "pathname": "the-queen-for-khoon-hooi",
+    "date": "2025",
+    "category": [
+      "art"
+    ],
+    "tags": [
+      "art"
+    ],
+    "description": "Poesy was thrilled to partner with fashion designer Khoon Hooi on his newest collection campaign, bringing her unique approach to sustainability through intricate paper engineering. This collaboration showcases a preview of her upcoming exhibition, which can be experienced at Khoon Hooi's flagship store in APW during the Fall season.",
+    "location": [
+      "Kuala Lumpur"
+    ],
+    "thumbnailImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTSNTM7c03meldFtZWRu7z9Da4ngQB8rV5YXp2",
+        "width": 250,
+        "height": 250
+      }
+    ],
+    "order": 54,
+    "visibility": "public",
+    "contentPages": [
+      {
+        "id": 1,
+        "images": [
+          {
+            "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTSNTM7c03meldFtZWRu7z9Da4ngQB8rV5YXp2",
+            "width": 480,
+            "height": 480,
+            "action": {
+              "name": "click",
+              "behavior": {
+                "name": "navigate",
+                "target": {
+                  "type": "url",
+                  "targetUrl": "https://www.instagram.com/reel/DQJIEqDktsc/?igsh=azYwdTV1czFud3Zt"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
   }
 ]
