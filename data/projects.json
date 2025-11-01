@@ -2335,5 +2335,52 @@
         ]
       }
     ]
+  },
+  {
+    "id": 55,
+    "name": "aqua rtc",
+    "pathname": "aqua-rtc",
+    "date": "2025",
+    "category": [
+      "art"
+    ],
+    "tags": [
+      "art"
+    ],
+    "description": "",
+    "location": [
+      ""
+    ],
+    "thumbnailImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTyyZj2cDvMgiHnF5oQjI3EV1pBdhGAYmqkuX0",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "order": 55,
+    "visibility": "public",
+    "contentPages": [
+      {
+        "id": 1,
+        "images": [
+          {
+            "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTyyZj2cDvMgiHnF5oQjI3EV1pBdhGAYmqkuX0",
+            "width": 480,
+            "height": 480,
+            "action": {
+              "name": "click",
+              "behavior": {
+                "name": "navigate",
+                "target": {
+                  "type": "url",
+                  "targetUrl": "https://www.instagram.com/reel/DQEZEadEhYK/?igsh=NjYwOXBwa3g2aHA1"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
   }
 ]
