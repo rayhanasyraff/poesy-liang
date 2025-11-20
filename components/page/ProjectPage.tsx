@@ -13,6 +13,7 @@ import usePageNavigator from "@/hooks/usePageNavigator";
 import VideoType from "@/types/VideoType";
 import { useEffect } from "react";
 import Spinner from "../utils/Spinner";
+import { notFound } from "next/navigation";
 
 const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
@@ -252,14 +253,19 @@ export default function ProjectPage() {
 
   const { isNarrowScreen, isWideScreen } = useDeviceContext();
   const project = useProjectFromPathname();
-  
+
   const { setPageNumber } = usePageNavigator();
 
-    useEffect(() => {
+  // Show 404 if project not found
+  if (!project) {
+    notFound();
+  }
+
+  useEffect(() => {
     if (project?.contentPages?.length > 0) {
         setPageNumber(1); // Only reset if valid
     }
-    }, [project?.contentPages?.length, project.id, setPageNumber]);
+  }, [project?.contentPages?.length, project.id, setPageNumber]);
 
   if (isNarrowScreen) {
     return <ProjectPageNarrowScreen project={project} />;

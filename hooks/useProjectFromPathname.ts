@@ -20,7 +20,7 @@ export function useProjectFromPathname() {
     }
 
     const projects = useGetProjects();
-    const project = projects.find((project) => project.pathname === projectPath) ?? projects[0];
+    const project = projects.find((project) => project.pathname === projectPath);
 
-    return project;
+    return project ?? null;
 }
