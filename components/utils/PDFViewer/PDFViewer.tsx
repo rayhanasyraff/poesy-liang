@@ -4,9 +4,10 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import PDFViewerPages from './PDFViewerPages';
 import DocumentInfoContextType from '@/types/DocumentInfoContextType';
+import Spinner from '../Spinner';
 
 // The workerSrc property shall be specified.
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 type PDFViewerPropsType = {
   file: string;
@@ -53,11 +54,11 @@ export default function PDFViewer ({ file }: PDFViewerPropsType) {
       className='flex flex-1 h-screen justify-center scrollbar-hidden scrollbar-hidden-wrapper' 
       id="pages"
       >
-        <Document 
-        file={file} 
-        onLoadSuccess={handleDocumentLoadSuccess} 
+        <Document
+        file={file}
+        onLoadSuccess={handleDocumentLoadSuccess}
         className="flex flex-col content-center "
-        loading={""}
+        loading={<Spinner size="lg" />}
         // onItemClick={({pageNumber}) => console.log('Clicked an item from page ' + pageNumber + '!')}
         onLoadError={(error) => {
           console.log("Error while loading document! " + error.message);

@@ -5,6 +5,7 @@ import usePageSize from "@/hooks/usePageSize"
 import { DocumentInfoContext } from "./PDFViewer"
 import { useContext, useEffect } from "react"
 import useWindowSize from "@/hooks/useWindowSize"
+import Spinner from "../Spinner"
 
 const PDFViewerPages = ({ numPages }: { numPages: number | undefined, onChangePageNumber: (pageNumber: number) => void }) => {
   
@@ -51,8 +52,13 @@ const PDFViewerPages = ({ numPages }: { numPages: number | undefined, onChangePa
               renderTextLayer={false}
               canvasBackground="transparent"
               key={`page_${index + 1}`}
-              pageNumber={index + 1} 
+              pageNumber={index + 1}
               width={pageSize.width}
+              loading={
+                <div style={{ width: pageSize.width, height: pageSize.width * 1.4 }} className="flex items-center justify-center">
+                  <Spinner size="sm" />
+                </div>
+              }
               onGetAnnotationsError={(error) => console.log('Error while getting annotations! ' + error.message) }
               // onGetAnnotationsSuccess={(annotations) => console.log(annotations) }
               onGetStructTreeError={(error) => console.log('Error while getting text layer! ' + error.message) }

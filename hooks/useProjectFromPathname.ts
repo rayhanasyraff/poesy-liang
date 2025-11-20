@@ -4,11 +4,11 @@ import useGetProjects from './useGetProjects';
 export function useProjectFromPathname() {
 
     const pathname = usePathname();
-    const segments = pathname.split("/");
-    const result = segments.pop() || segments.pop();
+    // Extract everything after /projects/ to support nested paths like rtc/AIR
+    const projectPath = pathname.replace('/projects/', '');
 
     const projects = useGetProjects();
-    const project = projects.find((project) => project.pathname === result) ?? projects[0];
+    const project = projects.find((project) => project.pathname === projectPath) ?? projects[0];
 
     return project;
 }

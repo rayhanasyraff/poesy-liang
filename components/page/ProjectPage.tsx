@@ -12,6 +12,7 @@ import ImageType from "@/types/ImageType";
 import usePageNavigator from "@/hooks/usePageNavigator";
 import VideoType from "@/types/VideoType";
 import { useEffect } from "react";
+import Spinner from "../utils/Spinner";
 
 const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
@@ -76,13 +77,13 @@ function ProjectPageContentWithImageNarrowScreen({image, name, className}: {imag
 }
 
 function ProjectPageContentNarrowScreen({project, className}: {project: ProjectType, className?: string}) {
-    
+
     const isReady = useResetOnPathChange(); // ← move it here
-    
+
     const { pageNumber } = usePageNavigator();
     const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
 
-    if (!isReady) return null;
+    if (!isReady) return <Spinner size="md" />;
 
     if (page.portfolio) {
         return <ProjectPageContentWithDocumentNarrowScreen portfolio={page.portfolio} className={className} />
@@ -214,13 +215,13 @@ function ProjectPageContentWithImageWideScreen({name, image}: {name: string, ima
 }
 
 function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
-    
+
     const isReady = useResetOnPathChange();
-    
+
     const { pageNumber } = usePageNavigator();
     const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
 
-    if (!isReady) return null;
+    if (!isReady) return <Spinner size="lg" />;
 
     if (page.portfolio) {
         return (
@@ -268,5 +269,5 @@ export default function ProjectPage() {
     return <ProjectPageWideScreen project={project} />;
   }
 
-  return <></>;
+  return <Spinner size="lg" />;
 }

@@ -4,6 +4,7 @@ import Project from "./Project";
 import { cva } from "class-variance-authority";
 import useGetProjects from "@/hooks/useGetProjects";
 import useDeviceContext from '@/hooks/useDeviceContext';
+import Spinner from "@/components/utils/Spinner";
 
 
 const projectListVariants = cva("", {
@@ -46,6 +47,6 @@ export default function ProjectList () {
       }
     }
 
-    return (<></>)
+    return <Spinner size="lg" />;
 }
     

@@ -2382,5 +2382,56 @@
         ]
       }
     ]
+  },
+  {
+    "id": 56,
+    "name": "air",
+    "pathname": "rtc/AIR",
+    "date": "2025",
+    "category": [
+      "art"
+    ],
+    "tags": [
+      "art"
+    ],
+    "description": "",
+    "location": [
+      ""
+    ],
+    "thumbnailImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTKbtKLHqAgIfYc3nhuCByJo8M26G1WExpmOZX",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "order": 56,
+    "visibility": "public",
+    "contentPages": [
+      {
+        "id": 1,
+        "images": [
+          {
+            "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTKbtKLHqAgIfYc3nhuCByJo8M26G1WExpmOZX",
+            "width": 480,
+            "height": 480,
+            "action": {
+              "name": "click",
+              "behavior": {
+                "name": "navigate",
+                "target": {
+                  "type": "page",
+                  "pageId": 2
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "portfolio": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThraPl45vpBFm3VJ01fOCsehlNa5YuWQ49DX6"
+      }
+    ]
   }
 ]

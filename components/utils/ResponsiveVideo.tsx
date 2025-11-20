@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useEffect, useState, Suspense } from "react";
+import Spinner from "./Spinner";
 
 export function ResponsiveVideo({
   video,
@@ -91,7 +92,7 @@ export function ResponsiveVideo({
   };
 
   return (
-    <Suspense fallback={<p className="text-[10px] text-white font-bright-grotesk-light">Loading video...</p>}>
+    <Suspense fallback={<Spinner size={isFullscreen ? "lg" : "md"} />}>
       <div className="relative mx-auto" style={isFullscreen ? fullscreenStyle : normalStyle}>
         <video
           ref={videoRef}
