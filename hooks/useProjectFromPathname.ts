@@ -4,23 +4,26 @@ import useGetProjects from './useGetProjects';
 export function useProjectFromPathname() {
 
     const pathname = usePathname();
+    const lowerPathname = pathname.toLowerCase();
 
-    // Extract project path from URL
+    // Extract project path from URL (case-insensitive)
     // Supports both /projects/... and direct paths like /rtc/AIR
-    let projectPath = pathname;
+    let projectPath = '';
 
-    if (pathname.startsWith('/projects/')) {
-        projectPath = pathname.replace('/projects/', '');
-    } else if (pathname.startsWith('/RTC/')) {
-        // For /RTC/AIR routes, extract path after /RTC/ and lowercase to match pathname
-        projectPath = pathname.replace('/RTC/', '').toLowerCase();
+    if (lowerPathname.startsWith('/projects/')) {
+        projectPath = pathname.slice('/projects/'.length);
+    } else if (lowerPathname.startsWith('/rtc/')) {
+        // For /rtc/AIR or /RTC/AIR routes
+        projectPath = pathname.slice('/rtc/'.length);
     } else if (pathname.startsWith('/')) {
         // Remove leading slash for other direct paths
         projectPath = pathname.slice(1);
     }
 
+    // Case-insensitive matching for project pathname
+    const lowerProjectPath = projectPath.toLowerCase();
     const projects = useGetProjects();
-    const project = projects.find((project) => project.pathname === projectPath);
+    const project = projects.find((project) => project.pathname.toLowerCase() === lowerProjectPath);
 
     return project ?? null;
 }
