@@ -19,7 +19,7 @@ const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
 });
 
-function ProjectPageContentWithDocumentNarrowScreen({portfolio, className}: {portfolio: string, className?: string}) {
+function ProjectPageContentWithDocumentNarrowScreen({portfolio, className}: {portfolio: string | string[], className?: string}) {
     return (
         <div className={`flex flex-2 flex-row ${className}`}>
             <PDFViewer file={portfolio} />
@@ -169,7 +169,7 @@ function ProjectPageContentWithClickableImageWideScreen({name, image}: {name: st
     )
 }
 
-function ProjectPageContentWithDocumentWideScreen({portfolio}: {portfolio: string}) {
+function ProjectPageContentWithDocumentWideScreen({portfolio}: {portfolio: string | string[]}) {
     return (
         <div className="flex flex-1 flex-row">
             <PDFViewer file={portfolio} />

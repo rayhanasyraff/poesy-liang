@@ -2430,7 +2430,10 @@
       },
       {
         "id": 2,
-        "portfolio": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThraPl45vpBFm3VJ01fOCsehlNa5YuWQ49DX6"
+        "portfolio": [
+          "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThraPl45vpBFm3VJ01fOCsehlNa5YuWQ49DX6",
+          "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTRkVC3Nw71UfTvBJCnVD6ZdzqWYxSutas2wke"
+        ]
       }
     ]
   }

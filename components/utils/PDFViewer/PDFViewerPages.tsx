@@ -29,11 +29,8 @@ const PDFViewerPages = ({ numPages }: { numPages: number | undefined, onChangePa
       >
         {/* <Spinner className={`
           ${areAllPagesRendered ? "hidden" : "visible"}`} /> */}
-        <div 
-        className={`flex flex-col items-center gap-3 scrollbar-hidden scrollbar-hidden-wrapper`}
-        style={{
-          height: `${windowSize.height}px`,
-        }}
+        <div
+        className={`flex flex-col items-center gap-3`}
         // style={{
         //   // display: "inline-block",
         //   // marginTop: `${pageSize.margin}px`,

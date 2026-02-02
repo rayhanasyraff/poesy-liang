@@ -10,7 +10,7 @@ import Spinner from '../Spinner';
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 type PDFViewerPropsType = {
-  file: string;
+  file: string | string[];
 };
 
 export const DocumentInfoContext =  createContext<DocumentInfoContextType>({
@@ -22,7 +22,7 @@ export const DocumentInfoContext =  createContext<DocumentInfoContextType>({
   setAreAllPagesRendered: () => {}
 }); 
 
-export default function PDFViewer ({ file }: PDFViewerPropsType) {
+function PDFViewerSingle ({ file }: { file: string }) {
 
   const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -47,30 +47,35 @@ export default function PDFViewer ({ file }: PDFViewerPropsType) {
     )
   }
 
-// !numPages || numRenderedPages < numPages
   return (
     <DocumentInfoContext value={{ pageNumber, numPages, numPagesRendered, areAllPagesRendered, setNumPagesRendered, setAreAllPagesRendered }}>
-      <div 
-      className='flex flex-1 h-screen justify-center scrollbar-hidden scrollbar-hidden-wrapper' 
-      id="pages"
+      <Document
+      file={file}
+      onLoadSuccess={handleDocumentLoadSuccess}
+      className="flex flex-col content-center "
+      loading={<Spinner size="lg" />}
+      onLoadError={(error) => {
+        console.log("Error while loading document! " + error.message);
+        setIsDocumentLoadError(true);
+      }}
       >
-        <Document
-        file={file}
-        onLoadSuccess={handleDocumentLoadSuccess}
-        className="flex flex-col content-center "
-        loading={<Spinner size="lg" />}
-        // onItemClick={({pageNumber}) => console.log('Clicked an item from page ' + pageNumber + '!')}
-        onLoadError={(error) => {
-          console.log("Error while loading document! " + error.message);
-          setIsDocumentLoadError(true);
-        }}
-        // onLoadProgress={({ loaded, total }) => console.log('Loading a document: ' + (loaded / total) * 100 + '%')}
-        // onSourceError={(error) => console.log("Source error: " + error.message)}
-        // onSourceSuccess={() => console.log("Source loaded!")}
-        >
-          <PDFViewerPages numPages={numPages} onChangePageNumber={handleChangePageNumber} />
-        </Document>
-      </div>
+        <PDFViewerPages numPages={numPages} onChangePageNumber={handleChangePageNumber} />
+      </Document>
     </DocumentInfoContext>
+  );
+}
+
+export default function PDFViewer ({ file }: PDFViewerPropsType) {
+  const files = Array.isArray(file) ? file : [file];
+
+  return (
+    <div
+    className='flex flex-1 h-screen justify-center scrollbar-hidden scrollbar-hidden-wrapper overflow-y-auto'
+    id="pages"
+    >
+      <div className="flex flex-col content-center">
+        {files.map((f, i) => <PDFViewerSingle key={i} file={f} />)}
+      </div>
+    </div>
   );
 };
