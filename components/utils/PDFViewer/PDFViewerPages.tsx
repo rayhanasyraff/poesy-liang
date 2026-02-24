@@ -4,7 +4,6 @@ import { Page } from "react-pdf"
 import usePageSize from "@/hooks/usePageSize"
 import { DocumentInfoContext } from "./DocumentInfoContext"
 import { useContext, useEffect } from "react"
-import useWindowSize from "@/hooks/useWindowSize"
 import Spinner from "../Spinner"
 
 const PDFViewerPages = ({ numPages }: { numPages: number | undefined, onChangePageNumber: (pageNumber: number) => void }) => {
@@ -13,7 +12,6 @@ const PDFViewerPages = ({ numPages }: { numPages: number | undefined, onChangePa
 
   const { numPagesRendered, setNumPagesRendered, setAreAllPagesRendered } = useContext(DocumentInfoContext);
   const pageSize =  usePageSize();
-  const windowSize = useWindowSize();
   
   useEffect(() => {
     if (numPages && numPagesRendered >= numPages) {
