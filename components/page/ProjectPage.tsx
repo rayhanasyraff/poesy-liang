@@ -21,9 +21,11 @@ const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
 
 function ProjectPageContentWithDocumentNarrowScreen({portfolio, text, className}: {portfolio: string | string[], text?: string, className?: string}) {
     return (
-        <div className={`flex flex-2 flex-row ${className}`}>
+        <div className={`flex flex-1 flex-col h-screen overflow-y-auto ${className}`}>
             {text && <div className="p-6 text-white whitespace-pre-wrap">{text}</div>}
-            <PDFViewer file={portfolio} />
+            <div className="flex-1">
+                <PDFViewer file={portfolio} />
+            </div>
         </div>
     );
 }
@@ -172,9 +174,11 @@ function ProjectPageContentWithClickableImageWideScreen({name, image}: {name: st
 
 function ProjectPageContentWithDocumentWideScreen({portfolio, text}: {portfolio: string | string[], text?: string}) {
     return (
-        <div className="flex flex-1 flex-row">
-            {text && <div className="w-1/3 p-8 text-white whitespace-pre-wrap">{text}</div>}
-            <PDFViewer file={portfolio} />
+        <div className="flex flex-1 flex-col h-screen overflow-y-auto">
+            {text && <div className="p-8 text-white whitespace-pre-wrap">{text}</div>}
+            <div className="flex-1">
+                <PDFViewer file={portfolio} />
+            </div>
             <ClosePageButton />
         </div>
     );

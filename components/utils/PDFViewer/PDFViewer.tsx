@@ -70,7 +70,7 @@ export default function PDFViewer ({ file }: PDFViewerPropsType) {
 
   return (
     <div
-    className='flex flex-1 h-screen justify-center scrollbar-hidden scrollbar-hidden-wrapper overflow-y-auto'
+    className='flex flex-1 justify-center scrollbar-hidden scrollbar-hidden-wrapper'
     id="pages"
     >
       <div className="flex flex-col content-center">
