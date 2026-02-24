@@ -5,5 +5,6 @@ export default interface ContentPageType {
     id: number,
     images?: ImageType[],
     videos?: VideoType[],
-    portfolio?: string | string[]
+    portfolio?: string | string[],
+    text?: string
 }

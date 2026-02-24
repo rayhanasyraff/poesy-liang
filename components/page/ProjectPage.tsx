@@ -19,9 +19,10 @@ const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
 });
 
-function ProjectPageContentWithDocumentNarrowScreen({portfolio, className}: {portfolio: string | string[], className?: string}) {
+function ProjectPageContentWithDocumentNarrowScreen({portfolio, text, className}: {portfolio: string | string[], text?: string, className?: string}) {
     return (
         <div className={`flex flex-2 flex-row ${className}`}>
+            {text && <div className="p-6 text-white whitespace-pre-wrap">{text}</div>}
             <PDFViewer file={portfolio} />
         </div>
     );
@@ -87,7 +88,7 @@ function ProjectPageContentNarrowScreen({project, className}: {project: ProjectT
     if (!isReady) return <Spinner size="md" />;
 
     if (page.portfolio) {
-        return <ProjectPageContentWithDocumentNarrowScreen portfolio={page.portfolio} className={className} />
+        return <ProjectPageContentWithDocumentNarrowScreen portfolio={page.portfolio} text={page.text} className={className} />
     }
 
     if (page.images) {
@@ -169,9 +170,10 @@ function ProjectPageContentWithClickableImageWideScreen({name, image}: {name: st
     )
 }
 
-function ProjectPageContentWithDocumentWideScreen({portfolio}: {portfolio: string | string[]}) {
+function ProjectPageContentWithDocumentWideScreen({portfolio, text}: {portfolio: string | string[], text?: string}) {
     return (
         <div className="flex flex-1 flex-row">
+            {text && <div className="w-1/3 p-8 text-white whitespace-pre-wrap">{text}</div>}
             <PDFViewer file={portfolio} />
             <ClosePageButton />
         </div>
@@ -226,7 +228,7 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
 
     if (page.portfolio) {
         return (
-            <ProjectPageContentWithDocumentWideScreen portfolio={page.portfolio} />
+            <ProjectPageContentWithDocumentWideScreen portfolio={page.portfolio} text={page.text} />
         )
     }
 
