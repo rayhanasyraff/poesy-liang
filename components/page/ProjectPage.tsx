@@ -10,6 +10,7 @@ import PageBaseLayout from "../layout/PageBaseLayout";
 import PageBaseBodyLayout from "../layout/PageBaseBodyLayout";
 import ImageType from "@/types/ImageType";
 import usePageNavigator from "@/hooks/usePageNavigator";
+import usePageSize from "@/hooks/usePageSize";
 import VideoType from "@/types/VideoType";
 import { useEffect } from "react";
 import Spinner from "../utils/Spinner";
@@ -19,12 +20,38 @@ const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false, // 👈 disables SSR for this component
 });
 
+function A4DocumentPage({ text, width }: { text: string; width: number }) {
+    const height = width * 1.4142;
+    return (
+        <div
+            style={{
+                width,
+                minHeight: height,
+                backgroundColor: "#fff",
+                color: "#1a1a1a",
+                padding: `${width * 0.09}px ${width * 0.1}px`,
+                boxSizing: "border-box",
+                fontFamily: '"Bright Grotesk", Arial, sans-serif',
+                fontSize: `${Math.max(12, width * 0.018)}px`,
+                lineHeight: 1.8,
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+            }}
+        >
+            {text}
+        </div>
+    );
+}
+
 function ProjectPageContentWithDocumentNarrowScreen({portfolio, text, className}: {portfolio: string | string[], text?: string, className?: string}) {
+    const pageSize = usePageSize();
     return (
         <div className={`flex flex-1 flex-col h-screen overflow-y-auto ${className}`}>
-            {text && <div className="p-6 text-white whitespace-pre-wrap">{text}</div>}
-            <div className="flex-1">
-                <PDFViewer file={portfolio} />
+            <div style={{ width: pageSize.width }} className="mx-auto flex flex-col gap-3">
+                {text && <A4DocumentPage text={text} width={pageSize.width} />}
+                <div className="flex-1">
+                    <PDFViewer file={portfolio} />
+                </div>
             </div>
         </div>
     );
@@ -173,11 +200,14 @@ function ProjectPageContentWithClickableImageWideScreen({name, image}: {name: st
 }
 
 function ProjectPageContentWithDocumentWideScreen({portfolio, text}: {portfolio: string | string[], text?: string}) {
+    const pageSize = usePageSize();
     return (
         <div className="flex flex-1 flex-col h-screen overflow-y-auto">
-            {text && <div className="p-8 text-white whitespace-pre-wrap">{text}</div>}
-            <div className="flex-1">
-                <PDFViewer file={portfolio} />
+            <div style={{ width: pageSize.width }} className="mx-auto flex flex-col gap-3">
+                {text && <A4DocumentPage text={text} width={pageSize.width} />}
+                <div className="flex-1">
+                    <PDFViewer file={portfolio} />
+                </div>
             </div>
             <ClosePageButton />
         </div>

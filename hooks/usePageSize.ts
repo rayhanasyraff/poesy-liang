@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import useWindowSize from "./useWindowSize";
-import { DocumentInfoContext } from "@/components/utils/PDFViewer/PDFViewer";
+import { DocumentInfoContext } from "@/components/utils/PDFViewer/DocumentInfoContext";
 
 export default function usePageSize() {
 
