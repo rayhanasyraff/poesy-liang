@@ -24,7 +24,7 @@ function ProjectPageContentWithDocumentNarrowScreen({portfolio, text, className}
     return (
         <div className={`flex flex-1 flex-col h-screen overflow-y-auto ${className}`}>
             <div className="flex flex-col gap-3">
-                {text && <TextDocumentViewer text={text} />}
+                {text && <div className="flex-1"><TextDocumentViewer text={text} /></div>}
                 <div className="flex-1">
                     <PDFViewer file={portfolio} />
                 </div>
@@ -179,7 +179,7 @@ function ProjectPageContentWithDocumentWideScreen({portfolio, text}: {portfolio:
     return (
         <div className="flex flex-1 flex-col h-screen overflow-y-auto">
             <div className="flex flex-col gap-3">
-                {text && <TextDocumentViewer text={text} />}
+                {text && <div className="flex-1"><TextDocumentViewer text={text} /></div>}
                 <div className="flex-1">
                     <PDFViewer file={portfolio} />
                 </div>

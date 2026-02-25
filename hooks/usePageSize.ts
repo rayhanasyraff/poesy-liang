@@ -66,10 +66,6 @@ export default function usePageSize() {
         //     pagesContainer.style.width = windowSize.width + 'px';
         // }
 
-        if (windowSize.width <= minWindowWidth) {
-          pagesContainer?.style.setProperty('width', `${100}px`);  
-        }
-
         let pageWidth = pagesContainer?.clientWidth ?? 0;
 
         // console.log(pagesContainer?.clientWidth);
