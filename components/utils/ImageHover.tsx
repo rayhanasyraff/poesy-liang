@@ -29,7 +29,8 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
 
   const { x, y, strategy, refs, update } = useFloating({
     placement: 'auto',
-    middleware: [offset(12), flip(), shift({ padding: 8 })],
+    strategy: 'fixed',
+    middleware: [offset(12), flip(), shift({ padding: 16 })],
     whileElementsMounted: autoUpdate,
   });
 
