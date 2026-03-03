@@ -73,17 +73,9 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
 
   if (isImageLoadError || !imgSize) return null;
 
-  // Clamp to viewport so the thumbnail doesn't overflow the window
+  if (isImageLoadError || !imgSize) return null;
+
   const THUMB = 240;
-  let leftPos = x ?? 0;
-  let topPos = y ?? 0;
-  if (typeof window !== 'undefined') {
-    const minMargin = 8;
-    const maxLeft = Math.max(window.innerWidth - THUMB - minMargin, minMargin);
-    const maxTop = Math.max(window.innerHeight - THUMB - minMargin, minMargin);
-    leftPos = Math.min(Math.max(leftPos, minMargin), maxLeft);
-    topPos = Math.min(Math.max(topPos, minMargin), maxTop);
-  }
 
   return (
     <div
@@ -91,8 +83,8 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
       id={`image-${id}`}
       style={{
         position: strategy,
-        left: leftPos,
-        top: topPos,
+        left: x ?? 0,
+        top: y ?? 0,
         pointerEvents: 'none',
       }}
       className={open ? "max-md:hidden md:absolute md:z-10" : "hidden"}
