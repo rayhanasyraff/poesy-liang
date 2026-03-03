@@ -2437,5 +2437,52 @@
         "text": "The RTC (abbreviation of Rooftop Cat; titled after Poesy 小詩’s signature series) is an artist hideout located in the midst of upmarket skyscrapers in downtown Kuala Lumpur, in a neighborhood that was historically known for Chinese triads. This gentrified premise was formerly the family home of Malaysian-Taiwanese contemporary artist Poesy Liang 梁小詩, which was later converted to be her first artist studio between 2006 to 2017.\n\nFor this program, Poesy curates, invites and hosts established global artists to immerse in the Imbi level street grunge from the perspective of a local artist and to be a community-minded neighbour to migrant workers of the pre-gentrified area.\n\nThere are residency programs for local and foreign artists; street concerts for musicians and performers lacking visibility; poetry jamming sessions; film talks; comedy and others. The venue is dedicated to build an artistic community, to facilitate mentorship opportunities with senior masters and global practitioners alike, and to cultivate sustainable practices in the arts."
       }
     ]
+  },
+  {
+    "id": 57,
+    "name": "blog",
+    "pathname": "blog",
+    "date": "2026",
+    "category": [
+      "blog"
+    ],
+    "tags": [
+      "blog"
+    ],
+    "description": "Personal blog",
+    "location": [
+      ""
+    ],
+    "thumbnailImage": [
+      {
+        "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT9JmVj7YeLco8wWHb3J1M70v45DPzRiKrIYgk",
+        "width": 480,
+        "height": 480
+      }
+    ],
+    "order": 2,
+    "visibility": "public",
+    "contentPages": [
+      {
+        "id": 1,
+        "images": [
+          {
+            "src": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT9JmVj7YeLco8wWHb3J1M70v45DPzRiKrIYgk",
+            "width": 480,
+            "height": 480,
+            "action": {
+              "name": "click",
+              "behavior": {
+                "name": "navigate",
+                "target": {
+                  "type": "url",
+                  "targetUrl": "https://blog.poesyliang.com"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
   }
 ]
