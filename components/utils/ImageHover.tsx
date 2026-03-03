@@ -29,7 +29,7 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
 
   const { x, y, strategy, refs, update } = useFloating({
     placement: 'right-start',
-    middleware: [offset(12), flip(), shift({ padding: 8 })],
+    middleware: [offset(8), flip(), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
   });
 
@@ -44,7 +44,7 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
       // create a rect at the cursor position (client coords)
       const clientX = e.clientX;
       const clientY = e.clientY;
-      virtualRef.current.getBoundingClientRect = () => new DOMRect(clientX, clientY, 0, 0);
+      virtualRef.current.getBoundingClientRect = () => new DOMRect(clientX + 8, clientY + 8, 1, 1);
 
       // position update
       update?.();
