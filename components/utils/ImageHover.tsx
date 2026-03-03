@@ -28,9 +28,10 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
   }, [img]);
 
   const { x, y, strategy, refs, update } = useFloating({
-    placement: 'auto',
+    // Prefer showing on the right, but flip to the left (or top/bottom) when hitting the viewport edge
+    placement: 'right',
     strategy: 'fixed',
-    middleware: [offset(12), flip(), shift({ padding: 16 })],
+    middleware: [offset(12), flip({ fallbackPlacements: ['left', 'top', 'bottom'] }), shift({ padding: 16 })],
     whileElementsMounted: autoUpdate,
   });
 
