@@ -1,14 +1,17 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from 'next/image';
 import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/react';
 
-// Replaced manual mouse positioning with Floating UI for robust positioning
+// Use Floating UI virtual reference that follows the cursor while hovering
 export default function ImageHover({ id, name, img, width, height }: { id: number, name: string, img: string, width: number, height: number }) {
   const [isImageLoadError, setIsImageLoadError] = useState(false);
   const [imgSize, setImgSize] = useState<{ width: number; height: number } | null>(null);
   const [open, setOpen] = useState(false);
+  const virtualRef = useRef({
+    getBoundingClientRect: () => new DOMRect(0, 0, 0, 0),
+  } as { getBoundingClientRect: () => DOMRect });
 
   useEffect(() => {
     const preloadImg = new window.Image();
@@ -26,23 +29,37 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
 
   const { x, y, strategy, refs, update } = useFloating({
     placement: 'right-start',
-    middleware: [offset(12), flip(), shift()],
+    middleware: [offset(12), flip(), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
   });
 
-  // Attach reference to the project element and listen for hover to toggle open state
   useEffect(() => {
     const project = document.getElementById(`project-${id}`);
     if (!project) return;
 
-    refs.setReference(project);
+    // set virtual element as reference so the floating thumbnail follows the cursor
+    refs.setReference(virtualRef.current);
 
-    const onEnter = () => {
-      setOpen(true);
-      // request position update when opening
+    const handleMouseMove = (e: MouseEvent) => {
+      // create a rect at the cursor position (client coords)
+      const clientX = e.clientX;
+      const clientY = e.clientY;
+      virtualRef.current.getBoundingClientRect = () => new DOMRect(clientX, clientY, 0, 0);
+
+      // position update
       update?.();
     };
-    const onLeave = () => setOpen(false);
+
+    const onEnter = (e: Event) => {
+      setOpen(true);
+      // start listening to mousemove on document to track cursor even if it leaves the project text
+      document.addEventListener('mousemove', handleMouseMove);
+    };
+
+    const onLeave = () => {
+      setOpen(false);
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
 
     project.addEventListener('mouseenter', onEnter);
     project.addEventListener('mouseleave', onLeave);
@@ -50,6 +67,7 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
     return () => {
       project.removeEventListener('mouseenter', onEnter);
       project.removeEventListener('mouseleave', onLeave);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, [id, refs, update]);
 
@@ -63,6 +81,7 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
         position: strategy,
         left: x ?? 0,
         top: y ?? 0,
+        pointerEvents: 'none', // avoid blocking cursor interactions
       }}
       className={open ? "max-md:hidden md:absolute md:z-10" : "hidden"}
     >
