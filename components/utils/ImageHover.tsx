@@ -81,17 +81,20 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
         position: strategy,
         left: x ?? 0,
         top: y ?? 0,
-        pointerEvents: 'none', // avoid blocking cursor interactions
+        pointerEvents: 'none',
       }}
       className={open ? "max-md:hidden md:absolute md:z-10" : "hidden"}
     >
-      <Image
-        src={img}
-        width={width}
-        height={height}
-        alt={name}
-        placeholder="empty"
-      />
+      {/* fixed thumbnail container so all thumbnails share the same scale */}
+      <div style={{ position: 'relative', width: 240, height: 240 }}>
+        <Image
+          src={img}
+          alt={name}
+          fill
+          style={{ objectFit: 'cover' }}
+          placeholder="empty"
+        />
+      </div>
     </div>
   );
 }
