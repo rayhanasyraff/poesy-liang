@@ -91,7 +91,7 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
           src={img}
           alt={name}
           fill
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'contain' }}
           placeholder="empty"
         />
       </div>
