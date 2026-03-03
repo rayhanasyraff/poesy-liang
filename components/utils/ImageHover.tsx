@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Image from 'next/image';
+import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/react';
 
-// use imgSize if want to follow image source
-
+// Replaced manual mouse positioning with Floating UI for robust positioning
 export default function ImageHover({ id, name, img, width, height }: { id: number, name: string, img: string, width: number, height: number }) {
   const [isImageLoadError, setIsImageLoadError] = useState(false);
   const [imgSize, setImgSize] = useState<{ width: number; height: number } | null>(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const preloadImg = new window.Image();
@@ -23,58 +24,55 @@ export default function ImageHover({ id, name, img, width, height }: { id: numbe
     };
   }, [img]);
 
+  const { x, y, strategy, refs, update } = useFloating({
+    placement: 'right-start',
+    middleware: [offset(12), flip(), shift()],
+    whileElementsMounted: autoUpdate,
+  });
+
+  // Attach reference to the project element and listen for hover to toggle open state
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const image = document.getElementById(`image-${id}`);
-      const project = document.getElementById(`project-${id}`);
+    const project = document.getElementById(`project-${id}`);
+    if (!project) return;
 
-      if (project && image) {
-        if (project.matches(':hover')) {
-          image.className = "max-md:hidden md:absolute md:z-10";
+    refs.setReference(project);
 
-          const pageY = e.pageY;
-          const pageX = e.pageX;
-
-          const imgHeight = image.offsetHeight;
-          const imgWidth = image.offsetWidth;
-
-          const spaceBelow = window.scrollY + window.innerHeight - pageY;
-          const spaceRight = window.innerWidth + window.scrollX - pageX;
-
-          // Vertical positioning
-          if (spaceBelow > imgHeight + 30) {
-            image.style.top = (pageY + 30) + 'px';
-          } else {
-            image.style.top = (pageY - imgHeight - 20) + 'px';
-          }
-
-          // Horizontal positioning
-          if (spaceRight < imgWidth) {
-            image.style.left = (pageX - imgWidth + 10) + 'px';
-          } else {
-            image.style.left = pageX + 'px';
-          }
-        } else {
-          image.className = "hidden";
-        }
-      }
+    const onEnter = () => {
+      setOpen(true);
+      // request position update when opening
+      update?.();
     };
+    const onLeave = () => setOpen(false);
 
-  document.addEventListener('mousemove', handleMouseMove);
-    return () => document.removeEventListener('mousemove', handleMouseMove);
-  }, [id]);
+    project.addEventListener('mouseenter', onEnter);
+    project.addEventListener('mouseleave', onLeave);
+
+    return () => {
+      project.removeEventListener('mouseenter', onEnter);
+      project.removeEventListener('mouseleave', onLeave);
+    };
+  }, [id, refs, update]);
 
   if (isImageLoadError || !imgSize) return null;
 
   return (
-    <Image
-      src={img}
-      width={width}
-      height={height}
-      alt={name}
+    <div
+      ref={refs.setFloating}
       id={`image-${id}`}
-      className="hidden"
-      placeholder="empty"
-    />
+      style={{
+        position: strategy,
+        left: x ?? 0,
+        top: y ?? 0,
+      }}
+      className={open ? "max-md:hidden md:absolute md:z-10" : "hidden"}
+    >
+      <Image
+        src={img}
+        width={width}
+        height={height}
+        alt={name}
+        placeholder="empty"
+      />
+    </div>
   );
 }
