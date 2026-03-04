@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import Spinner from "../utils/Spinner";
 import { notFound } from "next/navigation";
 import TextDocumentViewer from "../utils/TextDocumentViewer";
+import RtcHero from "../projects/RtcHero";
 import PressReleases from "./PressReleases";
 
 const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
@@ -155,6 +156,8 @@ function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, clas
 }
 function ProjectPageContentNarrowScreen({project, className}: {project: ProjectType, className?: string}) {
 
+    const rtcPdfUrl = "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi";
+
     const isReady = useResetOnPathChange(); // ← move it here
 
     const { pageNumber, setPageNumber } = usePageNavigator();
@@ -190,7 +193,7 @@ function ProjectPageContentNarrowScreen({project, className}: {project: ProjectT
             );
         }
 
-        return <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={showAbout} />
+        return <div><RtcHero image={Array.isArray(page.images[0]) ? page.images[0][0] : (page.images[0].src || page.images[0])} alt={project.name} pdfUrl={rtcPdfUrl} /><ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={showAbout} /></div>
     }
 
     if (page.images) {
