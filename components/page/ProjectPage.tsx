@@ -62,7 +62,7 @@ const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, classNam
             <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
             {showAbout && (
                 <div className="flex justify-center items-center">
-                    <button className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity">About</button>
+                    <a className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity relative z-10" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">About</a>
                 </div>
             )}
             <div className="flex justify-center items-center">
@@ -87,7 +87,7 @@ function ProjectPageContentWithImageNarrowScreen({image, name, className, showAb
             <ResponsiveImage image={image.src} name={name} className={className} />
             {showAbout && (
                 <div className="flex justify-center items-center mt-2">
-                    <button className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity">About</button>
+                    <a className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity relative z-10" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">About</a>
                 </div>
             )}
         </div>
@@ -127,7 +127,7 @@ function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, clas
                         <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} scale={60} />
                         {showAbout && (
                             <div className="flex justify-center items-center mt-2">
-                                <button className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity">About</button>
+                                <a className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity relative z-10" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">About</a>
                             </div>
                         )}
                         <div className="flex justify-center items-center">
@@ -139,7 +139,7 @@ function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, clas
                         <ResponsiveImage image={image.src} name={name} scale={60} />
                         {showAbout && (
                             <div className="flex justify-center items-center mt-2">
-                                <button className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity">About</button>
+                                <a className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity relative z-10" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">About</a>
                             </div>
                         )}
                     </>
@@ -264,7 +264,7 @@ function ProjectPageContentWithClickableImageWideScreen({name, image, showAbout}
                     <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
                     {showAbout && (
                         <div className="flex justify-center items-center mt-2">
-                            <button className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity">About</button>
+                            <a className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity relative z-10" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">About</a>
                         </div>
                     )}
                     <div className="flex justify-center items-center">
@@ -355,7 +355,7 @@ function ProjectPageContentWithImageAndTextWideScreen({name, image, text, showAb
                         <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
                         {showAbout && (
                             <div className="flex justify-center items-center mt-2">
-                                <button className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity">About</button>
+                                <a className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity relative z-10" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">About</a>
                             </div>
                         )}
                         <div className="flex justify-center items-center">
@@ -367,7 +367,7 @@ function ProjectPageContentWithImageAndTextWideScreen({name, image, text, showAb
                         <ResponsiveImage image={image.src} name={name} />
                         {showAbout && (
                             <div className="flex justify-center items-center mt-2">
-                                <button className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity">About</button>
+                                <a className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity relative z-10" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">About</a>
                             </div>
                         )}
                     </>
