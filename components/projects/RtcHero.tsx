@@ -9,13 +9,13 @@ export default function RtcHero({ image, alt, pdfUrl }: { image: string, alt?: s
             <div className="w-full">
                 <ResponsiveImage image={image} name={alt ?? 'RTC'} scale={100} />
             </div>
-            <div className="mt-3">
+            <div className="mt-6 w-full flex justify-center">
                 <a
                     href={pdfUrl}
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Open RTC About PDF"
-                    className="text-white/80 text-[12px] uppercase tracking-widest px-3 py-1 rounded-sm focus:outline-none focus:ring-2 focus:ring-white/40"
+                    className="relative z-20 text-white/80 text-[12px] uppercase tracking-widest px-3 py-1 rounded-sm focus:outline-none focus:ring-2 focus:ring-white/40"
                 >
                     About
                 </a>
