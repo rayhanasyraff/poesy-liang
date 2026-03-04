@@ -34,7 +34,7 @@ function ProjectPageContentWithDocumentNarrowScreen({portfolio, text, className}
     );
 }
 
-const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, className}: {name: string, image: ImageType, className?: string}) => {
+const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, className, showAbout}: {name: string, image: ImageType, className?: string, showAbout?: boolean}) => {
 
     // const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
 
@@ -60,6 +60,11 @@ const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, classNam
     return (
         <div className={`flex flex-4 flex-col gap-3 ${className}`}>
             <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
+            {showAbout && (
+                <div className="flex justify-center items-center">
+                    <button className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity">About</button>
+                </div>
+            )}
             <div className="flex justify-center items-center">
                 <p className="text-white font-bright-grotesk text-[13px] opacity-[0.77] text-center">tap for more</p>
             </div>
@@ -67,19 +72,24 @@ const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, classNam
     )
 }
 
-function ProjectPageContentWithImageNarrowScreen({image, name, className}: {image: ImageType, name: string, className?: string}) {
+function ProjectPageContentWithImageNarrowScreen({image, name, className, showAbout}: {image: ImageType, name: string, className?: string, showAbout?: boolean}) {
 
     const isImageClickable = image.action?.name == "click";
 
     if (isImageClickable) {
         return (
-            <ProjectPageContentWithClickableImageNarrowScreen name={name} image={image} className={className} />
+            <ProjectPageContentWithClickableImageNarrowScreen name={name} image={image} className={className} showAbout={showAbout} />
         )
     }
 
     return (
         <div className="flex flex-3 flex-col">
             <ResponsiveImage image={image.src} name={name} className={className} />
+            {showAbout && (
+                <div className="flex justify-center items-center mt-2">
+                    <button className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity">About</button>
+                </div>
+            )}
         </div>
     );
 }
@@ -95,7 +105,7 @@ function ProjectPageTextBlock({ text }: { text: string }) {
     );
 }
 
-function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, className}: {image: ImageType, name: string, text: string, className?: string}) {
+function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, className, showAbout}: {image: ImageType, name: string, text: string, className?: string, showAbout?: boolean}) {
     const { setPageNumber } = usePageNavigator();
     const pageTarget = image.action?.behavior.target;
     const isClickable = image.action?.name == "click";
@@ -115,12 +125,24 @@ function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, clas
                 {isClickable ? (
                     <>
                         <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} scale={60} />
+                        {showAbout && (
+                            <div className="flex justify-center items-center mt-2">
+                                <button className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity">About</button>
+                            </div>
+                        )}
                         <div className="flex justify-center items-center">
                             <p className="text-white font-bright-grotesk text-[11px] opacity-[0.77] text-center">tap for more</p>
                         </div>
                     </>
                 ) : (
-                    <ResponsiveImage image={image.src} name={name} scale={60} />
+                    <>
+                        <ResponsiveImage image={image.src} name={name} scale={60} />
+                        {showAbout && (
+                            <div className="flex justify-center items-center mt-2">
+                                <button className="text-white/70 text-[11px] uppercase px-2 py-1 transition-opacity">About</button>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
             <div className="flex-1 pb-10 flex flex-col gap-2 px-4">
@@ -138,6 +160,8 @@ function ProjectPageContentNarrowScreen({project, className}: {project: ProjectT
     const { pageNumber, setPageNumber } = usePageNavigator();
     const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
 
+    const showAbout = project.pathname === 'the-rooftop-cat' && pageNumber === 1 && !!page.images?.length;
+
     if (!isReady) return <Spinner size="md" />;
 
     if (page.pressReleases) {
@@ -153,7 +177,7 @@ function ProjectPageContentNarrowScreen({project, className}: {project: ProjectT
         if (portfolioIndex !== -1) {
             return (
                 <div className="relative">
-                    <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} />
+                    <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={showAbout} />
                     <div className="px-4 pb-6 flex justify-center">
                         <button
                             className="font-bright-grotesk text-[11px] tracking-widest uppercase px-4 py-1.5 border border-white/30 text-white/70 hover:text-white hover:border-white rounded-sm transition-colors"
@@ -166,11 +190,11 @@ function ProjectPageContentNarrowScreen({project, className}: {project: ProjectT
             );
         }
 
-        return <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} />
+        return <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={showAbout} />
     }
 
     if (page.images) {
-        return <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} className={className} />
+        return <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} className={className} showAbout={showAbout} />
     }
 
     return (<></>);
@@ -214,7 +238,7 @@ function ProjectPageNarrowScreen({project}: {project: ProjectType}) {
     )
 }
 
-function ProjectPageContentWithClickableImageWideScreen({name, image}: {name: string, image: ImageType}) {
+function ProjectPageContentWithClickableImageWideScreen({name, image, showAbout}: {name: string, image: ImageType, showAbout?: boolean}) {
        
     const { setPageNumber } = usePageNavigator();    
     const pageTarget = image.action?.behavior.target;
@@ -238,6 +262,11 @@ function ProjectPageContentWithClickableImageWideScreen({name, image}: {name: st
             <div className="flex flex-1 flex-col justify-center min-h-screen">
                 <div className="flex flex-col gap-10 items-center">
                     <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
+                    {showAbout && (
+                        <div className="flex justify-center items-center mt-2">
+                            <button className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity">About</button>
+                        </div>
+                    )}
                     <div className="flex justify-center items-center">
                         <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more</p>
                     </div>
@@ -277,13 +306,13 @@ function ProjectPageContentWithVideoWideScreen({video}: {video: VideoType}) {
     )
 }
 
-function ProjectPageContentWithImageWideScreen({name, image}: {name: string, image: ImageType}) {
+function ProjectPageContentWithImageWideScreen({name, image, showAbout}: {name: string, image: ImageType, showAbout?: boolean}) {
 
     const isImageClickable = image.action?.name == "click";
 
     if (isImageClickable) {
         return (
-            <ProjectPageContentWithClickableImageWideScreen name={name} image={image} />
+            <ProjectPageContentWithClickableImageWideScreen name={name} image={image} showAbout={showAbout} />
         )
     }
 
@@ -292,6 +321,11 @@ function ProjectPageContentWithImageWideScreen({name, image}: {name: string, ima
             <div className="flex flex-1 flex-col justify-center min-h-screen">
                 <div className="flex flex-col gap-10 items-center">
                     <ResponsiveImage image={image.src} name={name} />
+                    {showAbout && (
+                        <div className="flex justify-center items-center mt-2">
+                            <button className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity">About</button>
+                        </div>
+                    )}
                 </div>
             </div>
             <ClosePageButton />
@@ -299,7 +333,7 @@ function ProjectPageContentWithImageWideScreen({name, image}: {name: string, ima
     )     
 }
 
-function ProjectPageContentWithImageAndTextWideScreen({name, image, text}: {name: string, image: ImageType, text: string}) {
+function ProjectPageContentWithImageAndTextWideScreen({name, image, text, showAbout}: {name: string, image: ImageType, text: string, showAbout?: boolean}) {
     const paragraphs = text.split("\n\n");
     const { setPageNumber } = usePageNavigator();
     const pageTarget = image.action?.behavior.target;
@@ -319,12 +353,24 @@ function ProjectPageContentWithImageAndTextWideScreen({name, image, text}: {name
                 {isClickable ? (
                     <>
                         <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
+                        {showAbout && (
+                            <div className="flex justify-center items-center mt-2">
+                                <button className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity">About</button>
+                            </div>
+                        )}
                         <div className="flex justify-center items-center">
                             <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more</p>
                         </div>
                     </>
                 ) : (
-                    <ResponsiveImage image={image.src} name={name} />
+                    <>
+                        <ResponsiveImage image={image.src} name={name} />
+                        {showAbout && (
+                            <div className="flex justify-center items-center mt-2">
+                                <button className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity">About</button>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
             <div className="flex flex-1 flex-col justify-center overflow-y-auto px-10 max-h-screen gap-4">
@@ -344,6 +390,8 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
     const { pageNumber, setPageNumber } = usePageNavigator();
     const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
 
+    const showAbout = project.pathname === 'the-rooftop-cat' && pageNumber === 1 && !!page.images?.length;
+
     if (!isReady) return <Spinner size="lg" />;
 
     if (page.pressReleases) {
@@ -361,7 +409,7 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
         if (portfolioIndex !== -1) {
             return (
                 <div className="relative">
-                    <ProjectPageContentWithImageAndTextWideScreen name={project.name} image={page.images[0]} text={page.text} />
+                    <ProjectPageContentWithImageAndTextWideScreen name={project.name} image={page.images[0]} text={page.text} showAbout={showAbout} />
                     <div className="absolute top-6 right-10">
                         <button
                             className="font-bright-grotesk text-[11px] tracking-widest uppercase px-4 py-1.5 border border-white/30 text-white/70 hover:text-white hover:border-white rounded-sm transition-colors"
@@ -375,13 +423,13 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
         }
 
         return (
-            <ProjectPageContentWithImageAndTextWideScreen name={project.name} image={page.images[0]} text={page.text} />
+            <ProjectPageContentWithImageAndTextWideScreen name={project.name} image={page.images[0]} text={page.text} showAbout={showAbout} />
         )
     }
 
     if (page.images) {    
         return (
-            <ProjectPageContentWithImageWideScreen name={project.name} image={page.images[0]} />
+            <ProjectPageContentWithImageWideScreen name={project.name} image={page.images[0]} showAbout={showAbout} />
         )     
     }
 
