@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import Spinner from "../utils/Spinner";
 import { notFound } from "next/navigation";
 import TextDocumentViewer from "../utils/TextDocumentViewer";
+import PressReleases from "./PressReleases";
 
 const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
   ssr: false,
@@ -24,7 +25,7 @@ function ProjectPageContentWithDocumentNarrowScreen({portfolio, text, className}
     return (
         <div className={`flex flex-1 flex-col h-screen overflow-y-auto ${className}`}>
             <div className="flex flex-col gap-3">
-                {text && <div className="flex-1"><TextDocumentViewer text={text} /></div>}
+                {(!portfolio && text) && <div className="flex-1"><TextDocumentViewer text={text} /></div>}
                 <div className="flex-1">
                     <PDFViewer file={portfolio} />
                 </div>
@@ -57,7 +58,7 @@ const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, classNam
     }
 
     return (
-        <div className={`flex flex-4 mr-10 flex-col gap-3 ${className}`}>
+        <div className={`flex flex-4 flex-col gap-3 ${className}`}>
             <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
             <div className="flex justify-center items-center">
                 <p className="text-white font-bright-grotesk text-[13px] opacity-[0.77] text-center">tap for more</p>
@@ -77,23 +78,95 @@ function ProjectPageContentWithImageNarrowScreen({image, name, className}: {imag
     }
 
     return (
-        <div className="flex flex-3 mr-10 flex-col">
+        <div className="flex flex-3 flex-col">
             <ResponsiveImage image={image.src} name={name} className={className} />
         </div>
     );
 }
 
+function ProjectPageTextBlock({ text }: { text: string }) {
+    const paragraphs = text.split("\n\n");
+    return (
+        <div className="flex flex-col gap-4 overflow-y-auto">
+            {paragraphs.map((p, i) => (
+                <p key={i} className="text-white font-bright-grotesk text-[13px] leading-relaxed opacity-90">{p}</p>
+            ))}
+        </div>
+    );
+}
+
+function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, className}: {image: ImageType, name: string, text: string, className?: string}) {
+    const { setPageNumber } = usePageNavigator();
+    const pageTarget = image.action?.behavior.target;
+    const isClickable = image.action?.name == "click";
+
+    function handleClick() {
+        const navigateToAnotherPage = pageTarget?.type == "page";
+        const navigateToLink = pageTarget?.type == "url";
+        if (pageTarget?.pageId && navigateToAnotherPage) setPageNumber(pageTarget?.pageId);
+        if (navigateToLink) window.open(pageTarget?.targetUrl, "_blank");
+    }
+
+    const paragraphs = text.split("\n\n");
+
+    return (
+        <div className={`flex flex-col gap-4 ${className}`}>
+            <div className="flex flex-col gap-2">
+                {isClickable ? (
+                    <>
+                        <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} scale={60} />
+                        <div className="flex justify-center items-center">
+                            <p className="text-white font-bright-grotesk text-[11px] opacity-[0.77] text-center">tap for more</p>
+                        </div>
+                    </>
+                ) : (
+                    <ResponsiveImage image={image.src} name={name} scale={60} />
+                )}
+            </div>
+            <div className="flex-1 pb-10 flex flex-col gap-2 px-4">
+                {paragraphs.map((p, i) => (
+                    <p key={i} className="text-white font-bright-grotesk text-[9px] leading-relaxed opacity-90">{p}</p>
+                ))}
+            </div>
+        </div>
+    );
+}
 function ProjectPageContentNarrowScreen({project, className}: {project: ProjectType, className?: string}) {
 
     const isReady = useResetOnPathChange(); // ← move it here
 
-    const { pageNumber } = usePageNavigator();
+    const { pageNumber, setPageNumber } = usePageNavigator();
     const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
 
     if (!isReady) return <Spinner size="md" />;
 
+    if (page.pressReleases) {
+        return <PressReleases pressReleases={page.pressReleases} />
+    }
+
     if (page.portfolio) {
         return <ProjectPageContentWithDocumentNarrowScreen portfolio={page.portfolio} text={page.text} className={className} />
+    }
+
+    if (page.images && page.text) {
+        const portfolioIndex = project.contentPages?.findIndex((p) => !!p.portfolio) ?? -1;
+        if (portfolioIndex !== -1) {
+            return (
+                <div className="relative">
+                    <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} />
+                    <div className="px-4 pb-6 flex justify-center">
+                        <button
+                            className="font-bright-grotesk text-[11px] tracking-widest uppercase px-4 py-1.5 border border-white/30 text-white/70 hover:text-white hover:border-white rounded-sm transition-colors"
+                            onClick={() => setPageNumber(portfolioIndex + 1)}
+                        >
+                            View Document
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
+        return <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} />
     }
 
     if (page.images) {
@@ -135,7 +208,7 @@ function ProjectPageNarrowScreen({project}: {project: ProjectType}) {
     return (
         <PageBaseLayout>
             <PageBaseBodyLayout>
-                <ProjectPageContentNarrowScreen project={project} className="mr-10" />
+                <ProjectPageContentNarrowScreen project={project} />
             </PageBaseBodyLayout>
         </PageBaseLayout>
     )
@@ -179,7 +252,7 @@ function ProjectPageContentWithDocumentWideScreen({portfolio, text}: {portfolio:
     return (
         <div className="flex flex-1 flex-col h-screen overflow-y-auto">
             <div className="flex flex-col gap-3">
-                {text && <div className="flex-1"><TextDocumentViewer text={text} /></div>}
+                {(!portfolio && text) && <div className="flex-1"><TextDocumentViewer text={text} /></div>}
                 <div className="flex-1">
                     <PDFViewer file={portfolio} />
                 </div>
@@ -226,18 +299,83 @@ function ProjectPageContentWithImageWideScreen({name, image}: {name: string, ima
     )     
 }
 
+function ProjectPageContentWithImageAndTextWideScreen({name, image, text}: {name: string, image: ImageType, text: string}) {
+    const paragraphs = text.split("\n\n");
+    const { setPageNumber } = usePageNavigator();
+    const pageTarget = image.action?.behavior.target;
+
+    function handleClick() {
+        const navigateToAnotherPage = pageTarget?.type == "page";
+        const navigateToLink = pageTarget?.type == "url";
+        if (pageTarget?.pageId && navigateToAnotherPage) setPageNumber(pageTarget?.pageId);
+        if (navigateToLink) window.open(pageTarget?.targetUrl, "_blank");
+    }
+
+    const isClickable = image.action?.name == "click";
+
+    return (
+        <div className="flex flex-1 flex-row min-h-screen">
+            <div className="flex flex-1 flex-col justify-center items-center gap-10">
+                {isClickable ? (
+                    <>
+                        <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
+                        <div className="flex justify-center items-center">
+                            <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more</p>
+                        </div>
+                    </>
+                ) : (
+                    <ResponsiveImage image={image.src} name={name} />
+                )}
+            </div>
+            <div className="flex flex-1 flex-col justify-center overflow-y-auto px-10 max-h-screen gap-4">
+                {paragraphs.map((p, i) => (
+                    <p key={i} className="text-white font-bright-grotesk text-[15px] leading-relaxed opacity-90">{p}</p>
+                ))}
+            </div>
+            <ClosePageButton />
+        </div>
+    );
+}
+
 function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
 
     const isReady = useResetOnPathChange();
 
-    const { pageNumber } = usePageNavigator();
+    const { pageNumber, setPageNumber } = usePageNavigator();
     const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
 
     if (!isReady) return <Spinner size="lg" />;
 
+    if (page.pressReleases) {
+        return <PressReleases pressReleases={page.pressReleases} />
+    }
+
     if (page.portfolio) {
         return (
             <ProjectPageContentWithDocumentWideScreen portfolio={page.portfolio} text={page.text} />
+        )
+    }
+
+    if (page.images && page.text) {
+        const portfolioIndex = project.contentPages?.findIndex((p) => !!p.portfolio) ?? -1;
+        if (portfolioIndex !== -1) {
+            return (
+                <div className="relative">
+                    <ProjectPageContentWithImageAndTextWideScreen name={project.name} image={page.images[0]} text={page.text} />
+                    <div className="absolute top-6 right-10">
+                        <button
+                            className="font-bright-grotesk text-[11px] tracking-widest uppercase px-4 py-1.5 border border-white/30 text-white/70 hover:text-white hover:border-white rounded-sm transition-colors"
+                            onClick={() => setPageNumber(portfolioIndex + 1)}
+                        >
+                            View Document
+                        </button>
+                    </div>
+                </div>
+            )
+        }
+
+        return (
+            <ProjectPageContentWithImageAndTextWideScreen name={project.name} image={page.images[0]} text={page.text} />
         )
     }
 
