@@ -197,6 +197,15 @@ function ProjectPageContentNarrowScreen({project, className}: {project: ProjectT
     }
 
     if (page.images) {
+        if (showAbout) {
+            return (
+                <div>
+                    <RtcHero image={Array.isArray(page.images[0]) ? page.images[0][0] : (page.images[0].src || page.images[0])} alt={project.name} pdfUrl={rtcPdfUrl} />
+                    <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} className={className} showAbout={showAbout} />
+                </div>
+            )
+        }
+
         return <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} className={className} showAbout={showAbout} />
     }
 
