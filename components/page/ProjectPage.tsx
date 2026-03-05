@@ -24,18 +24,18 @@ const PDFViewer = dynamic(() => import("../utils/PDFViewer/PDFViewer"), {
 
 function ProjectPageContentWithDocumentNarrowScreen({portfolio, text, className}: {portfolio: string | string[], text?: string, className?: string}) {
     return (
-        <div className={`flex flex-1 flex-col h-screen overflow-y-auto ${className}`}>
-            <div className="flex flex-col gap-3">
-                {(!portfolio && text) && <div className="flex-1"><TextDocumentViewer text={text} /></div>}
-                <div className="flex-1">
-                    <PDFViewer file={portfolio} />
+        <div className={`flex flex-1 flex-col h-screen overflow-y-auto w-full ${className}`}>
+            <div className="flex flex-col gap-3 w-full">
+                {(!portfolio && text) && <div className="flex-1 w-full"><TextDocumentViewer text={text} /></div>}
+                <div className="flex-1 w-full">
+                    <PDFViewer file={portfolio} showToolbar={false} />
                 </div>
             </div>
         </div>
     );
 }
 
-const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, className, showAbout}: {name: string, image: ImageType, className?: string, showAbout?: boolean}) => {
+const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, className, showAbout, showLearnMore}: {name: string, image: ImageType, className?: string, showAbout?: boolean, showLearnMore?: boolean}) => {
 
     // const { currentNavigatedId, navigateTo } = useProjectNavigationStore();
 
@@ -59,7 +59,7 @@ const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, classNam
     }
 
     return (
-        <div className={`flex flex-4 flex-col gap-3 ${className}`}>
+        <div className={`flex flex-4 flex-col gap-3 w-full ${className}`}>
             <ResponsiveButtonedImage image={image.src} name={name} onClick={handleClick} />
             {showAbout && (
                 <div className="flex justify-center items-center">
@@ -67,24 +67,24 @@ const ProjectPageContentWithClickableImageNarrowScreen = ({name, image, classNam
                 </div>
             )}
             <div className="flex justify-center items-center">
-                <p className="text-white font-bright-grotesk text-[13px] opacity-[0.77] text-center">tap for more</p>
+                <p className="text-white font-bright-grotesk text-[13px] opacity-[0.77] text-center">tap for more {showLearnMore ? <><span className="mx-2">●</span><a className="text-white font-bright-grotesk text-[13px] opacity-[0.77] underline" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">learn more</a></> : null}</p>
             </div>
         </div>
     )
 }
 
-function ProjectPageContentWithImageNarrowScreen({image, name, className, showAbout}: {image: ImageType, name: string, className?: string, showAbout?: boolean}) {
+function ProjectPageContentWithImageNarrowScreen({image, name, className, showAbout, showLearnMore}: {image: ImageType, name: string, className?: string, showAbout?: boolean, showLearnMore?: boolean}) {
 
     const isImageClickable = image.action?.name == "click";
 
     if (isImageClickable) {
         return (
-            <ProjectPageContentWithClickableImageNarrowScreen name={name} image={image} className={className} showAbout={showAbout} />
+            <ProjectPageContentWithClickableImageNarrowScreen name={name} image={image} className={className} showAbout={showAbout} showLearnMore={showLearnMore} />
         )
     }
 
     return (
-        <div className="flex flex-3 flex-col">
+        <div className="flex flex-3 flex-col w-full">
             <ResponsiveImage image={image.src} name={name} className={className} />
             {showAbout && (
                 <div className="flex justify-center items-center mt-2">
@@ -106,7 +106,7 @@ function ProjectPageTextBlock({ text }: { text: string }) {
     );
 }
 
-function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, className, showAbout}: {image: ImageType, name: string, text: string, className?: string, showAbout?: boolean}) {
+function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, className, showAbout, showLearnMore}: {image: ImageType, name: string, text: string, className?: string, showAbout?: boolean, showLearnMore?: boolean}) {
     const { setPageNumber } = usePageNavigator();
     const pageTarget = image.action?.behavior.target;
     const isClickable = image.action?.name == "click";
@@ -132,7 +132,7 @@ function ProjectPageContentWithImageAndTextNarrowScreen({image, name, text, clas
                             </div>
                         )}
                         <div className="flex justify-center items-center">
-                            <p className="text-white font-bright-grotesk text-[11px] opacity-[0.77] text-center">tap for more</p>
+                            <p className="text-white font-bright-grotesk text-[11px] opacity-[0.77] text-center">tap for more {showLearnMore ? <><span className="mx-2">●</span><a className="text-white font-bright-grotesk text-[11px] opacity-[0.77] underline" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">learn more</a></> : null}</p>
                         </div>
                     </>
                 ) : (
@@ -163,7 +163,8 @@ function ProjectPageContentNarrowScreen({project, className}: {project: ProjectT
     const { pageNumber, setPageNumber } = usePageNavigator();
     const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
 
-    const showAbout = project.pathname === 'the-rooftop-cat' && pageNumber === 1 && !!page.images?.length;
+    const isRtc = project.pathname === 'the-rooftop-cat';
+    const showAbout = false;
 
     if (!isReady) return <Spinner size="md" />;
 
@@ -176,8 +177,35 @@ function ProjectPageContentNarrowScreen({project, className}: {project: ProjectT
     }
 
     if (page.images && page.text) {
+        // For the-rooftop-cat first page: show image (left/top) and rtcPdfUrl (right/bottom)
+        if (isRtc && pageNumber === 1) {
+            return (
+                <div className="flex flex-1 flex-col min-h-screen">
+                    <div className="flex-1">
+                        <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={showAbout} showLearnMore={isRtc && pageNumber === 1} />
+                    </div>
+                    <div className="flex-1 border-t border-white/10">
+                        <PDFViewer file={rtcPdfUrl} showToolbar={true} />
+                    </div>
+                </div>
+            );
+        }
+
         const portfolioIndex = project.contentPages?.findIndex((p) => !!p.portfolio) ?? -1;
         if (portfolioIndex !== -1) {
+            const portfolio = project.contentPages?.[portfolioIndex]?.portfolio;
+            if (isRtc) {
+                return (
+                    <div className="flex flex-1 flex-col min-h-screen">
+                        <div className="flex-1">
+                            <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={showAbout} showLearnMore={isRtc && pageNumber === 1} />
+                        </div>
+                        <div className="flex-1">
+                            <PDFViewer file={portfolio as string | string[]} showToolbar={false} />
+                        </div>
+                    </div>
+                );
+            }
             return (
                 <div className="relative">
                     <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={showAbout} />
@@ -193,20 +221,25 @@ function ProjectPageContentNarrowScreen({project, className}: {project: ProjectT
             );
         }
 
-        return <div><RtcHero image={Array.isArray(page.images[0]) ? page.images[0][0] : (page.images[0].src || page.images[0])} alt={project.name} pdfUrl={rtcPdfUrl} /><ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={showAbout} /></div>
+        // For artist-residency first page on narrow screen, show only the image+text (no hero, no About)
+        if (project.pathname === 'artist-residency' && pageNumber === 1) {
+            return <ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={false} showLearnMore={false} />
+        }
+
+        return <div><RtcHero image={Array.isArray(page.images[0]) ? page.images[0][0] : (page.images[0].src || page.images[0])} alt={project.name} pdfUrl={rtcPdfUrl} showAbout={!isRtc} /><ProjectPageContentWithImageAndTextNarrowScreen image={page.images[0]} name={project.name} text={page.text} className={className} showAbout={showAbout} showLearnMore={isRtc && pageNumber === 1} /></div>
     }
 
     if (page.images) {
         if (showAbout) {
             return (
                 <div>
-                    <RtcHero image={Array.isArray(page.images[0]) ? page.images[0][0] : (page.images[0].src || page.images[0])} alt={project.name} pdfUrl={rtcPdfUrl} />
-                    <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} className={className} showAbout={showAbout} />
+                    <RtcHero image={Array.isArray(page.images[0]) ? page.images[0][0] : (page.images[0].src || page.images[0])} alt={project.name} pdfUrl={rtcPdfUrl} showAbout={!isRtc} />
+                    <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} className={className} showAbout={showAbout} showLearnMore={isRtc && pageNumber === 1} />
                 </div>
             )
         }
 
-        return <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} className={className} showAbout={showAbout} />
+        return <ProjectPageContentWithImageNarrowScreen image={page.images[0]} name={project.name} className={className} showAbout={showAbout} showLearnMore={isRtc && pageNumber === 1} />
     }
 
     return (<></>);
@@ -250,7 +283,7 @@ function ProjectPageNarrowScreen({project}: {project: ProjectType}) {
     )
 }
 
-function ProjectPageContentWithClickableImageWideScreen({name, image, showAbout}: {name: string, image: ImageType, showAbout?: boolean}) {
+function ProjectPageContentWithClickableImageWideScreen({name, image, showAbout, showLearnMore}: {name: string, image: ImageType, showAbout?: boolean, showLearnMore?: boolean}) {
        
     const { setPageNumber } = usePageNavigator();    
     const pageTarget = image.action?.behavior.target;
@@ -280,7 +313,7 @@ function ProjectPageContentWithClickableImageWideScreen({name, image, showAbout}
                         </div>
                     )}
                     <div className="flex justify-center items-center">
-                        <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more</p>
+                        <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more {showLearnMore ? <><span className="mx-2">●</span><a className="text-white font-bright-grotesk-light text-2xl opacity-[0.77] underline" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">learn more</a></> : null}</p>
                     </div>
                 </div>
                 <ClosePageButton />
@@ -318,13 +351,13 @@ function ProjectPageContentWithVideoWideScreen({video}: {video: VideoType}) {
     )
 }
 
-function ProjectPageContentWithImageWideScreen({name, image, showAbout}: {name: string, image: ImageType, showAbout?: boolean}) {
+function ProjectPageContentWithImageWideScreen({name, image, showAbout, showLearnMore}: {name: string, image: ImageType, showAbout?: boolean, showLearnMore?: boolean}) {
 
     const isImageClickable = image.action?.name == "click";
 
     if (isImageClickable) {
         return (
-            <ProjectPageContentWithClickableImageWideScreen name={name} image={image} showAbout={showAbout} />
+            <ProjectPageContentWithClickableImageWideScreen name={name} image={image} showAbout={showAbout} showLearnMore={showLearnMore} />
         )
     }
 
@@ -338,14 +371,17 @@ function ProjectPageContentWithImageWideScreen({name, image, showAbout}: {name: 
                             <button className="text-white/70 text-[12px] uppercase px-2 py-1 transition-opacity">About</button>
                         </div>
                     )}
+                    <div className="flex justify-center items-center">
+                        <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more {showLearnMore ? <><span className="mx-2">●</span><a className="text-white font-bright-grotesk-light text-2xl opacity-[0.77] underline" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">learn more</a></> : null}</p>
+                    </div>
                 </div>
             </div>
             <ClosePageButton />
         </div>
-    )     
+    )    
 }
 
-function ProjectPageContentWithImageAndTextWideScreen({name, image, text, showAbout}: {name: string, image: ImageType, text: string, showAbout?: boolean}) {
+function ProjectPageContentWithImageAndTextWideScreen({name, image, text, showAbout, showLearnMore}: {name: string, image: ImageType, text: string, showAbout?: boolean, showLearnMore?: boolean}) {
     const paragraphs = text.split("\n\n");
     const { setPageNumber } = usePageNavigator();
     const pageTarget = image.action?.behavior.target;
@@ -371,7 +407,7 @@ function ProjectPageContentWithImageAndTextWideScreen({name, image, text, showAb
                             </div>
                         )}
                         <div className="flex justify-center items-center">
-                            <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more</p>
+                            <p className="text-white font-bright-grotesk-light text-2xl opacity-[0.77]">tap for more {showLearnMore ? <><span className="mx-2">●</span><a className="text-white font-bright-grotesk-light text-2xl opacity-[0.77] underline" href="https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi" target="_blank" rel="noreferrer">learn more</a></> : null}</p>
                         </div>
                     </>
                 ) : (
@@ -402,7 +438,10 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
     const { pageNumber, setPageNumber } = usePageNavigator();
     const page = project.contentPages[pageNumber - 1]?? project.contentPages?.[0];
 
-    const showAbout = project.pathname === 'the-rooftop-cat' && pageNumber === 1 && !!page.images?.length;
+    const isRtc = project.pathname === 'the-rooftop-cat';
+    const showAbout = false;
+
+    const rtcPdfUrl = "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNT22Io8lhQrsaEFUetYM8omdJGPIyXh7TcgjCi";
 
     if (!isReady) return <Spinner size="lg" />;
 
@@ -417,8 +456,35 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
     }
 
     if (page.images && page.text) {
+        // For the-rooftop-cat on first page: show image left and rtcPdfUrl right
+        if (isRtc && pageNumber === 1) {
+            return (
+                <div className="flex flex-1 flex-row min-h-screen">
+                    <div className="flex-1">
+                        <ProjectPageContentWithImageWideScreen name={project.name} image={page.images[0]} showAbout={showAbout} showLearnMore={isRtc && pageNumber === 1} />
+                    </div>
+                    <div className="flex-1 border-l border-white/10">
+                        <PDFViewer file={rtcPdfUrl} showToolbar={true} />
+                    </div>
+                </div>
+            )
+        }
+
         const portfolioIndex = project.contentPages?.findIndex((p) => !!p.portfolio) ?? -1;
         if (portfolioIndex !== -1) {
+            const portfolio = project.contentPages?.[portfolioIndex]?.portfolio;
+            if (isRtc) {
+                return (
+                    <div className="flex flex-1 flex-row min-h-screen">
+                        <div className="flex-1">
+                            <ProjectPageContentWithImageWideScreen name={project.name} image={page.images[0]} showAbout={showAbout} showLearnMore={isRtc && pageNumber === 1} />
+                        </div>
+                        <div className="flex-1 border-l border-white/10">
+                            <PDFViewer file={portfolio as string | string[]} showToolbar={false} />
+                        </div>
+                    </div>
+                )
+            }
             return (
                 <div className="relative">
                     <ProjectPageContentWithImageAndTextWideScreen name={project.name} image={page.images[0]} text={page.text} showAbout={showAbout} />
@@ -441,7 +507,7 @@ function ProjectPageContentWideScreen({project}: {project: ProjectType}) {
 
     if (page.images) {    
         return (
-            <ProjectPageContentWithImageWideScreen name={project.name} image={page.images[0]} showAbout={showAbout} />
+            <ProjectPageContentWithImageWideScreen name={project.name} image={page.images[0]} showAbout={showAbout} showLearnMore={isRtc && pageNumber === 1} />
         )     
     }
 

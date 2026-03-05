@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "node copy-pdf-worker.js && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.19",
     "@react-pdf/renderer": "^4.3.2",
     "@tanstack/react-query": "^5.81.5",
     "animejs": "^4.0.2",

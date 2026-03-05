@@ -8,6 +8,14 @@ import Spinner from "../Spinner"
 
 const PDFViewerPages = ({ numPages }: { numPages: number | undefined, onChangePageNumber: (pageNumber: number) => void }) => {
   
+  if (!numPages || numPages <= 0) {
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <Spinner size="lg" />
+      </div>
+    );
+  }
+
   const pages = new Array(numPages).fill(0);
 
   const { numPagesRendered, setNumPagesRendered, setAreAllPagesRendered } = useContext(DocumentInfoContext);

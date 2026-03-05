@@ -11,9 +11,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.vers
 
 type PDFViewerPropsType = {
   file: string | string[];
+  showToolbar?: boolean;
 };
 
-function PDFViewerSingle ({ file }: { file: string }) {
+function PDFViewerSingle ({ file, showToolbar }: { file: string, showToolbar?: boolean }) {
 
   const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -21,6 +22,7 @@ function PDFViewerSingle ({ file }: { file: string }) {
   const [areAllPagesRendered, setAreAllPagesRendered] = useState<boolean>(false);
 
   const [isDocumentLoadError, setIsDocumentLoadError] = useState<boolean>(false);
+  const [zoom, setZoom] = useState<number>(1);
 
   function handleDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -28,6 +30,20 @@ function PDFViewerSingle ({ file }: { file: string }) {
 
   function handleChangePageNumber(pageNumber: number) {
     setPageNumber(pageNumber);
+  }
+
+  function handleZoomIn() {
+    const newZoom = Math.min(2, zoom + 0.1);
+    setZoom(newZoom);
+    const pagesContainer = document.getElementById('pages');
+    if (pagesContainer && (pagesContainer as HTMLElement).style) (pagesContainer as HTMLElement).style.zoom = String(newZoom);
+  }
+
+  function handleZoomOut() {
+    const newZoom = Math.max(0.5, zoom - 0.1);
+    setZoom(newZoom);
+    const pagesContainer = document.getElementById('pages');
+    if (pagesContainer && (pagesContainer as HTMLElement).style) (pagesContainer as HTMLElement).style.zoom = String(newZoom);
   }
 
   if (isDocumentLoadError) {
@@ -40,6 +56,17 @@ function PDFViewerSingle ({ file }: { file: string }) {
 
   return (
     <DocumentInfoContext value={{ pageNumber, numPages, numPagesRendered, areAllPagesRendered, setNumPagesRendered, setAreAllPagesRendered }}>
+      <div className="flex flex-col gap-2">
+        {showToolbar && (
+        <div className="flex items-center gap-2 px-4 py-2">
+          <a href={file} target="_blank" rel="noreferrer" className="text-white/80 bg-black/30 px-3 py-1 rounded">Open</a>
+          <a href={file} download className="text-white/80 bg-black/30 px-3 py-1 rounded">Download</a>
+          <button onClick={() => window.open(file, '_blank')} className="text-white/80 bg-black/30 px-3 py-1 rounded">Print</button>
+          <button onClick={handleZoomOut} className="text-white/80 bg-black/30 px-3 py-1 rounded">-</button>
+          <span className="text-white/80">{Math.round(zoom*100)}%</span>
+          <button onClick={handleZoomIn} className="text-white/80 bg-black/30 px-3 py-1 rounded">+</button>
+        </div>
+        )}
       <Document
       file={file}
       onLoadSuccess={handleDocumentLoadSuccess}
@@ -52,20 +79,21 @@ function PDFViewerSingle ({ file }: { file: string }) {
       >
         <PDFViewerPages numPages={numPages} onChangePageNumber={handleChangePageNumber} />
       </Document>
+      </div>
     </DocumentInfoContext>
   );
 }
 
-export default function PDFViewer ({ file }: PDFViewerPropsType) {
+export default function PDFViewer ({ file, showToolbar }: PDFViewerPropsType) {
   const files = Array.isArray(file) ? file : [file];
 
   return (
     <div
-    className='flex flex-1 justify-center scrollbar-hidden scrollbar-hidden-wrapper'
+    className='w-full flex justify-center scrollbar-hidden scrollbar-hidden-wrapper overflow-x-hidden'
     id="pages"
     >
-      <div className="flex flex-col content-center gap-3">
-        {files.map((f, i) => <PDFViewerSingle key={i} file={f} />)}
+      <div className="flex flex-col content-center gap-3 w-full">
+        {files.map((f, i) => <PDFViewerSingle key={i} file={f} showToolbar={showToolbar} />)}
       </div>
     </div>
   );

@@ -99,14 +99,14 @@ function ProjectNarrowScreenText({children, project}: {children: ReactNode, proj
 
   if (isProjectHighlighted) {
     return (
-      <p className="text-[6px] font-bright-grotesk-light text-[#f04ff0] opacity-100">
+      <p className="text-[6px] font-bright-grotesk-light text-[#f04ff0] opacity-100 truncate">
         {children}
       </p>
     )
   }
 
   return (
-    <p className="text-[6px] font-bright-grotesk-light hover:text-[#f04ff0] opacity-[0.77] text-white">
+    <p className="text-[6px] font-bright-grotesk-light hover:text-[#f04ff0] opacity-[0.77] text-white truncate">
       {children}
     </p>
   )

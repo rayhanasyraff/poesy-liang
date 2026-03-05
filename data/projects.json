@@ -109,7 +109,7 @@
         "height": 480
       }
     ],
-    "order": 3,
+    "order": 5,
     "visibility": "public",
     "contentPages": [
       {
@@ -2385,8 +2385,8 @@
   },
   {
     "id": 56,
-    "name": "air",
-    "pathname": "air",
+    "name": "artist residency",
+    "pathname": "artist-residency",
     "date": "2025",
     "category": [
       "art"
@@ -2426,15 +2426,25 @@
               }
             }
           }
-        ]
+        ],
+        "text": "The RTC (abbreviation of Rooftop Cat; titled after Poesy 小詩's signature series) is an artist hideout located in the midst of upmarket skyscrapers in downtown Kuala Lumpur, in a neighborhood that was historically known for Chinese triads. This gentrified premise was formerly the family home of Malaysian-Taiwanese contemporary artist Poesy Liang 梁小詩, which was later converted to be her first artist studio between 2006 to 2017.\n\nFor this program, Poesy curates, invites and hosts established global artists to immerse in the Imbi level street grunge from the perspective of a local artist and to be a community-minded neighbour to migrant workers of the pre-gentrified area.\n\nThere are residency programs for local and foreign artists; street concerts for musicians and performers lacking visibility; poetry jamming sessions; film talks; comedy and others. The venue is dedicated to build an artistic community, to facilitate mentorship opportunities with senior masters and global practitioners alike, and to cultivate sustainable practices in the arts."
       },
       {
         "id": 2,
-        "portfolio": [
-          "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThraPl45vpBFm3VJ01fOCsehlNa5YuWQ49DX6",
-          "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTRkVC3Nw71UfTvBJCnVD6ZdzqWYxSutas2wke"
-        ],
-        "text": "The RTC (abbreviation of Rooftop Cat; titled after Poesy 小詩’s signature series) is an artist hideout located in the midst of upmarket skyscrapers in downtown Kuala Lumpur, in a neighborhood that was historically known for Chinese triads. This gentrified premise was formerly the family home of Malaysian-Taiwanese contemporary artist Poesy Liang 梁小詩, which was later converted to be her first artist studio between 2006 to 2017.\n\nFor this program, Poesy curates, invites and hosts established global artists to immerse in the Imbi level street grunge from the perspective of a local artist and to be a community-minded neighbour to migrant workers of the pre-gentrified area.\n\nThere are residency programs for local and foreign artists; street concerts for musicians and performers lacking visibility; poetry jamming sessions; film talks; comedy and others. The venue is dedicated to build an artistic community, to facilitate mentorship opportunities with senior masters and global practitioners alike, and to cultivate sustainable practices in the arts."
+        "pressReleases": [
+          {
+            "id": 1,
+            "title": "Swiss abstract artist joins residency program in Kuala Lumpur",
+            "date": "2025-06-01",
+            "pdf": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNThraPl45vpBFm3VJ01fOCsehlNa5YuWQ49DX6"
+          },
+          {
+            "id": 2,
+            "title": "Malaysian-Taiwanese contemporary artist Poesy Liang 梁小詩 launches an international artist residency program at The RTC.",
+            "date": "2025-03-15",
+            "pdf": "https://mnv07ssja2.ufs.sh/f/qW6mai8X7DNTRkVC3Nw71UfTvBJCnVD6ZdzqWYxSutas2wke"
+          }
+        ]
       }
     ]
   },

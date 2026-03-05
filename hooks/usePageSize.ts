@@ -1,95 +1,44 @@
 import { useContext, useEffect, useState } from "react";
-import useWindowSize from "./useWindowSize";
 import { DocumentInfoContext } from "@/components/utils/PDFViewer/DocumentInfoContext";
 
 export default function usePageSize() {
 
-    const windowSize = useWindowSize();
     const { pageNumber, areAllPagesRendered, setAreAllPagesRendered, setNumPagesRendered, numPagesRendered } = useContext(DocumentInfoContext);
-    
 
     const [pageSize, setPageSize] = useState({ width: 0, height: 0, margin: window.innerHeight / 2 });
-    // const getPageByPageNumber = (pageNumber: number) => {
-    //     const pages = document.getElementsByClassName("page");
 
-    //     if (pages.length !== 0 && pages !== undefined && pages !== null) {
-    //         for (let index = 0; index < pages.length; index++) {
-    //             // const page = pages[index];
-    //             // page.className = "page hidden";
-    //         }
-
-    //         const pageSelected = pages[pageNumber - 1];
-
-    //         // pageSelected.className = "page";
-
-    //         // console.log(pageSelected.clientHeight);
-    //         if (pageSelected && pageSelected.clientHeight <= 100) {
-    //             // pageSelected.className = "page hidden";
-    //         }
-            
-    //         return pageSelected    //     }
-
-    //     return null;
-    // }
-
-    // function getPageByPageNumber(pageNumber: number) {
-    //     const pages = document.getElementsByClassName("page");
-
-    //     if (pages.length !== 0 && pages !== undefined && pages !== null) {
-    //         for (let index = 0; index < pages.length; index++) {
-    //             const page = pages[index];
-    //             page.className = "page hidden";
-    //         }
-
-    //         const pageSelected = pages[pageNumber - 1];
-
-    //         pageSelected.className = "page";
-
-    //         console.log(pageSelected.clientHeight);
-    //         if (pageSelected && pageSelected.clientHeight <= 24 && areAllPagesRendered) {
-    //             pageSelected.className = "page hidden";
-    //         }
-            
-    //         return pageSelected;
-    //     }
-
-    //     return null;
-    // }
     useEffect(() => {
-        const maxWindowWidth = 1325;
-        const minWindowWidth = 767;
-        const pageHeight = document.getElementsByClassName("page")[0]?.clientHeight;
-        const pagesContainer = document.getElementById('pages');        
+        const maxWidth = 1325;
 
-        // pagesContainer?.clientWidth = windowSize.width;
-        // if (pagesContainer && pagesContainer.style) {
-        //     pagesContainer.style.width = windowSize.width + 'px';
-        // }
+        const measure = () => {
+            const pagesContainer = document.getElementById('pages');
+            if (!pagesContainer) return;
 
-        let pageWidth = pagesContainer?.clientWidth ?? 0;
+            const containerWidth = pagesContainer.clientWidth;
+            const pageHeight = document.getElementsByClassName("page")[0]?.clientHeight ?? 0;
+            const width = Math.min(containerWidth, maxWidth);
 
-        // console.log(pagesContainer?.clientWidth);
+            setPageSize({
+                width,
+                height: pageHeight,
+                margin: pageHeight === window.innerHeight ? window.innerHeight / 2 : (window.innerHeight - pageHeight) / 2,
+            });
+        };
 
-        if (windowSize.width > minWindowWidth && windowSize.width <= maxWindowWidth) {
-            pageWidth = windowSize.width;
-        } else if (windowSize.width > maxWindowWidth) {
-            pageWidth = maxWindowWidth;
-        }
+        const pagesContainer = document.getElementById('pages');
+        if (!pagesContainer) return;
 
-        // console.log(pageWidth, windowSize.width > minWindowWidth && windowSize.width <= maxWindowWidth, windowSize.width > minWindowWidth && windowSize.width <= maxWindowWidth)
+        const observer = new ResizeObserver(measure);
+        observer.observe(pagesContainer);
+        measure();
 
-        setPageSize({
-            width: pageWidth,
-            height: pageHeight ?? 0,
-            margin: pageSize.height == windowSize.height ? windowSize.height / 2 : (windowSize.height - pageSize.height) / 2
-        });
+        return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pageNumber, areAllPagesRendered, numPagesRendered]);
 
-        // console.log(areAllPagesRendered);
-
+    useEffect(() => {
         setNumPagesRendered(0);
-
-    }, [pageNumber, windowSize.width, windowSize.height, pageSize.height, pageSize.width, areAllPagesRendered, numPagesRendered, setNumPagesRendered, setAreAllPagesRendered, windowSize]);
-
+    }, [pageNumber, setNumPagesRendered]);
 
     return pageSize;
 }

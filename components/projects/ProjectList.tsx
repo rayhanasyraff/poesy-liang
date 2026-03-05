@@ -10,7 +10,7 @@ import Spinner from "@/components/utils/Spinner";
 const projectListVariants = cva("", {
   variants: {
     type: {
-      mobile: "text-right mr-5 flex flex-col",
+      mobile: "text-right flex flex-col w-max max-w-[70vw]",
       desktop: "mt-10 mx-10",
     },
   },

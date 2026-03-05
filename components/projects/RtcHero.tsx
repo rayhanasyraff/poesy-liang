@@ -3,12 +3,13 @@
 import React from 'react'
 import { ResponsiveImage } from '../utils/ResponsiveImage'
 
-export default function RtcHero({ image, alt, pdfUrl }: { image: string, alt?: string, pdfUrl: string }) {
+export default function RtcHero({ image, alt, pdfUrl, showAbout = true }: { image: string, alt?: string, pdfUrl: string, showAbout?: boolean }) {
     return (
         <div className="flex flex-col items-center w-full">
             <div className="w-full">
                 <ResponsiveImage image={image} name={alt ?? 'RTC'} scale={100} />
             </div>
+            {showAbout && (
             <div className="mt-6 w-full flex justify-center">
                 <a
                     href={pdfUrl}
@@ -20,6 +21,7 @@ export default function RtcHero({ image, alt, pdfUrl }: { image: string, alt?: s
                     About
                 </a>
             </div>
+            )}
         </div>
     )
 }
