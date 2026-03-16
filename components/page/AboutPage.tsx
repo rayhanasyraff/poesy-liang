@@ -25,15 +25,15 @@ function AboutPageContentNarrowScreen() {
                     </p>
 
                     <p>
-                    She is the daughter of a Malaysian-Chinese father and a Taiwanese mother. Intermarriage between two Chinese diaspora nations left the young Poesy grappling with being an outsider in her community &mdash; facing questions of belonging and cultural disconnection, creating a unique cultural synthesis of being neither purely Chinese nor purely Malaysian in an age of rampant economic migration and dual citizenship.
+                    She is the daughter of a Malaysian-Chinese father and a Taiwanese mother. Intermarriage between two Chinese diaspora nations left the young Poesy grappling with being an outsider in her community - facing questions of belonging and cultural disconnection, creating a unique cultural synthesis of being neither purely Chinese nor purely Malaysian in an age of rampant economic migration and dual citizenship.
                     </p>
 
                     <p>
-                    In her multidisciplinary practise, Poesy is a painter, poet, designer, sculptor, composer, filmmaker, and movement maker; she has spun out capsule brands of art merchandise, streetwear, fashion accessories, and even produced a painfully cute mobile game &mdash; her naive visuals are usually packed with irony.
+                    In her multidisciplinary practise, Poesy is a painter, poet, designer, sculptor, composer, filmmaker, and movement maker; she has spun out capsule brands of art merchandise, streetwear, fashion accessories, and even produced a painfully cute mobile game - her naive visuals are usually packed with irony.
                     </p>
 
                     <p>
-                    Her lifelong commitment to social activism as her unique art form has also resulted in large-scale installations &mdash; piecing together drawings, objects, performance, music and poetry &mdash; which are evident in her pavilion-scale work The Pirate&rsquo;s Daughter.
+                    Her lifelong commitment to social activism as her unique art form has also resulted in large-scale installations - piecing together drawings, objects, performance, music and poetry - which are evident in her pavilion-scale work The Pirate&rsquo;s Daughter.
                     </p>
 
                     <p>
@@ -45,7 +45,7 @@ function AboutPageContentNarrowScreen() {
                     </p>
 
                     <p>
-                    She is a prolific writer and the author of a website since 1999 &mdash; with enough materials to publish six books, two movies and a small mountain of poetic zines.
+                    She is a prolific writer and the author of a website since 1999 - with enough materials to publish six books, two movies and a small mountain of poetic zines.
                     </p>
 
                     <p>
@@ -81,7 +81,7 @@ function AboutPageContentNarrowScreen() {
                     </p>
 
                     <p>
-                    Her famed cat Harry Putter (named after a hairy golfer) was recently spotted mingling with marine life in a mobile game where he catches fish to feed his fat wife, and bothers to collect glass &amp; plastic waste in the sea. This storyline is a prelude to Poesy&rsquo;s venture into cutting glass bottles into drinkware for the hospitality industry. Poesy&rsquo;s projects inevitably awaken our modern society to humanity&rsquo;s original design &mdash; synonymous with the unrelenting mission of Helping Angels &#x5584;&#x5F80;&#x5929;&#x4F7F; &mdash; Poesy&rsquo;s randomly kind movement since 2007.
+                    Her famed cat Harry Putter (named after a hairy golfer) was recently spotted mingling with marine life in a mobile game where he catches fish to feed his fat wife, and bothers to collect glass &amp; plastic waste in the sea. This storyline is a prelude to Poesy&rsquo;s venture into cutting glass bottles into drinkware for the hospitality industry. Poesy&rsquo;s projects inevitably awaken our modern society to humanity&rsquo;s original design - synonymous with the unrelenting mission of Helping Angels &#x5584;&#x2FAF;&#x5929;&#x4F7F; - Poesy&rsquo;s randomly kind movement since 2007.
                     </p>
 
                     <p>
@@ -136,15 +136,15 @@ function AboutPageContentWideScreen() {
                     </p>
 
                     <p>
-                    She is the daughter of a Malaysian-Chinese father and a Taiwanese mother. Intermarriage between two Chinese diaspora nations left the young Poesy grappling with being an outsider in her community &mdash; facing questions of belonging and cultural disconnection, creating a unique cultural synthesis of being neither purely Chinese nor purely Malaysian in an age of rampant economic migration and dual citizenship.
+                    She is the daughter of a Malaysian-Chinese father and a Taiwanese mother. Intermarriage between two Chinese diaspora nations left the young Poesy grappling with being an outsider in her community - facing questions of belonging and cultural disconnection, creating a unique cultural synthesis of being neither purely Chinese nor purely Malaysian in an age of rampant economic migration and dual citizenship.
                     </p>
 
                     <p>
-                    In her multidisciplinary practise, Poesy is a painter, poet, designer, sculptor, composer, filmmaker, and movement maker; she has spun out capsule brands of art merchandise, streetwear, fashion accessories, and even produced a painfully cute mobile game &mdash; her naive visuals are usually packed with irony.
+                    In her multidisciplinary practise, Poesy is a painter, poet, designer, sculptor, composer, filmmaker, and movement maker; she has spun out capsule brands of art merchandise, streetwear, fashion accessories, and even produced a painfully cute mobile game - her naive visuals are usually packed with irony.
                     </p>
 
                     <p>
-                    Her lifelong commitment to social activism as her unique art form has also resulted in large-scale installations &mdash; piecing together drawings, objects, performance, music and poetry &mdash; which are evident in her pavilion-scale work The Pirate&rsquo;s Daughter.
+                    Her lifelong commitment to social activism as her unique art form has also resulted in large-scale installations - piecing together drawings, objects, performance, music and poetry - which are evident in her pavilion-scale work The Pirate&rsquo;s Daughter.
                     </p>
 
                     <p>
@@ -156,7 +156,7 @@ function AboutPageContentWideScreen() {
                     </p>
 
                     <p>
-                    She is a prolific writer and the author of a website since 1999 &mdash; with enough materials to publish six books, two movies and a small mountain of poetic zines.
+                    She is a prolific writer and the author of a website since 1999 - with enough materials to publish six books, two movies and a small mountain of poetic zines.
                     </p>
 
                     <p>
@@ -192,7 +192,7 @@ function AboutPageContentWideScreen() {
                     </p>
 
                     <p>
-                    Her famed cat Harry Putter (named after a hairy golfer) was recently spotted mingling with marine life in a mobile game where he catches fish to feed his fat wife, and bothers to collect glass &amp; plastic waste in the sea. This storyline is a prelude to Poesy&rsquo;s venture into cutting glass bottles into drinkware for the hospitality industry. Poesy&rsquo;s projects inevitably awaken our modern society to humanity&rsquo;s original design &mdash; synonymous with the unrelenting mission of Helping Angels &#x5584;&#x5F80;&#x5929;&#x4F7F; &mdash; Poesy&rsquo;s randomly kind movement since 2007.
+                    Her famed cat Harry Putter (named after a hairy golfer) was recently spotted mingling with marine life in a mobile game where he catches fish to feed his fat wife, and bothers to collect glass &amp; plastic waste in the sea. This storyline is a prelude to Poesy&rsquo;s venture into cutting glass bottles into drinkware for the hospitality industry. Poesy&rsquo;s projects inevitably awaken our modern society to humanity&rsquo;s original design - synonymous with the unrelenting mission of Helping Angels &#x5584;&#x2FAF;&#x5929;&#x4F7F; - Poesy&rsquo;s randomly kind movement since 2007.
                     </p>
 
                     <p>
